@@ -1,0 +1,12 @@
+language: cpp
+
+before_script: mkdir build
+
+script:
+  cd build
+  cmake ..
+  make
+  ./tests
+  ./test/pipe_tokenizer_tests
+
+after_script: rm -rf build
