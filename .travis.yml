@@ -13,3 +13,13 @@ script:
 after_script: 
   - cd .. 
   - rm -rf build
+
+matrix:
+  includes:
+    - os: linux
+      addons:
+        apt:
+          sources:
+            - ubuntu-toolchain-r-test
+          packages:
+            - libboost-all-dev
