@@ -30,7 +30,7 @@ BOOST_AUTO_TEST_SUITE(InnerQutoes_suite)
     BOOST_AUTO_TEST_CASE(testNoPipe) {
         std::string command = "cat \"'strange command with quotes'\"";
         const auto &foundTokens = PipeTokenizer({'\'', '"'}).tokenize(command);
-        const std::vector<std::string> &expectedTokens = {"c at \"'strange command with quotes'\""};
+        const std::vector<std::string> &expectedTokens = {"cat \"'strange command with quotes'\""};
         BOOST_CHECK_EQUAL_COLLECTIONS(
                 expectedTokens.begin(), expectedTokens.end(),
                 foundTokens.begin(), foundTokens.end()
