@@ -1,9 +1,23 @@
 language: cpp
 
+compiler:
+  - gcc
+  - clang
+
+notifications:
+  email: false
+
 before_script: 
   - cd hw01-cli
   - mkdir build
   - cd build
+
+before_install:
+  - git submodule update --init --recursive
+  - sudo apt-get add-apt-repository ppa:kojoley/boost
+  - sudo apt-get -q update
+  - sudo apt-get -y install libboost-{chrono,log,program-options,date-time,thread,system,filesystem,regex}1.58{-dev,.0}
+  
 
 script:
   - cmake ..
