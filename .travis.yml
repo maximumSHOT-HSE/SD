@@ -1,10 +1,15 @@
 language: cpp
 
-before_script: cd hw01-cli && mkdir build && cd build
+before_script: 
+  - cd hw01-cli
+  - mkdir build
+  - cd build
 
 script:
-  cmake ..
-  make
-  ./test/pipe_tokenizer_tests
+  - cmake ..
+  - make
+  - ./test/pipe_tokenizer_tests
 
-after_script: cd .. && rm -rf build
+after_script: 
+  - cd .. 
+  - rm -rf build
