@@ -1,0 +1,10 @@
+#ifndef HW01_CLI_LINEARTOKENIZER_H
+#define HW01_CLI_LINEARTOKENIZER_H
+
+
+class LinearTokenizer {
+
+};
+
+
+#endif //HW01_CLI_LINEARTOKENIZER_H
