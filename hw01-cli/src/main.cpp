@@ -1,10 +1,8 @@
-#include <iostream>
-#include <string>
-#include <optional>
-#include <unordered_set>
+#include <Shell.h>
 
 int main() {
 
+    Shell().run();
 
     return 0;
 }

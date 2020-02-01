@@ -3,7 +3,13 @@
 
 
 class Status {
+public:
+    Status() = default;
 
+    bool isSuccess() const;
+private:
+    int statusCode = 0;
+    std::string message = "";
 };
 
 

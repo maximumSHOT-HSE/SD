@@ -1,13 +1,18 @@
 #ifndef HW01_CLI_RESPONSE_H
 #define HW01_CLI_RESPONSE_H
 
-#include <IOutputStream.h>
+#include <sstream>
 #include <Status.h>
 
 class Response {
+public:
+    Response(const Status &status);
+
+    const Status &getStatus() const;
+
 private:
-    IOutputStream &outputStream;
     Status status;
+    // TODO: add stream here
 };
 
 

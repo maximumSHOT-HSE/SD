@@ -1,0 +1,10 @@
+#ifndef HW01_CLI_COMMANDARGUMENTS_H
+#define HW01_CLI_COMMANDARGUMENTS_H
+
+
+class CommandArguments {
+
+};
+
+
+#endif //HW01_CLI_COMMANDARGUMENTS_H
