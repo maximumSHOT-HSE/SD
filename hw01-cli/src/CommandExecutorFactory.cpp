@@ -2,11 +2,11 @@
 
 void CommandExecutorFactory::registerExecutor(
         const CommandName &commandName,
-        const CommandExecutor &commandExecutor) {
+        const ICommandExecutor &commandExecutor) {
     nameToExecutorMap[commandName] = commandExecutor;
 }
 
-const CommandExecutor &CommandExecutorFactory::getCommandExecutorByCommandName(
+const ICommandExecutor &CommandExecutorFactory::getCommandExecutorByCommandName(
         const CommandName &commandName
 ) const {
     return nameToExecutorMap[commandName];

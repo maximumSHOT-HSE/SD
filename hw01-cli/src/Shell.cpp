@@ -18,7 +18,7 @@ void Shell::run() {
 
 Shell::Shell() :
         processor(new LoopProcessor()),
-        environment(new Environment) {
+        environment(new Environment()) {
 //    environment->registerExecutor()
 }
 

@@ -2,7 +2,7 @@
 #define HW01_CLI_UTILEXECUTORFACTORY_H
 
 #include <string>
-#include <CommandExecutor.h>
+#include <ICommandExecutor.h>
 #include <CommandName.h>
 #include <unordered_map>
 
@@ -10,16 +10,15 @@ class CommandExecutorFactory {
 private:
     void registerExecutor(
             const CommandName &commandName,
-            const CommandExecutor &commandExecutor
+            const ICommandExecutor &commandExecutor
     );
 
-    const CommandExecutor &getCommandExecutorByCommandName(
+    const ICommandExecutor &getCommandExecutorByCommandName(
             const CommandName &commandName
     ) const;
 
 private:
-    std::unordered_map<CommandName, CommandExecutor> nameToExecutorMap;
+    std::unordered_map<CommandName, ICommandExecutor> nameToExecutorMap;
 };
-
 
 #endif //HW01_CLI_UTILEXECUTORFACTORY_H

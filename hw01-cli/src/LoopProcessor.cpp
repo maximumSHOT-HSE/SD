@@ -1,6 +1,6 @@
 #include <LoopProcessor.h>
 #include <CommandBuilder.h>
-#include <CommandExecutor.h>
+#include <ICommandExecutor.h>
 #include <ITokenizer.h>
 #include <LinearTokenizer.h>
 #include <sstream>
@@ -32,8 +32,6 @@ Response LoopProcessor::process(
             commandBuilder.appendToken(token);
         }
     }
-
-    std::cout << outputStream.str() << std::endl;
 
     return Response(lastCommandStatus);
 }

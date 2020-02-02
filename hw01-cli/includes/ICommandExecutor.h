@@ -5,7 +5,7 @@
 #include <CommandArguments.h>
 #include <iostream>
 
-class CommandExecutor {
+class ICommandExecutor {
 public:
     virtual Status execute(
             const CommandArguments &commandArguments,
@@ -13,7 +13,7 @@ public:
             std::ostream &outputStream
     ) const = 0;
 
-    virtual ~CommandExecutor() = 0;
+    virtual ~ICommandExecutor() = 0;
 };
 
 

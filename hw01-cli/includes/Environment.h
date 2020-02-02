@@ -6,18 +6,17 @@
 
 class Environment {
 public:
-    const CommandExecutor &getCommandExecutorByCommandName(
+    const ICommandExecutor &getCommandExecutorByCommandName(
             const CommandName &commandName
     ) const;
 
     void registerExecutor(
             const CommandName &commandName,
-            const CommandExecutor &commandExecutor
+            const ICommandExecutor &commandExecutor
     );
 
 private:
     CommandExecutorFactory factory;
 };
-
 
 #endif //HW01_CLI_ENVIRONMENT_H
