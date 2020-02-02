@@ -29,9 +29,7 @@ Response LoopProcessor::process(
             for (shortTermTokenizer->clear(), shortTermTokenizer->append(commandString);
                  shortTermTokenizer->hasNextToken();) {
                 Token helper = shortTermTokenizer->nextToken();
-                if (helper.getTokenType() != TokenType::SPACE) {
-                    commandBuilder.appendToken(helper);
-                }
+                commandBuilder.appendToken(helper);
             }
             Command command = commandBuilder.buildCommand();
             Status status = environment

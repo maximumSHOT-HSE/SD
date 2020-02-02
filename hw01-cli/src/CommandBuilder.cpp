@@ -16,15 +16,9 @@ Command CommandBuilder::buildCommand() const {
     assert(!tokens.empty());
     // TODO: add exceptions
 
-    std::vector<std::string> stringArguments;
-    stringArguments.reserve(tokens.size());
-    for (auto i = tokens.begin() + 1; i != tokens.end(); i++) {
-        stringArguments.push_back(i->asString());
-    }
-
     return Command(
             CommandName(tokens.front().asString()),
-            CommandArguments(stringArguments)
+            CommandArguments(std::vector<Token>(tokens.begin() + 1, tokens.end()))
     );
 }
 

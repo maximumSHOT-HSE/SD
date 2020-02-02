@@ -3,17 +3,20 @@
 
 #include <string>
 #include <vector>
+#include <Token.h>
 
 class CommandArguments {
 public:
     CommandArguments() = default;
 
-    CommandArguments(const std::vector<std::string> &stringArguments);
+    explicit CommandArguments(const std::vector<Token> &argumentTokens);
 
     std::vector<std::string> asStringsVector() const;
 
+    std::vector<Token> asTokensVector() const;
+
 private:
-    std::vector<std::string> arguments;
+    std::vector<Token> argumentTokens;
 };
 
 
