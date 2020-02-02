@@ -15,6 +15,8 @@ public:
     ~LoopProcessor() override;
 
 private:
+    static Token removeOuterQuotes(const Token& token);
+private:
     ITokenizer *tokenizer;
     ITokenizer *shortTermTokenizer;
 };

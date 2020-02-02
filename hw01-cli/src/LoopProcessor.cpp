@@ -28,13 +28,16 @@ Response LoopProcessor::process(
             commandBuilder.clear();
             for (shortTermTokenizer->clear(), shortTermTokenizer->append(commandString);
                  shortTermTokenizer->hasNextToken();) {
-                commandBuilder.appendToken(shortTermTokenizer->nextToken());
+                commandBuilder.appendToken(
+                        LoopProcessor::removeOuterQuotes(
+                                shortTermTokenizer->nextToken()
+                        )
+                );
             }
             Command command = commandBuilder.buildCommand();
             Status status = environment
                     .getCommandExecutorByCommandName(command.getCommandName())
                     .execute(command.getCommandArguments(), inputChannel, outputChannel);
-            // TODO: add exit command
             // TODO: add variable $? (last command execution exit code)
             lastCommandStatus = status;
 
@@ -55,3 +58,24 @@ LoopProcessor::~LoopProcessor() {
 LoopProcessor::LoopProcessor()
         : tokenizer(new LinearTokenizer()),
           shortTermTokenizer(new LinearTokenizer()) {}
+
+Token LoopProcessor::removeOuterQuotes(const Token &token) {
+    std::optional<char> lastQuote;
+    std::string content;
+    for (char c : token.asString()) {
+        if (c == '\'' || c == '"') {
+            if (lastQuote.has_value()) {
+                if (lastQuote.value() == c) {
+                    lastQuote.reset();
+                } else {
+                    content.push_back(c);
+                }
+            } else {
+                lastQuote = c;
+            }
+        } else {
+            content.push_back(c);
+        }
+    }
+    return Token(token.getTokenType(), content);
+}
