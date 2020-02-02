@@ -15,6 +15,8 @@ public:
 
     const std::string &asString() const;
 
+    size_t empty() const;
+
 private:
     TokenType tokenType;
     std::string tokenContent;

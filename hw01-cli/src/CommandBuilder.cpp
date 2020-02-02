@@ -5,7 +5,9 @@
 #include <algorithm>
 
 void CommandBuilder::appendToken(const Token &token) {
-    tokens.push_back(token);
+    if (!token.empty()) {
+        tokens.push_back(token);
+    }
 }
 
 void CommandBuilder::clear() {

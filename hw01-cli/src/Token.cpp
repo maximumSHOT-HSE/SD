@@ -11,3 +11,7 @@ Token::Token(const TokenType &tokenType, const std::string &tokenContent)
 const std::string &Token::asString() const {
     return tokenContent;
 }
+
+size_t Token::empty() const {
+    return tokenContent.empty();
+}
