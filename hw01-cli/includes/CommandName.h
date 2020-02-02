@@ -5,6 +5,10 @@
 
 class CommandName {
 public:
+    CommandName() = default;
+
+    CommandName(const std::string name);
+
     const std::string &getName() const;
 
 private:

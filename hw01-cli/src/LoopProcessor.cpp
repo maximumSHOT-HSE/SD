@@ -4,6 +4,7 @@
 #include <ITokenizer.h>
 #include <LinearTokenizer.h>
 #include <sstream>
+#include <StringChannel.h>
 
 Response LoopProcessor::process(
         const std::string &s,
@@ -11,10 +12,10 @@ Response LoopProcessor::process(
 ) {
     CommandBuilder commandBuilder;
     Status lastCommandStatus;
-    std::stringstream inputStream, outputStream;
+    StringChannel inputChannel, outputChannel;
 
     for (; lastCommandStatus.isSuccess() && tokenizer->hasNextToken();
-           swap(inputStream, outputStream), outputStream.clear()) {
+           std::swap(inputChannel, outputChannel), outputChannel.clear()) {
 
         Token token = tokenizer->nextToken();
         TokenType tokenType = token.getTokenType();
@@ -25,7 +26,7 @@ Response LoopProcessor::process(
             // TODO: substitution
             Status status = environment
                     .getCommandExecutorByCommandName(command.getCommandName())
-                    .execute(command.getCommandArguments(), inputStream, outputStream);
+                    .execute(command.getCommandArguments(), inputChannel, outputChannel);
             // TODO: add exit command
             lastCommandStatus = status;
         } else {
@@ -33,7 +34,7 @@ Response LoopProcessor::process(
         }
     }
 
-    return Response(lastCommandStatus);
+    return Response(lastCommandStatus, inputChannel);
 }
 
 LoopProcessor::~LoopProcessor() = default;

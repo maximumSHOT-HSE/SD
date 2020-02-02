@@ -25,6 +25,9 @@ add_library(
 
         src/CommandExecutorFactory.cpp
         includes/CommandExecutorFactory.h
+
+        src/EchoExecutor.cpp
+        includes/EchoExecutor.h
 )
 
 add_library(

@@ -15,8 +15,7 @@ public:
 
     void write(const std::string &x) override;
 
-    ~StringChannel() override = default;
-
+    void clear();
 private:
     std::string buffer;
 };

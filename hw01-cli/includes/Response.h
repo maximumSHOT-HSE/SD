@@ -3,16 +3,19 @@
 
 #include <sstream>
 #include <Status.h>
+#include <StringChannel.h>
 
 class Response {
 public:
-    Response(const Status &status);
+    Response(const Status &status, const StringChannel &stringChannel);
 
     const Status &getStatus() const;
 
+    const StringChannel &getStringChannel() const;
+
 private:
     Status status;
-    // TODO: add stream here
+    StringChannel stringChannel;
 };
 
 

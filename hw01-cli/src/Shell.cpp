@@ -4,6 +4,7 @@
 #include <LinearTokenizer.h>
 #include <iostream>
 #include <sstream>
+#include <StringChannel.h>
 
 void Shell::run() {
     std::string input;
@@ -13,6 +14,9 @@ void Shell::run() {
                 input,
                 *environment
         );
+
+        StringChannel output = response.getStringChannel();
+        std::cout << output.read() << std::endl;
     }
 }
 

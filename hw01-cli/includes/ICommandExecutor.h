@@ -3,14 +3,14 @@
 
 #include <Status.h>
 #include <CommandArguments.h>
-#include <iostream>
+#include <StringChannel.h>
 
 class ICommandExecutor {
 public:
     virtual Status execute(
             const CommandArguments &commandArguments,
-            std::istream &inputStream,
-            std::ostream &outputStream
+            StringChannel &inputStream,
+            StringChannel &outputStream
     ) const = 0;
 
     virtual ~ICommandExecutor() = 0;

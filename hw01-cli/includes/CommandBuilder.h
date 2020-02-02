@@ -3,6 +3,7 @@
 
 #include <Token.h>
 #include <Command.h>
+#include <vector>
 
 class CommandBuilder {
 public:
@@ -11,6 +12,9 @@ public:
     void clear();
 
     Command buildCommand();
+
+private:
+    std::vector<Token> parts;
 };
 
 

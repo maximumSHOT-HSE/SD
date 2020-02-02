@@ -13,3 +13,7 @@ std::string StringChannel::read() {
 void StringChannel::write(const std::string &x) {
     buffer += x;
 }
+
+void StringChannel::clear() {
+    buffer.clear();
+}

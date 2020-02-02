@@ -6,6 +6,11 @@
 
 class Command {
 public:
+    Command(
+            const CommandName &commandName,
+            const CommandArguments &commandArguments
+    );
+
     const CommandName &getCommandName() const;
 
     const CommandArguments &getCommandArguments() const;
