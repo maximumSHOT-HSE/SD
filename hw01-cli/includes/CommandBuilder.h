@@ -4,6 +4,7 @@
 #include <Token.h>
 #include <Command.h>
 #include <vector>
+#include "Environment.h"
 
 class CommandBuilder {
 public:
@@ -13,10 +14,12 @@ public:
 
     Command buildCommand() const;
 
+    const std::vector<Token> &getTokens() const;
+
     std::string buildCommandString() const;
 
 private:
-    std::vector<Token> parts;
+    std::vector<Token> tokens;
 };
 
 

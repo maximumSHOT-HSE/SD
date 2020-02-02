@@ -13,7 +13,7 @@ void Shell::run() {
         );
 
         StringChannel output = response.getStringChannel();
-        std::cout << output.read() << std::endl;
+        std::cout << output.read();
     }
 }
 

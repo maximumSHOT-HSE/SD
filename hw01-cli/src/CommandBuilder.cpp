@@ -5,33 +5,38 @@
 #include <algorithm>
 
 void CommandBuilder::appendToken(const Token &token) {
-    parts.push_back(token);
+    tokens.push_back(token);
 }
 
 void CommandBuilder::clear() {
-    parts.clear();
+    tokens.clear();
 }
 
 Command CommandBuilder::buildCommand() const {
-    assert(!parts.empty());
+    assert(!tokens.empty());
     // TODO: add exceptions
 
     std::vector<std::string> stringArguments;
-    stringArguments.reserve(parts.size());
-    for (auto i = parts.begin() + 1; i != parts.end(); i++) {
+    stringArguments.reserve(tokens.size());
+    for (auto i = tokens.begin() + 1; i != tokens.end(); i++) {
         stringArguments.push_back(i->asString());
     }
 
     return Command(
-            CommandName(parts.front().asString()),
+            CommandName(tokens.front().asString()),
             CommandArguments(stringArguments)
     );
 }
 
+const std::vector<Token> &CommandBuilder::getTokens() const {
+    return tokens;
+}
+
 std::string CommandBuilder::buildCommandString() const {
     std::string commandString;
-    for (const auto &part : parts) {
-        commandString += part.asString();
+    for (const auto &token : tokens) {
+        commandString += token.asString();
     }
     return commandString;
 }
+

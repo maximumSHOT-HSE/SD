@@ -5,10 +5,11 @@
 #include <LinearTokenizer.h>
 #include <sstream>
 #include <StringChannel.h>
+#include <Substitutor.h>
 
 Response LoopProcessor::process(
         const std::string &s,
-        const Environment &environment
+        Environment &environment
 ) {
     tokenizer->clear();
     tokenizer->append(s);
@@ -23,9 +24,16 @@ Response LoopProcessor::process(
         TokenType tokenType = token.getTokenType();
 
         if (tokenType == TokenType::PIPE || tokenType == TokenType::END) {
-            Command command = commandBuilder.buildCommand();
+            std::string commandString = commandBuilder.buildCommandString();
             commandBuilder.clear();
-            // TODO: substitution
+            for (shortTermTokenizer->clear(), shortTermTokenizer->append(commandString);
+                 shortTermTokenizer->hasNextToken();) {
+                Token helper = shortTermTokenizer->nextToken();
+                if (helper.getTokenType() != TokenType::SPACE) {
+                    commandBuilder.appendToken(helper);
+                }
+            }
+            Command command = commandBuilder.buildCommand();
             Status status = environment
                     .getCommandExecutorByCommandName(command.getCommandName())
                     .execute(command.getCommandArguments(), inputChannel, outputChannel);
@@ -35,6 +43,9 @@ Response LoopProcessor::process(
             std::swap(inputChannel, outputChannel);
             outputChannel.clear();
         } else {
+            if (Substitutor::isTokenIsAvailableForSubstitution(token)) {
+                token = Substitutor::substitute(token, environment);
+            }
             commandBuilder.appendToken(token);
         }
     }
@@ -46,4 +57,6 @@ LoopProcessor::~LoopProcessor() {
     delete tokenizer;
 }
 
-LoopProcessor::LoopProcessor() : tokenizer(new LinearTokenizer()) {}
+LoopProcessor::LoopProcessor()
+        : tokenizer(new LinearTokenizer()),
+          shortTermTokenizer(new LinearTokenizer()) {}

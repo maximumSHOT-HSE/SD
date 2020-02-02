@@ -1,0 +1,55 @@
+#include <Substitutor.h>
+#include <cctype>
+
+
+bool Substitutor::isValidVariableNameToken(const Token &nameToken) {
+    if (nameToken.getTokenType() != TokenType::LITERAL) {
+        return false;
+    }
+    const auto &name = nameToken.asString();
+    if (name.empty()) {
+        return false;
+    }
+    if (!std::isalpha(name.front())) {
+        return false;
+    }
+    for (size_t i = 1; i < name.size(); i++) {
+        if (!(std::isalpha(name[i]) || std::isdigit(name[i]))) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool Substitutor::isValidVariableValueToken(const Token &valueToken) {
+    return !(valueToken.getTokenType() != TokenType::LITERAL);
+}
+
+bool Substitutor::isSibstitution(const Token &dollarToken, const Token &variableNameToken) {
+    return dollarToken.getTokenType() == TokenType::DOLLAR && isValidVariableNameToken(variableNameToken);
+}
+
+std::string Substitutor::substitute(std::vector<Token> tokens, Environment &environment) {
+    std::string substitution;
+    for (size_t i = 0; i < tokens.size(); ) {
+        if (i + 1 < tokens.size() && Substitutor::isSibstitution(tokens[i], tokens[i + 1])) {
+            substitution += environment.getVariableValue(tokens[i + 1].asString());
+            i += 2;
+        } else {
+            substitution += tokens[i].asString();
+        }
+    }
+    return substitution;
+}
+
+bool Substitutor::isTokenIsAvailableForSubstitution(const Token &token) {
+    if (token.getTokenType() != TokenType::LITERAL) {
+        return false;
+    }
+    const auto &stringToken = token.asString();
+    return stringToken.size() > 1u && stringToken.front() == '"' && stringToken.back() == '"';
+}
+
+Token Substitutor::substitute(const Token &token, Environment &environment) {
+
+}

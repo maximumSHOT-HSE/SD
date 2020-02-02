@@ -9,9 +9,7 @@ Token LinearTokenizer::nextToken() {
         return Token(TokenType::END);
     }
     if (std::isspace(s[pointer])) { // is space?
-        while (pointer < (int) s.size() && std::isspace(s[pointer])) {
-            pointer++;
-        }
+        pointer++;
         return Token(TokenType::SPACE, " ");
     }
     if (s[pointer] == '|') { // is pipe?
@@ -20,7 +18,7 @@ Token LinearTokenizer::nextToken() {
     }
     if (s[pointer] == '=') { // is assign?
         pointer++;
-        return Token(TokenType::ASSIGN, "=");
+        return Token(TokenType::SUBSTITUTION, "=");
     }
     std::optional<char> lastQuote;
     std::string tokenContent;

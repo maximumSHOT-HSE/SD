@@ -10,7 +10,7 @@ class IProcessor {
 public:
     virtual Response process(
             const std::string &s,
-            const Environment &environment
+            Environment &environment
     ) = 0;
 
     virtual ~IProcessor() = default;

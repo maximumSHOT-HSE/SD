@@ -66,6 +66,10 @@ add_executable(
 
         src/StringChannel.cpp
         includes/StringChannel.h
+#       ========================
+
+        src/Substitutor.cpp
+        includes/Substitutor.h
 )
 
 include_directories(src)

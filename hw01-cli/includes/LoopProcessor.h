@@ -9,13 +9,14 @@ public:
 
     Response process(
             const std::string &s,
-            const Environment &environment
+            Environment &environment
     ) override;
 
     ~LoopProcessor() override;
 
 private:
     ITokenizer *tokenizer;
+    ITokenizer *shortTermTokenizer;
 };
 
 
