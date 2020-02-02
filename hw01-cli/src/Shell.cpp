@@ -1,15 +1,12 @@
 #include <Shell.h>
 
 #include <LoopProcessor.h>
-#include <LinearTokenizer.h>
 #include <iostream>
-#include <sstream>
-#include <StringChannel.h>
 
 void Shell::run() {
     std::string input;
     while (true) {
-        std::cin >> input;
+        std::getline(std::cin, input);
         Response response = processor->process(
                 input,
                 *environment
@@ -23,7 +20,6 @@ void Shell::run() {
 Shell::Shell() :
         processor(new LoopProcessor()),
         environment(new Environment()) {
-//    environment->registerExecutor()
 }
 
 Shell::~Shell() {

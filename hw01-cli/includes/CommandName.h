@@ -7,9 +7,11 @@ class CommandName {
 public:
     CommandName() = default;
 
-    CommandName(const std::string name);
+    explicit CommandName(const std::string &name);
 
     const std::string &getName() const;
+
+    bool operator==(const CommandName &other) const;
 
 private:
     std::string name;

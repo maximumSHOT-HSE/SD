@@ -1,13 +1,21 @@
 #include <CommandExecutorFactory.h>
 
+#include <tuple>
+#include <vector>
+
 void CommandExecutorFactory::registerExecutor(
         const CommandName &commandName,
-        const ICommandExecutor &commandExecutor) {
-    nameToExecutorMap[commandName] = commandExecutor;
+        ICommandExecutor *const commandExecutor) {
+    nameToExecutorMap.emplace_back(commandName, commandExecutor);
 }
 
 const ICommandExecutor &CommandExecutorFactory::getCommandExecutorByCommandName(
         const CommandName &commandName
 ) const {
-    return nameToExecutorMap[commandName];
+    for (const auto &item : nameToExecutorMap) {
+        if (item.first == commandName) {
+            return *item.second;
+        }
+    }
+    // TODO: add exception
 }

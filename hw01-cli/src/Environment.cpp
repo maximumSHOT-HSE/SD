@@ -4,6 +4,7 @@ const ICommandExecutor &Environment::getCommandExecutorByCommandName(const Comma
     return factory.getCommandExecutorByCommandName(commandName);
 }
 
-void Environment::registerExecutor(const CommandName &commandName, const ICommandExecutor &commandExecutor) {
-    factory.registerExecutor(commandName, commandExecutor);
+Environment::Environment()
+        : factory(), echoExecutor(new EchoExecutor()) {
+    factory.registerExecutor(CommandName("echo"), echoExecutor);
 }

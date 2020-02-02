@@ -7,6 +7,8 @@ enum TokenType {PIPE, SPACE, END, ASSIGN, LITERAL};
 
 class Token {
 public:
+    Token(const TokenType &tokenType, const std::string &tokenContent = "");
+
     TokenType getTokenType() const;
 
     std::string asString() const;

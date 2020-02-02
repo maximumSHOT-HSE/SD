@@ -13,7 +13,7 @@ public:
             StringChannel &outputStream
     ) const = 0;
 
-    virtual ~ICommandExecutor() = 0;
+    virtual ~ICommandExecutor() = default;
 };
 
 

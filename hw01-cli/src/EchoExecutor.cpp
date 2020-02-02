@@ -5,5 +5,11 @@ Status EchoExecutor::execute(
         StringChannel &inputStream,
         StringChannel &outputStream) const {
 
+    for (const auto &argument : commandArguments.asStringsVector()) {
+        outputStream.write(argument);
+    }
 
+    // TODO: add exceptions
+
+    return Status();
 }

@@ -11,7 +11,9 @@ public:
 
     void clear();
 
-    Command buildCommand();
+    Command buildCommand() const;
+
+    std::string buildCommandString() const;
 
 private:
     std::vector<Token> parts;

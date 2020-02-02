@@ -1,6 +1,7 @@
 #ifndef HW01_CLI_STATUS_H
 #define HW01_CLI_STATUS_H
 
+#include <string>
 
 class Status {
 public:

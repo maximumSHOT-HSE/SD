@@ -13,13 +13,8 @@ add_executable(
 
         src/Environment.cpp
         includes/Environment.h
-)
 
-add_library(
-        util_exectur_library
-
-        STATIC
-
+#       ========================
         src/ICommandExecutor.cpp
         includes/ICommandExecutor.h
 
@@ -28,13 +23,8 @@ add_library(
 
         src/EchoExecutor.cpp
         includes/EchoExecutor.h
-)
 
-add_library(
-        processor_library
-
-        STATIC
-
+#       ========================
         includes/IProcessor.h
 
         src/LoopProcessor.cpp
@@ -45,13 +35,8 @@ add_library(
 
         src/Response.cpp
         includes/Response.h
-)
 
-add_library(
-        command_library
-
-        STATIC
-
+#       ========================
         src/Command.cpp
         includes/Command.h
 
@@ -63,13 +48,10 @@ add_library(
 
         src/CommandBuilder.cpp
         includes/CommandBuilder.h
-)
 
-add_library(
-        tokenization_library
+        includes/CommandNameHash.h
 
-        STATIC
-
+#       ========================
         includes/ITokenizer.h
 
         src/LinearTokenizer.cpp
@@ -77,13 +59,8 @@ add_library(
 
         src/Token.cpp
         includes/Token.h
-)
 
-add_library(
-        channel_library
-
-        STATIC
-
+#       ========================
         includes/IInputChannel.h
         includes/IOutputChannel.h
 
@@ -93,17 +70,5 @@ add_library(
 
 include_directories(src)
 include_directories(includes)
-
-target_link_libraries(
-        hw01_cli
-
-        LINK_PUBLIC
-
-        tokenization_library
-        command_library
-        processor_library
-        util_executor_library
-        channel_library
-)
 
 #add_subdirectory(test)

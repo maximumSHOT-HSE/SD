@@ -9,7 +9,13 @@ public:
 
     bool hasNextToken() override;
 
-    ~LinearTokenizer() override;
+    void append(const std::string &s) override;
+
+    void clear() override;
+
+private:
+    std::string s = "";
+    int pointer = 0;
 };
 
 

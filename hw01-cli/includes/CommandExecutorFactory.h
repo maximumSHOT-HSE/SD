@@ -5,12 +5,15 @@
 #include <ICommandExecutor.h>
 #include <CommandName.h>
 #include <unordered_map>
+#include <CommandNameHash.h>
+#include <map>
+#include <vector>
 
 class CommandExecutorFactory {
-private:
+public:
     void registerExecutor(
             const CommandName &commandName,
-            const ICommandExecutor &commandExecutor
+            ICommandExecutor *const commandExecutor
     );
 
     const ICommandExecutor &getCommandExecutorByCommandName(
@@ -18,7 +21,7 @@ private:
     ) const;
 
 private:
-    std::unordered_map<CommandName, ICommandExecutor> nameToExecutorMap;
+    std::vector<std::pair<CommandName, ICommandExecutor *const >> nameToExecutorMap;
 };
 
 #endif //HW01_CLI_UTILEXECUTORFACTORY_H

@@ -5,8 +5,11 @@
 
 class EchoExecutor : public ICommandExecutor {
 public:
-    Status execute(const CommandArguments &commandArguments, StringChannel &inputStream,
-                   StringChannel &outputStream) const override;
+    Status execute(
+            const CommandArguments &commandArguments,
+            StringChannel &inputStream,
+            StringChannel &outputStream
+    ) const override;
 
 };
 

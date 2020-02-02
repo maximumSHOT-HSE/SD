@@ -10,12 +10,14 @@ Response LoopProcessor::process(
         const std::string &s,
         const Environment &environment
 ) {
+    tokenizer->clear();
+    tokenizer->append(s);
+
     CommandBuilder commandBuilder;
     Status lastCommandStatus;
     StringChannel inputChannel, outputChannel;
 
-    for (; lastCommandStatus.isSuccess() && tokenizer->hasNextToken();
-           std::swap(inputChannel, outputChannel), outputChannel.clear()) {
+    for (; lastCommandStatus.isSuccess() && tokenizer->hasNextToken();) {
 
         Token token = tokenizer->nextToken();
         TokenType tokenType = token.getTokenType();
@@ -29,6 +31,9 @@ Response LoopProcessor::process(
                     .execute(command.getCommandArguments(), inputChannel, outputChannel);
             // TODO: add exit command
             lastCommandStatus = status;
+
+            std::swap(inputChannel, outputChannel);
+            outputChannel.clear();
         } else {
             commandBuilder.appendToken(token);
         }
@@ -37,6 +42,8 @@ Response LoopProcessor::process(
     return Response(lastCommandStatus, inputChannel);
 }
 
-LoopProcessor::~LoopProcessor() = default;
+LoopProcessor::~LoopProcessor() {
+    delete tokenizer;
+}
 
 LoopProcessor::LoopProcessor() : tokenizer(new LinearTokenizer()) {}
