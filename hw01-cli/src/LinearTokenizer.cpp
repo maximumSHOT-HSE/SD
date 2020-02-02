@@ -20,6 +20,10 @@ Token LinearTokenizer::nextToken() {
         pointer++;
         return Token(TokenType::SUBSTITUTION, "=");
     }
+    if (s[pointer] == '$') {
+        pointer++;
+        return Token(TokenType::DOLLAR, "$");
+    }
     std::optional<char> lastQuote;
     std::string tokenContent;
     for (int &i = pointer; i < (int) s.size(); i++) {

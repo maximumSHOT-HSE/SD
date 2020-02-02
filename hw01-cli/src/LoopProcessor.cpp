@@ -43,7 +43,7 @@ Response LoopProcessor::process(
             std::swap(inputChannel, outputChannel);
             outputChannel.clear();
         } else {
-            if (Substitutor::isTokenIsAvailableForSubstitution(token)) {
+            if (Substitutor::isTokenAvailableForSubstitution(token)) {
                 token = Substitutor::substitute(token, environment);
             }
             commandBuilder.appendToken(token);

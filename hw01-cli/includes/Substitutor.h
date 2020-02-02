@@ -5,15 +5,16 @@
 #include <Token.h>
 #include <Environment.h>
 #include <vector>
+#include <ITokenizer.h>
 
 class Substitutor {
 public:
-    static bool isTokenIsAvailableForSubstitution(const Token &token);
+    static bool isTokenAvailableForSubstitution(const Token &token);
 
     static Token substitute(const Token &token, Environment &environment);
 
 private:
-    static std::string substitute(std::vector<Token> tokens, Environment &environment);
+    static std::string substitute(const std::vector<Token> &tokens, Environment &environment);
 
     static bool isSibstitution(
             const Token &dollarToken,

@@ -1,5 +1,6 @@
 #include <Substitutor.h>
 #include <cctype>
+#include <LinearTokenizer.h>
 
 
 bool Substitutor::isValidVariableNameToken(const Token &nameToken) {
@@ -29,7 +30,7 @@ bool Substitutor::isSibstitution(const Token &dollarToken, const Token &variable
     return dollarToken.getTokenType() == TokenType::DOLLAR && isValidVariableNameToken(variableNameToken);
 }
 
-std::string Substitutor::substitute(std::vector<Token> tokens, Environment &environment) {
+std::string Substitutor::substitute(const std::vector<Token> &tokens, Environment &environment) {
     std::string substitution;
     for (size_t i = 0; i < tokens.size(); ) {
         if (i + 1 < tokens.size() && Substitutor::isSibstitution(tokens[i], tokens[i + 1])) {
@@ -37,12 +38,13 @@ std::string Substitutor::substitute(std::vector<Token> tokens, Environment &envi
             i += 2;
         } else {
             substitution += tokens[i].asString();
+            i++;
         }
     }
     return substitution;
 }
 
-bool Substitutor::isTokenIsAvailableForSubstitution(const Token &token) {
+bool Substitutor::isTokenAvailableForSubstitution(const Token &token) {
     if (token.getTokenType() != TokenType::LITERAL) {
         return false;
     }
@@ -50,6 +52,16 @@ bool Substitutor::isTokenIsAvailableForSubstitution(const Token &token) {
     return stringToken.size() > 1u && stringToken.front() == '"' && stringToken.back() == '"';
 }
 
-Token Substitutor::substitute(const Token &token, Environment &environment) {
+#include <iostream>
 
+Token Substitutor::substitute(const Token &token, Environment &environment) {
+    std::string s = token.asString();
+    s = std::string(s.begin() + 1, s.end() - 1);
+    LinearTokenizer tokenizer;
+    tokenizer.append(s);
+    std::vector<Token> tokens;
+    while (tokenizer.hasNextToken()) {
+        tokens.push_back(tokenizer.nextToken());
+    }
+    return Token(token.getTokenType(), "\"" + Substitutor::substitute(tokens, environment) + "\"");
 }
