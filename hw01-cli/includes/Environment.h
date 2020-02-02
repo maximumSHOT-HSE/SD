@@ -6,6 +6,7 @@
 #include <EchoExecutor.h>
 #include <unordered_map>
 #include <string>
+#include <ExitExecutor.h>
 
 class Environment {
 public:
@@ -21,8 +22,10 @@ public:
 
 private:
     CommandExecutorFactory factory;
-    EchoExecutor *echoExecutor;
     std::unordered_map<std::string, std::string> variableNameToValue;
+
+    EchoExecutor *echoExecutor;
+    ExitExecutor *exitExecutor;
 };
 
 #endif //HW01_CLI_ENVIRONMENT_H

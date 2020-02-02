@@ -9,8 +9,6 @@
 
 class Substitutor {
 public:
-    static bool isTokenAvailableForSubstitution(const Token &token);
-
     static Token substitute(const Token &token, Environment &environment);
 
 private:
@@ -24,6 +22,8 @@ private:
     static bool isValidVariableNameToken(const Token &nameToken);
 
     static bool isValidVariableValueToken(const Token &valueToken);
+
+    static bool isTokenAvailableForSubstitution(const Token &token);
 };
 
 

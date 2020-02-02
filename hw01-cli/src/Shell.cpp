@@ -14,6 +14,10 @@ void Shell::run() {
 
         StringChannel output = response.getStringChannel();
         std::cout << output.read();
+
+        if (response.getStatus().getExitStatus() == ExitStatus::EXIT) {
+            break;
+        }
     }
 }
 

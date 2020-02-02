@@ -5,8 +5,11 @@ const ICommandExecutor &Environment::getCommandExecutorByCommandName(const Comma
 }
 
 Environment::Environment()
-        : factory(), echoExecutor(new EchoExecutor()) {
+        : factory(),
+          echoExecutor(new EchoExecutor()),
+          exitExecutor(new ExitExecutor()) {
     factory.registerExecutor(CommandName("echo"), echoExecutor);
+    factory.registerExecutor(CommandName("exit"), exitExecutor);
 }
 
 void Environment::setVariableValue(const std::string &variableName, const std::string &variableValue) {

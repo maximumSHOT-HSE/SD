@@ -28,23 +28,20 @@ Response LoopProcessor::process(
             commandBuilder.clear();
             for (shortTermTokenizer->clear(), shortTermTokenizer->append(commandString);
                  shortTermTokenizer->hasNextToken();) {
-                Token helper = shortTermTokenizer->nextToken();
-                commandBuilder.appendToken(helper);
+                commandBuilder.appendToken(shortTermTokenizer->nextToken());
             }
             Command command = commandBuilder.buildCommand();
             Status status = environment
                     .getCommandExecutorByCommandName(command.getCommandName())
                     .execute(command.getCommandArguments(), inputChannel, outputChannel);
             // TODO: add exit command
+            // TODO: add variable $? (last command execution exit code)
             lastCommandStatus = status;
 
             std::swap(inputChannel, outputChannel);
             outputChannel.clear();
         } else {
-            if (Substitutor::isTokenAvailableForSubstitution(token)) {
-                token = Substitutor::substitute(token, environment);
-            }
-            commandBuilder.appendToken(token);
+            commandBuilder.appendToken(Substitutor::substitute(token, environment));
         }
     }
 

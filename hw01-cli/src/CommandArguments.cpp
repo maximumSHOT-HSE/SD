@@ -17,3 +17,7 @@ CommandArguments::CommandArguments(const std::vector<Token> &argumentTokens)
 std::vector<Token> CommandArguments::asTokensVector() const {
     return argumentTokens;
 }
+
+size_t CommandArguments::size() const {
+    return argumentTokens.size();
+}

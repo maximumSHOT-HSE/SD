@@ -15,6 +15,8 @@ public:
 
     std::vector<Token> asTokensVector() const;
 
+    size_t size() const;
+
 private:
     std::vector<Token> argumentTokens;
 };

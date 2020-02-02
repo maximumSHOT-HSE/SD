@@ -1,5 +1,4 @@
 #include <Substitutor.h>
-#include <cctype>
 #include <LinearTokenizer.h>
 
 
@@ -52,9 +51,10 @@ bool Substitutor::isTokenAvailableForSubstitution(const Token &token) {
     return stringToken.size() > 1u && stringToken.front() == '"' && stringToken.back() == '"';
 }
 
-#include <iostream>
-
 Token Substitutor::substitute(const Token &token, Environment &environment) {
+    if (!isTokenAvailableForSubstitution(token)) {
+        return token;
+    }
     std::string s = token.asString();
     s = std::string(s.begin() + 1, s.end() - 1);
     LinearTokenizer tokenizer;
