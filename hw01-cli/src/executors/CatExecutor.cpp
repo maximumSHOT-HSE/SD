@@ -12,9 +12,9 @@ Status CatExecutor::execute(
         StringChannel &outputStream
 ) const {
     if (commandArguments.countTokensWithType(TokenType::LITERAL) > 0) {
-        this->executeAtLeastOneArgumentMode(commandArguments, inputStream, outputStream);
+        return this->executeAtLeastOneArgumentMode(commandArguments, inputStream, outputStream);
     } else {
-        this->executeNoArgumentsMode(commandArguments, inputStream, outputStream);
+        return this->executeNoArgumentsMode(commandArguments, inputStream, outputStream);
     }
 }
 
