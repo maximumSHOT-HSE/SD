@@ -3,7 +3,8 @@
 Status EchoExecutor::execute(
         const CommandArguments &commandArguments,
         StringChannel &inputStream,
-        StringChannel &outputStream) const {
+        StringChannel &outputStream
+) const {
 
     const auto &arguments = commandArguments.asTokensVector();
     for (size_t i = 0; i < arguments.size(); i++) {

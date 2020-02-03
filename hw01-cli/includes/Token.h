@@ -4,7 +4,7 @@
 #include <string>
 
 enum TokenType {
-    PIPE, SPACE, END, SUBSTITUTION, LITERAL, DOLLAR
+    PIPE, SPACE, END, ASSIGN, LITERAL, DOLLAR
 };
 
 class Token {

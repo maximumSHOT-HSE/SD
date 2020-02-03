@@ -24,6 +24,12 @@ add_executable(
         src/executors/EchoExecutor.cpp
         includes/executors/EchoExecutor.h
 
+        src/executors/ExitExecutor.cpp
+        includes/executors/ExitExecutor.h
+
+        src/executors/CatExecutor.cpp
+        includes/executors/CatExecutor.h
+
 #       ========================
         includes/processors/IProcessor.h
 
@@ -49,7 +55,7 @@ add_executable(
         src/commands/CommandBuilder.cpp
         includes/commands/CommandBuilder.h
 
-        #       ========================
+#       ========================
         includes/tokenizers/ITokenizer.h
 
         src/tokenizers/LinearTokenizer.cpp
@@ -68,10 +74,6 @@ add_executable(
 #       ========================
         src/Substitutor.cpp
         includes/Substitutor.h
-
-#       ========================
-        src/executors/ExitExecutor.cpp
-        includes/executors/ExitExecutor.h
 )
 
 include_directories(src)

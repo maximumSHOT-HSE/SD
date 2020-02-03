@@ -4,10 +4,13 @@
 #include <commands/CommandExecutorFactory.h>
 #include <commands/Command.h>
 #include <commands/CommandName.h>
-#include <executors/EchoExecutor.h>
+
 #include <unordered_map>
 #include <string>
+
+#include <executors/EchoExecutor.h>
 #include <executors/ExitExecutor.h>
+#include <executors/CatExecutor.h>
 
 class Environment {
 public:
@@ -27,6 +30,7 @@ private:
 
     EchoExecutor *echoExecutor;
     ExitExecutor *exitExecutor;
+    CatExecutor *catExecutor;
 };
 
 #endif //HW01_CLI_ENVIRONMENT_H

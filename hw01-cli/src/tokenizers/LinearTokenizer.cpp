@@ -18,7 +18,7 @@ Token LinearTokenizer::nextToken() {
     }
     if (s[pointer] == '=') { // is assign?
         pointer++;
-        return Token(TokenType::SUBSTITUTION, "=");
+        return Token(TokenType::ASSIGN, "=");
     }
     if (s[pointer] == '$') {
         pointer++;
