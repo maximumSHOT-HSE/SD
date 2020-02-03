@@ -4,7 +4,8 @@
 #include <algorithm>
 
 void CommandBuilder::appendToken(const Token &token) {
-    if (!token.empty()) {
+    if (!token.empty()
+    && !(tokens.empty() && token.getTokenType() != TokenType::LITERAL)) {
         tokens.push_back(token);
     }
 }

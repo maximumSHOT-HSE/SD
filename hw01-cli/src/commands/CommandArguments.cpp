@@ -18,3 +18,13 @@ std::vector<Token> CommandArguments::asTokensVector() const {
 size_t CommandArguments::size() const {
     return argumentTokens.size();
 }
+
+size_t CommandArguments::countTokensWithType(const TokenType &tokenType) const {
+    size_t count = 0;
+    for (const auto &token : argumentTokens) {
+        if (token.getTokenType() == tokenType) {
+            count++;
+        }
+    }
+    return count;
+}

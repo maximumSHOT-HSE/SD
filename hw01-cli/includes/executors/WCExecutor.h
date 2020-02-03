@@ -1,10 +1,10 @@
-#ifndef HW01_CLI_CATEXECUTOR_H
-#define HW01_CLI_CATEXECUTOR_H
+#ifndef HW01_CLI_WCEXECUTOR_H
+#define HW01_CLI_WCEXECUTOR_H
 
 #include <executors/ICommandExecutor.h>
 #include <optional>
 
-class CatExecutor : public ICommandExecutor {
+class WCExecutor : public ICommandExecutor {
 public:
     Status execute(
             const CommandArguments &commandArguments,
@@ -26,4 +26,4 @@ private:
 };
 
 
-#endif //HW01_CLI_CATEXECUTOR_H
+#endif //HW01_CLI_WCEXECUTOR_H

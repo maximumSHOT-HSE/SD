@@ -2,14 +2,40 @@
 #include <assert.h>
 #include <algorithm>
 #include <fstream>
+#include <executors/CatExecutor.h>
+#include <cctype>
+
 
 Status CatExecutor::execute(
         const CommandArguments &commandArguments,
         StringChannel &inputStream,
         StringChannel &outputStream
 ) const {
+    if (commandArguments.countTokensWithType(TokenType::LITERAL) > 0) {
+        this->executeAtLeastOneArgumentMode(commandArguments, inputStream, outputStream);
+    } else {
+        this->executeNoArgumentsMode(commandArguments, inputStream, outputStream);
+    }
+}
 
-    // TODO: add check: len(args) >= 1
+Status CatExecutor::executeNoArgumentsMode(
+        const CommandArguments &commandArguments,
+        StringChannel &inputChannel,
+        StringChannel &outputChannel
+) const {
+    std::string buffer;
+    while (!inputChannel.empty()) {
+        buffer = inputChannel.read();
+        outputChannel.write(buffer);
+    }
+    return Status();
+}
+
+Status CatExecutor::executeAtLeastOneArgumentMode(
+        const CommandArguments &commandArguments,
+        StringChannel &inputChannel,
+        StringChannel &outputChannel
+) const {
 
     const auto &arguments = commandArguments.asTokensVector();
 
@@ -19,7 +45,7 @@ Status CatExecutor::execute(
         }
         std::ifstream fin(argument.asString()); // TODO: add exceptions
         for (char c; fin.get(c);) {
-            outputStream.write(c);
+            outputChannel.write(c);
         }
     }
 

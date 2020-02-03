@@ -17,6 +17,8 @@ public:
 
     size_t size() const;
 
+    size_t countTokensWithType(const TokenType &tokenType) const;
+
 private:
     std::vector<Token> argumentTokens;
 };

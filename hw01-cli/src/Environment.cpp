@@ -9,11 +9,13 @@ Environment::Environment()
           echoExecutor(new EchoExecutor()),
           exitExecutor(new ExitExecutor()),
           catExecutor(new CatExecutor()),
-          pwdExecutor(new PWDExecutor()) {
+          pwdExecutor(new PWDExecutor()),
+          wcExecutor(new WCExecutor()) {
     factory.registerExecutor(CommandName("echo"), echoExecutor);
     factory.registerExecutor(CommandName("exit"), exitExecutor);
     factory.registerExecutor(CommandName("cat"), catExecutor);
     factory.registerExecutor(CommandName("pwd"), pwdExecutor);
+    factory.registerExecutor(CommandName("wc"), wcExecutor);
 }
 
 void Environment::setVariableValue(const std::string &variableName, const std::string &variableValue) {

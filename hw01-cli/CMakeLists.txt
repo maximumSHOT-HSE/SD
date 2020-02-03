@@ -33,6 +33,9 @@ add_executable(
         src/executors/PWDExecutor.cpp
         includes/executors/PWDExecutor.h
 
+        src/executors/WCExecutor.cpp
+        includes/executors/WCExecutor.h
+
 #       ========================
         includes/processors/IProcessor.h
 

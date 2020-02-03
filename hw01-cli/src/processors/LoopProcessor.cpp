@@ -39,6 +39,7 @@ Response LoopProcessor::process(
                 );
             }
             Command command = commandBuilder.buildCommand();
+            commandBuilder.clear();
             Status status = environment
                     .getCommandExecutorByCommandName(command.getCommandName())
                     .execute(command.getCommandArguments(), inputChannel, outputChannel);
