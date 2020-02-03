@@ -1,10 +1,6 @@
 #include <processors/LoopProcessor.h>
 #include <commands/CommandBuilder.h>
-#include <executors/ICommandExecutor.h>
-#include <tokenizers/ITokenizer.h>
 #include <tokenizers/LinearTokenizer.h>
-#include <sstream>
-#include <channels/StringChannel.h>
 #include <Substitutor.h>
 
 #include <iostream>
