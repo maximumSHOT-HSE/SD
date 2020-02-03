@@ -44,6 +44,7 @@ std::string Substitutor::substitute(const std::vector<Token> &tokens, Environmen
 }
 
 bool Substitutor::isTokenAvailableForSubstitution(const Token &token) {
+    // substitution can be only between two outer quotes '\"'
     if (token.getTokenType() != TokenType::LITERAL) {
         return false;
     }
@@ -56,7 +57,7 @@ Token Substitutor::substitute(const Token &token, Environment &environment) {
         return token;
     }
     std::string s = token.asString();
-    s = std::string(s.begin() + 1, s.end() - 1);
+    s = std::string(s.begin() + 1, s.end() - 1); // remove outer quotes
     LinearTokenizer tokenizer;
     tokenizer.append(s);
     std::vector<Token> tokens;

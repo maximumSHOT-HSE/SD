@@ -7,80 +7,86 @@ Status WCExecutor::execute(
         StringChannel &outputStream
 ) const {
     if (commandArguments.countTokensWithType(TokenType::LITERAL) > 0) {
-        return executeAtLeastOneArgumentMode(commandArguments, inputStream, outputStream);
+        for (const auto &token : commandArguments.asTokensVector()) {
+            if (token.getTokenType() != TokenType::LITERAL) {
+                continue;
+            }
+            const std::string &fileName = token.asString();
+            Counter counter = executeFileMode(fileName);
+            writeCounterToChannel(counter, outputStream, fileName);
+        }
     } else {
-        return executeNoArgumentsMode(commandArguments, inputStream, outputStream);
+        Counter counter = executeChannelMode(commandArguments, inputStream, outputStream);
+        writeCounterToChannel(counter, outputStream);
     }
+    return Status();
 }
 
-Status WCExecutor::executeNoArgumentsMode(
+WCExecutor::Counter WCExecutor::executeChannelMode(
         const CommandArguments &commandArguments,
         StringChannel &inputChannel,
         StringChannel &outputChannel
 ) const {
-    int newlinesCount = 0;
-    int wordsCount = 0;
-    int bytesCount = 0;
-    std::string buffer;
+    Counter counter;
     while (!inputChannel.empty()) {
-        buffer = inputChannel.read();
-        bytesCount += (int) buffer.size();
-        for (char c : buffer) {
-            if (c == '\n') {
-                newlinesCount++;
-            }
-        }
+        counter.append(inputChannel.read());
     }
-    outputChannel.write(std::to_string(newlinesCount));
-    outputChannel.write(" ");
-    outputChannel.write(std::to_string(wordsCount));
-    outputChannel.write(" ");
-    outputChannel.write(std::to_string(bytesCount));
-    outputChannel.write("\n");
-    return Status();
+    return counter;
 }
 
-Status WCExecutor::executeAtLeastOneArgumentMode(
-        const CommandArguments &commandArguments,
-        StringChannel &inputChannel,
-        StringChannel &outputChannel
-) const {
-    int totalNewlinesCount = 0;
-    int totalWordsCount = 0;
-    int totalBytesCount = 0;
-
-    for (const auto &token : commandArguments.asTokensVector()) {
-
-        if (token.getTokenType() != TokenType::LITERAL) {
-            continue;
-        }
-
-        int newlinesCount = 0;
-        int wordsCount = 0;
-        int bytesCount = 0;
-
-        std::ifstream fin(token.asString()); // TODO: add exceptions
-        for (char c; fin.get(c);) {
-            bytesCount++;
-            if (c == '\n') {
-                newlinesCount++;
-            }
-        }
-
-        outputChannel.write(std::to_string(newlinesCount) + " ");
-        outputChannel.write(std::to_string(wordsCount) + " ");
-        outputChannel.write(std::to_string(bytesCount) + " ");
-        outputChannel.write(token.asString() + "\n");
-
-        totalNewlinesCount += newlinesCount;
-        totalWordsCount += wordsCount;
-        totalBytesCount += bytesCount;
+WCExecutor::Counter WCExecutor::executeFileMode(const std::string &fileName) const {
+    std::ifstream fin(fileName); // TODO: add exceptions
+    Counter counter;
+    for (char c; fin.get(c);) {
+        counter.append(c);
     }
+    return counter;
+}
 
-    outputChannel.write(std::to_string(totalNewlinesCount) + " ");
-    outputChannel.write(std::to_string(totalWordsCount) + " ");
-    outputChannel.write(std::to_string(totalBytesCount) + " ");
-    outputChannel.write("total\n");
+void WCExecutor::writeCounterToChannel(
+        const WCExecutor::Counter &counter,
+        StringChannel &outputChannel,
+        const std::string &message
+) const {
+    outputChannel.write(std::to_string(counter.getNewlinesCount()) + " ");
+    outputChannel.write(std::to_string(counter.getWordsCount()) + " ");
+    outputChannel.write(std::to_string(counter.getBytesCount()));
+    if (!message.empty()) {
+        outputChannel.write(" " + message);
+    }
+    outputChannel.write("\n");
+}
 
-    return Status();
+
+int WCExecutor::Counter::getNewlinesCount() const {
+    return newlinesCount;
+}
+
+int WCExecutor::Counter::getWordsCount() const {
+    return wordsCount;
+}
+
+int WCExecutor::Counter::getBytesCount() const {
+    return bytesCount;
+}
+
+void WCExecutor::Counter::append(char c) {
+    bytesCount++;
+    if (c == '\n') {
+        newlinesCount++;
+    }
+    if ((!lastSymbol.has_value() || !isWordSymbol(lastSymbol.value())) && isWordSymbol(c)) {
+        wordsCount++;
+    }
+    lastSymbol = c;
+}
+
+bool WCExecutor::Counter::isWordSymbol(char c) {
+    return !std::isspace(c);
+}
+
+void WCExecutor::Counter::append(const std::string s) {
+    for (char c : s) {
+        append(c);
+    }
 }

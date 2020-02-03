@@ -11,18 +11,46 @@ public:
             StringChannel &inputStream,
             StringChannel &outputStream
     ) const override;
+
 private:
-    Status executeNoArgumentsMode(
+    class Counter;
+
+    void writeCounterToChannel(
+            const Counter &counter,
+            StringChannel &outputChannel,
+            const std::string &message = ""
+    ) const;
+
+    WCExecutor::Counter executeChannelMode(
             const CommandArguments &commandArguments,
             StringChannel &inputChannel,
             StringChannel &outputChannel
     ) const;
 
-    Status executeAtLeastOneArgumentMode(
-            const CommandArguments &commandArguments,
-            StringChannel &inputChannel,
-            StringChannel &outputChannel
-    ) const;
+    WCExecutor::Counter executeFileMode(const std::string &fileName) const;
+
+    class Counter {
+    public:
+        void append(char c);
+
+        void append(const std::string s);
+
+        int getNewlinesCount() const;
+
+        int getWordsCount() const;
+
+        int getBytesCount() const;
+
+    private:
+        static bool isWordSymbol(char c);
+
+    private:
+        int newlinesCount = 0;
+        int wordsCount = 0;
+        int bytesCount = 0;
+
+        std::optional<char> lastSymbol;
+    };
 };
 
 
