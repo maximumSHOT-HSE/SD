@@ -2,11 +2,7 @@
 #include <tokenizers/LinearTokenizer.h>
 
 
-bool Substitutor::isValidVariableNameToken(const Token &nameToken) {
-    if (nameToken.getTokenType() != TokenType::LITERAL) {
-        return false;
-    }
-    const auto &name = nameToken.asString();
+bool Substitutor::isValidVariableName(const std::string &name) {
     if (name.empty()) {
         return false;
     }
@@ -21,17 +17,14 @@ bool Substitutor::isValidVariableNameToken(const Token &nameToken) {
     return true;
 }
 
-bool Substitutor::isValidVariableValueToken(const Token &valueToken) {
-    return !(valueToken.getTokenType() != TokenType::LITERAL);
-}
-
 bool Substitutor::isSibstitution(const Token &dollarToken, const Token &variableNameToken) {
-    return dollarToken.getTokenType() == TokenType::DOLLAR && isValidVariableNameToken(variableNameToken);
+    return dollarToken.getTokenType() == TokenType::DOLLAR
+           && isValidVariableName(variableNameToken.asString());
 }
 
 std::string Substitutor::substitute(const std::vector<Token> &tokens, Environment &environment) {
     std::string substitution;
-    for (size_t i = 0; i < tokens.size(); ) {
+    for (size_t i = 0; i < tokens.size();) {
         if (i + 1 < tokens.size() && Substitutor::isSibstitution(tokens[i], tokens[i + 1])) {
             substitution += environment.getVariableValue(tokens[i + 1].asString());
             i += 2;
@@ -65,4 +58,22 @@ Token Substitutor::substitute(const Token &token, Environment &environment) {
         tokens.push_back(tokenizer.nextToken());
     }
     return Token(token.getTokenType(), "\"" + Substitutor::substitute(tokens, environment) + "\"");
+}
+
+bool Substitutor::tryAssign(const Command &command, Environment &environment) {
+    std::vector<Token> tokens = command.getCommandArguments().rstripe().asTokensVector();
+    if (tokens.size() != 2u) {
+        return false;
+    }
+    Token assignmentToken = tokens[0];
+    if (assignmentToken.getTokenType() != TokenType::ASSIGN) {
+        return false;
+    }
+    std::string variableName = command.getCommandName().getName();
+    if (!isValidVariableName(variableName)) {
+        return false;
+    }
+    std::string variableValue = tokens[1].asString();
+    environment.setVariableValue(variableName, variableValue);
+    return true;
 }

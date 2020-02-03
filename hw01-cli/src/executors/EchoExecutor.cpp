@@ -6,14 +6,9 @@ Status EchoExecutor::execute(
         StringChannel &outputStream
 ) const {
 
-    const auto &arguments = commandArguments.asTokensVector();
+    const auto &arguments = commandArguments.stripe().asTokensVector();
 
-    size_t upTo = arguments.size();
-    while (upTo > 0 && arguments[upTo - 1].getTokenType() == TokenType::SPACE) {
-        upTo--;
-    }
-
-    for (size_t i = 0; i < upTo; i++) {
+    for (size_t i = 0; i < arguments.size(); i++) {
         if (arguments[i].getTokenType() == TokenType::SPACE
             && (i == 0u || arguments[i - 1].getTokenType() == TokenType::SPACE)) {
             continue;

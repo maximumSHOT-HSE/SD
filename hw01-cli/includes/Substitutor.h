@@ -11,6 +11,8 @@ class Substitutor {
 public:
     static Token substitute(const Token &token, Environment &environment);
 
+    static bool tryAssign(const Command &command, Environment &environment);
+
 private:
     static std::string substitute(const std::vector<Token> &tokens, Environment &environment);
 
@@ -19,9 +21,7 @@ private:
             const Token &variableNameToken
     );
 
-    static bool isValidVariableNameToken(const Token &nameToken);
-
-    static bool isValidVariableValueToken(const Token &valueToken);
+    static bool isValidVariableName(const std::string &name);
 
     static bool isTokenAvailableForSubstitution(const Token &token);
 };

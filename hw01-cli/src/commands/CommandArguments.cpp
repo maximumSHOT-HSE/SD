@@ -28,3 +28,27 @@ size_t CommandArguments::countTokensWithType(const TokenType &tokenType) const {
     }
     return count;
 }
+
+CommandArguments CommandArguments::stripe() const {
+    return this->lstripe().rstripe();
+}
+
+CommandArguments CommandArguments::lstripe() const {
+    std::vector<Token> arguments = argumentTokens;
+    size_t l = 0;
+    while (l < arguments.size() && arguments[l].getTokenType() == TokenType::SPACE) {
+        l++;
+    }
+    arguments.erase(arguments.begin(), arguments.begin() + l);
+    return CommandArguments(arguments);
+}
+
+CommandArguments CommandArguments::rstripe() const {
+    std::vector<Token> arguments = argumentTokens;
+    size_t r = arguments.size();
+    while (r > 0u && arguments[r - 1].getTokenType() == TokenType::SPACE) {
+        r--;
+    }
+    arguments.erase(arguments.begin() + r, arguments.end());
+    return CommandArguments(arguments);
+}

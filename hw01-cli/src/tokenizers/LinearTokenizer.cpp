@@ -12,22 +12,15 @@ Token LinearTokenizer::nextToken() {
         pointer++;
         return Token(TokenType::SPACE, " ");
     }
-    if (s[pointer] == '|') { // is pipe?
+    if (auto foundToken = specialSymbols.find(s[pointer]);
+            foundToken != specialSymbols.end()) {
         pointer++;
-        return Token(TokenType::PIPE, "|");
-    }
-    if (s[pointer] == '=') { // is assign?
-        pointer++;
-        return Token(TokenType::ASSIGN, "=");
-    }
-    if (s[pointer] == '$') {
-        pointer++;
-        return Token(TokenType::DOLLAR, "$");
+        return foundToken->second;
     }
     std::optional<char> lastQuote;
     std::string tokenContent;
     for (int &i = pointer; i < (int) s.size(); i++) {
-        if (!lastQuote.has_value() && std::isspace(s[i])) {
+        if (!lastQuote.has_value() && (std::isspace(s[i]) || specialSymbols.count(s[i]))) {
             break;
         }
         tokenContent.push_back(s[i]);
@@ -56,3 +49,4 @@ void LinearTokenizer::clear() {
     s.clear();
     pointer = 0;
 }
+

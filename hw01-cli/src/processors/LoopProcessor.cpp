@@ -7,6 +7,8 @@
 #include <channels/StringChannel.h>
 #include <Substitutor.h>
 
+#include <iostream>
+
 Response LoopProcessor::process(
         const std::string &s,
         Environment &environment
@@ -32,24 +34,30 @@ Response LoopProcessor::process(
             commandBuilder.clear();
             for (shortTermTokenizer->clear(), shortTermTokenizer->append(commandString);
                  shortTermTokenizer->hasNextToken();) {
-                commandBuilder.appendToken(
-                        LoopProcessor::removeOuterQuotes(
-                                shortTermTokenizer->nextToken()
-                        )
-                );
+                commandBuilder.appendToken(shortTermTokenizer->nextToken());
             }
             Command command = commandBuilder.buildCommand();
             commandBuilder.clear();
-            Status status = environment
-                    .getCommandExecutorByCommandName(command.getCommandName())
-                    .execute(command.getCommandArguments(), inputChannel, outputChannel);
+            Status status;
+
+            // TODO: exceptions!
+            if (!Substitutor::tryAssign(command, environment)) {
+                status = environment
+                        .getCommandExecutorByCommandName(command.getCommandName())
+                        .execute(command.getCommandArguments(), inputChannel, outputChannel);
+            }
+
             // TODO: add variable $? (last commands execution exit code)
             lastCommandStatus = status;
 
             std::swap(inputChannel, outputChannel);
             outputChannel.clear();
         } else {
-            commandBuilder.appendToken(Substitutor::substitute(token, environment));
+            commandBuilder.appendToken(
+                    LoopProcessor::removeOuterQuotes(
+                            Substitutor::substitute(token, environment)
+                    )
+            );
         }
     }
 

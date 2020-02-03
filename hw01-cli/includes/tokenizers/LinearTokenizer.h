@@ -2,6 +2,7 @@
 #define HW01_CLI_LINEARTOKENIZER_H
 
 #include <tokenizers/ITokenizer.h>
+#include <unordered_map>
 
 class LinearTokenizer : public ITokenizer {
 public:
@@ -16,6 +17,12 @@ public:
 private:
     std::string s = "";
     int pointer = 0;
+
+    std::unordered_map<char, Token> specialSymbols = {
+            {'|', Token(TokenType::PIPE, "|")},
+            {'=', Token(TokenType::ASSIGN, "=")},
+            {'$', Token(TokenType::DOLLAR, "$")}
+    };
 };
 
 

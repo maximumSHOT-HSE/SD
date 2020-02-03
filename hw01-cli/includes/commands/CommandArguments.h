@@ -19,6 +19,12 @@ public:
 
     size_t countTokensWithType(const TokenType &tokenType) const;
 
+    CommandArguments stripe() const;
+
+    CommandArguments lstripe() const;
+
+    CommandArguments rstripe() const;
+
 private:
     std::vector<Token> argumentTokens;
 };
