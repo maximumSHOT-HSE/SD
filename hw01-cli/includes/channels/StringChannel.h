@@ -15,6 +15,8 @@ public:
 
     void write(const std::string &x) override;
 
+    void write(char c);
+
     void clear();
 private:
     std::string buffer;

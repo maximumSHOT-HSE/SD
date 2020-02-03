@@ -18,9 +18,8 @@ Status CatExecutor::execute(
             continue;
         }
         std::ifstream fin(argument.asString()); // TODO: add exceptions
-        std::string buffer;
-        while (std::getline(fin, buffer)) {
-            outputStream.write(buffer);
+        for (char c; fin.get(c);) {
+            outputStream.write(c);
         }
     }
 

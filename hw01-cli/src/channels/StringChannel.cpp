@@ -17,3 +17,7 @@ void StringChannel::write(const std::string &x) {
 void StringChannel::clear() {
     buffer.clear();
 }
+
+void StringChannel::write(char c) {
+    buffer.push_back(c);
+}

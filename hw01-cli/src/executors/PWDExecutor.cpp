@@ -11,6 +11,7 @@ Status PWDExecutor::execute(
     using namespace std::experimental::filesystem;
 
     outputStream.write(absolute(current_path()));
+    outputStream.write("\n");
 
     // TODO: add newline character (multi platform)
 
