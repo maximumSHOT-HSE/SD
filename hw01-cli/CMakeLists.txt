@@ -15,20 +15,20 @@ add_executable(
         includes/Environment.h
 
 #       ========================
-        src/ICommandExecutor.cpp
-        includes/ICommandExecutor.h
+        src/executors/ICommandExecutor.cpp
+        includes/executors/ICommandExecutor.h
 
-        src/CommandExecutorFactory.cpp
-        includes/CommandExecutorFactory.h
+        src/commands/CommandExecutorFactory.cpp
+        includes/commands/CommandExecutorFactory.h
 
-        src/EchoExecutor.cpp
-        includes/EchoExecutor.h
+        src/executors/EchoExecutor.cpp
+        includes/executors/EchoExecutor.h
 
 #       ========================
-        includes/IProcessor.h
+        includes/processors/IProcessor.h
 
-        src/LoopProcessor.cpp
-        includes/LoopProcessor.h
+        src/processors/LoopProcessor.cpp
+        includes/processors/LoopProcessor.h
 
         src/Status.cpp
         includes/Status.h
@@ -37,43 +37,41 @@ add_executable(
         includes/Response.h
 
 #       ========================
-        src/Command.cpp
-        includes/Command.h
+        src/commands/Command.cpp
+        includes/commands/Command.h
 
-        src/CommandName.cpp
-        includes/CommandName.h
+        src/commands/CommandName.cpp
+        includes/commands/CommandName.h
 
-        src/CommandArguments.cpp
-        includes/CommandArguments.h
+        src/commands/CommandArguments.cpp
+        includes/commands/CommandArguments.h
 
-        src/CommandBuilder.cpp
-        includes/CommandBuilder.h
+        src/commands/CommandBuilder.cpp
+        includes/commands/CommandBuilder.h
 
-        includes/CommandNameHash.h
+        #       ========================
+        includes/tokenizers/ITokenizer.h
 
-#       ========================
-        includes/ITokenizer.h
-
-        src/LinearTokenizer.cpp
-        includes/LinearTokenizer.h
+        src/tokenizers/LinearTokenizer.cpp
+        includes/tokenizers/LinearTokenizer.h
 
         src/Token.cpp
         includes/Token.h
 
 #       ========================
-        includes/IInputChannel.h
-        includes/IOutputChannel.h
+        includes/channels/IInputChannel.h
+        includes/channels/IOutputChannel.h
 
-        src/StringChannel.cpp
-        includes/StringChannel.h
+        src/channels/StringChannel.cpp
+        includes/channels/StringChannel.h
 
 #       ========================
         src/Substitutor.cpp
         includes/Substitutor.h
 
 #       ========================
-        src/ExitExecutor.cpp
-        includes/ExitExecutor.h
+        src/executors/ExitExecutor.cpp
+        includes/executors/ExitExecutor.h
 )
 
 include_directories(src)

@@ -1,7 +1,7 @@
 #ifndef HW01_CLI_LINEARTOKENIZER_H
 #define HW01_CLI_LINEARTOKENIZER_H
 
-#include <ITokenizer.h>
+#include <tokenizers/ITokenizer.h>
 
 class LinearTokenizer : public ITokenizer {
 public:

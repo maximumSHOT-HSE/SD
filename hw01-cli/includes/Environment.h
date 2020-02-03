@@ -1,12 +1,13 @@
 #ifndef HW01_CLI_ENVIRONMENT_H
 #define HW01_CLI_ENVIRONMENT_H
 
-#include <CommandExecutorFactory.h>
-#include <Command.h>
-#include <EchoExecutor.h>
+#include <commands/CommandExecutorFactory.h>
+#include <commands/Command.h>
+#include <commands/CommandName.h>
+#include <executors/EchoExecutor.h>
 #include <unordered_map>
 #include <string>
-#include <ExitExecutor.h>
+#include <executors/ExitExecutor.h>
 
 class Environment {
 public:

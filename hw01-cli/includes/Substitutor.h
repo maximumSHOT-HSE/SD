@@ -5,7 +5,7 @@
 #include <Token.h>
 #include <Environment.h>
 #include <vector>
-#include <ITokenizer.h>
+#include <tokenizers/ITokenizer.h>
 
 class Substitutor {
 public:

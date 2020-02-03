@@ -3,7 +3,7 @@
 
 #include <sstream>
 #include <Status.h>
-#include <StringChannel.h>
+#include <channels/StringChannel.h>
 
 class Response {
 public:

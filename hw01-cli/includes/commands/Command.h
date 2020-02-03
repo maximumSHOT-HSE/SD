@@ -1,8 +1,8 @@
 #ifndef HW01_CLI_COMMAND_H
 #define HW01_CLI_COMMAND_H
 
-#include <CommandName.h>
-#include <CommandArguments.h>
+#include <commands/CommandName.h>
+#include <commands/CommandArguments.h>
 
 class Command {
 public:

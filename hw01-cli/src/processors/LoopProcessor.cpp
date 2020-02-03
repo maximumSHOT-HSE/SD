@@ -1,10 +1,10 @@
-#include <LoopProcessor.h>
-#include <CommandBuilder.h>
-#include <ICommandExecutor.h>
-#include <ITokenizer.h>
-#include <LinearTokenizer.h>
+#include <processors/LoopProcessor.h>
+#include <commands/CommandBuilder.h>
+#include <executors/ICommandExecutor.h>
+#include <tokenizers/ITokenizer.h>
+#include <tokenizers/LinearTokenizer.h>
 #include <sstream>
-#include <StringChannel.h>
+#include <channels/StringChannel.h>
 #include <Substitutor.h>
 
 Response LoopProcessor::process(
@@ -17,6 +17,10 @@ Response LoopProcessor::process(
     CommandBuilder commandBuilder;
     Status lastCommandStatus;
     StringChannel inputChannel, outputChannel;
+
+    if (s.empty()) {
+        return Response(Status(), inputChannel);
+    }
 
     for (; lastCommandStatus.isSuccess() && tokenizer->hasNextToken();) {
 
@@ -38,7 +42,7 @@ Response LoopProcessor::process(
             Status status = environment
                     .getCommandExecutorByCommandName(command.getCommandName())
                     .execute(command.getCommandArguments(), inputChannel, outputChannel);
-            // TODO: add variable $? (last command execution exit code)
+            // TODO: add variable $? (last commands execution exit code)
             lastCommandStatus = status;
 
             std::swap(inputChannel, outputChannel);

@@ -2,7 +2,7 @@
 #define HW01_CLI_IPROCESSOR_H
 
 #include <Response.h>
-#include <ITokenizer.h>
+#include <tokenizers/ITokenizer.h>
 #include <string>
 #include <Environment.h>
 

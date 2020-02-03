@@ -9,13 +9,13 @@ enum TokenType {
 
 class Token {
 public:
-    Token(const TokenType &tokenType, const std::string &tokenContent = "");
+    explicit Token(const TokenType &tokenType, const std::string &tokenContent = "");
 
     TokenType getTokenType() const;
 
     const std::string &asString() const;
 
-    size_t empty() const;
+    bool empty() const;
 
 private:
     TokenType tokenType;

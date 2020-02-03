@@ -1,5 +1,5 @@
 #include <Substitutor.h>
-#include <LinearTokenizer.h>
+#include <tokenizers/LinearTokenizer.h>
 
 
 bool Substitutor::isValidVariableNameToken(const Token &nameToken) {

@@ -1,6 +1,6 @@
 #include <Shell.h>
 
-#include <LoopProcessor.h>
+#include <processors/LoopProcessor.h>
 #include <iostream>
 
 void Shell::run() {

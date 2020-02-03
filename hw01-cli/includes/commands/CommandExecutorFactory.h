@@ -2,10 +2,9 @@
 #define HW01_CLI_UTILEXECUTORFACTORY_H
 
 #include <string>
-#include <ICommandExecutor.h>
-#include <CommandName.h>
+#include <executors/ICommandExecutor.h>
+#include <commands/CommandName.h>
 #include <unordered_map>
-#include <CommandNameHash.h>
 #include <map>
 #include <vector>
 

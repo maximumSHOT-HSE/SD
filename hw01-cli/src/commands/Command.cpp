@@ -1,4 +1,4 @@
-#include "Command.h"
+#include "commands/Command.h"
 
 const CommandName &Command::getCommandName() const {
     return commandName;

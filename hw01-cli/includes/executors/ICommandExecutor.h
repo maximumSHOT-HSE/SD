@@ -2,8 +2,8 @@
 #define HW01_CLI_UTILEXECUTOR_H
 
 #include <Status.h>
-#include <CommandArguments.h>
-#include <StringChannel.h>
+#include <commands/CommandArguments.h>
+#include <channels/StringChannel.h>
 
 class ICommandExecutor {
 public:

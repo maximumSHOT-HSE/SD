@@ -1,7 +1,4 @@
-
-#include <CommandArguments.h>
-
-#include "CommandArguments.h"
+#include <commands/CommandArguments.h>
 
 std::vector<std::string> CommandArguments::asStringsVector() const {
     std::vector<std::string> stringTokens;

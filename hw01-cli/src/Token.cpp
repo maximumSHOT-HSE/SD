@@ -12,6 +12,6 @@ const std::string &Token::asString() const {
     return tokenContent;
 }
 
-size_t Token::empty() const {
+bool Token::empty() const {
     return tokenContent.empty();
 }
