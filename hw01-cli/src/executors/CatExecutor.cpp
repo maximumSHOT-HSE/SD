@@ -9,6 +9,8 @@ Status CatExecutor::execute(
         StringChannel &outputStream
 ) const {
 
+    // TODO: add check: len(args) >= 1
+
     const auto &arguments = commandArguments.asTokensVector();
 
     for (const auto &argument : arguments) {

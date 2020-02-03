@@ -8,10 +8,12 @@ Environment::Environment()
         : factory(),
           echoExecutor(new EchoExecutor()),
           exitExecutor(new ExitExecutor()),
-          catExecutor(new CatExecutor()) {
+          catExecutor(new CatExecutor()),
+          pwdExecutor(new PWDExecutor()) {
     factory.registerExecutor(CommandName("echo"), echoExecutor);
     factory.registerExecutor(CommandName("exit"), exitExecutor);
     factory.registerExecutor(CommandName("cat"), catExecutor);
+    factory.registerExecutor(CommandName("pwd"), pwdExecutor);
 }
 
 void Environment::setVariableValue(const std::string &variableName, const std::string &variableValue) {

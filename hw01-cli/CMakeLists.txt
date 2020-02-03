@@ -30,6 +30,9 @@ add_executable(
         src/executors/CatExecutor.cpp
         includes/executors/CatExecutor.h
 
+        src/executors/PWDExecutor.cpp
+        includes/executors/PWDExecutor.h
+
 #       ========================
         includes/processors/IProcessor.h
 
@@ -75,6 +78,8 @@ add_executable(
         src/Substitutor.cpp
         includes/Substitutor.h
 )
+
+target_link_libraries(hw01_cli stdc++fs)
 
 include_directories(src)
 include_directories(includes)
