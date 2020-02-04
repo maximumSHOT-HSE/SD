@@ -22,7 +22,7 @@ add_executable(
         commands/CommandNameTest.cpp
         commands/CommandTest.cpp
         commands/CommandBuilderTest.cpp
-        commands/CommandExecutorFactoryTest.cpp
+        executors/CommandExecutorFactoryTest.cpp
 )
 
 target_link_libraries(

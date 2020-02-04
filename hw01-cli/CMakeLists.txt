@@ -18,7 +18,7 @@ add_library(
         src/executors/ICommandExecutor.cpp
         includes/executors/ICommandExecutor.h
 
-        src/commands/CommandExecutorFactory.cpp
+        src/executors/CommandExecutorFactory.cpp
         includes/commands/CommandExecutorFactory.h
 
         src/executors/EchoExecutor.cpp
