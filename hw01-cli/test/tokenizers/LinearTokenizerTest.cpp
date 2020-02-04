@@ -1,10 +1,7 @@
 #include <boost/test/unit_test.hpp>
 #include <tokenizers/LinearTokenizer.h>
-#include <tokenizers/Token.h>
 
 #include <iostream>
-#include <vector>
-#include <string>
 
 BOOST_AUTO_TEST_SUITE(LinearTokenizerSuite)
 

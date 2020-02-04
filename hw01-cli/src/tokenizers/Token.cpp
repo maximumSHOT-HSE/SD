@@ -1,4 +1,3 @@
-
 #include <tokenizers/Token.h>
 
 TokenType Token::getTokenType() const {
@@ -15,4 +14,3 @@ const std::string &Token::asString() const {
 bool Token::empty() const {
     return tokenContent.empty();
 }
-

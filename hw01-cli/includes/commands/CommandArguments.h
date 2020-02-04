@@ -11,11 +11,7 @@ public:
 
     explicit CommandArguments(const std::vector<Token> &argumentTokens);
 
-    std::vector<std::string> asStringsVector() const;
-
     std::vector<Token> asTokensVector() const;
-
-    size_t size() const;
 
     size_t countTokensWithType(const TokenType &tokenType) const;
 

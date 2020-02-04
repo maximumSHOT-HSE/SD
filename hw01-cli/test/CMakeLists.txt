@@ -16,6 +16,11 @@ add_executable(
         channels/StringChannelTest.cpp
         tokenizers/TokenTest.cpp
         tokenizers/LinearTokenizerTest.cpp
+        EnvironmentTest.cpp
+
+        commands/CommandArgumentsTest.cpp
+        commands/CommandNameTest.cpp
+        commands/CommandTest.cpp
 )
 
 target_link_libraries(
