@@ -27,9 +27,15 @@ public:
 
     void setVariableValue(const std::string &variableName, const std::string &variableValue);
 
+    int getLastCommandExitCode() const;
+
+    void setLastCommandExitCode(int lastCommandExitCode);
+
 private:
     CommandExecutorFactory factory;
     std::unordered_map<std::string, std::string> variableNameToValue;
+
+    int lastCommandExitCode = 0;
 
     EchoExecutor *echoExecutor;
     ExitExecutor *exitExecutor;

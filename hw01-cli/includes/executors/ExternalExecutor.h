@@ -7,8 +7,8 @@ class ExternalExecutor : public ICommandExecutor {
 public:
     Status execute(
             const Command &command,
-            StringChannel &inputStream,
-            StringChannel &outputStream
+            StringChannel &inputChannel,
+            StringChannel &outputChannel
     ) const override;
 };
 

@@ -10,7 +10,7 @@ const ICommandExecutor &Environment::getCommandExecutorByCommandName(const Comma
 }
 
 Environment::Environment()
-        : factory(),
+        : factory(), lastCommandExitCode(0),
           echoExecutor(new EchoExecutor()),
           exitExecutor(new ExitExecutor()),
           catExecutor(new CatExecutor()),
@@ -31,3 +31,12 @@ void Environment::setVariableValue(const std::string &variableName, const std::s
 const std::string &Environment::getVariableValue(const std::string &variableName) {
     return variableNameToValue[variableName];
 }
+
+int Environment::getLastCommandExitCode() const {
+    return lastCommandExitCode;
+}
+
+void Environment::setLastCommandExitCode(int lastCommandExitCode) {
+    Environment::lastCommandExitCode = lastCommandExitCode;
+}
+

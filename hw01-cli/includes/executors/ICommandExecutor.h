@@ -9,8 +9,8 @@ class ICommandExecutor {
 public:
     virtual Status execute(
             const Command &command,
-            StringChannel &inputStream,
-            StringChannel &outputStream
+            StringChannel &inputChannel,
+            StringChannel &outputChannel
     ) const = 0;
 
     virtual ~ICommandExecutor() = default;

@@ -19,14 +19,19 @@ bool Substitutor::isValidVariableName(const std::string &name) {
 
 bool Substitutor::isSibstitution(const Token &dollarToken, const Token &variableNameToken) {
     return dollarToken.getTokenType() == TokenType::DOLLAR
-           && isValidVariableName(variableNameToken.asString());
+           && (isValidVariableName(variableNameToken.asString()) || variableNameToken.asString() == "?");
 }
 
 std::string Substitutor::substitute(const std::vector<Token> &tokens, Environment &environment) {
     std::string substitution;
     for (size_t i = 0; i < tokens.size();) {
         if (i + 1 < tokens.size() && Substitutor::isSibstitution(tokens[i], tokens[i + 1])) {
-            substitution += environment.getVariableValue(tokens[i + 1].asString());
+            std::string variableName = tokens[i + 1].asString();
+            if (variableName == "?") {
+                substitution += std::to_string(environment.getLastCommandExitCode());
+            } else {
+                substitution += environment.getVariableValue(variableName);
+            }
             i += 2;
         } else {
             substitution += tokens[i].asString();
