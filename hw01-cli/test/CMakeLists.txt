@@ -14,6 +14,7 @@ add_executable(
         main.cpp
 
         channels/StringChannelTest.cpp
+        tokenizers/TokenTest.cpp
 )
 
 target_link_libraries(

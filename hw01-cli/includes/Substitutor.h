@@ -2,7 +2,7 @@
 #define HW01_CLI_SUBSTITUTOR_H
 
 #include <string>
-#include <Token.h>
+#include <tokenizers/Token.h>
 #include <Environment.h>
 #include <vector>
 #include <tokenizers/ITokenizer.h>

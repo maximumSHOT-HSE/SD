@@ -1,7 +1,7 @@
 #ifndef HW01_CLI_COMMANDBUILDER_H
 #define HW01_CLI_COMMANDBUILDER_H
 
-#include <Token.h>
+#include <tokenizers/Token.h>
 #include <commands/Command.h>
 #include <vector>
 #include "Environment.h"

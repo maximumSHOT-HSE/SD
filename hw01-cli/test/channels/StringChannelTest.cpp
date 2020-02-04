@@ -1,6 +1,8 @@
 #include <boost/test/unit_test.hpp>
 #include <channels/StringChannel.h>
 
+#include <iostream>
+
 BOOST_AUTO_TEST_SUITE(StringChannelSuite)
 
     BOOST_AUTO_TEST_CASE(testEmpty) {

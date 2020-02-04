@@ -73,8 +73,8 @@ add_library(
         src/tokenizers/LinearTokenizer.cpp
         includes/tokenizers/LinearTokenizer.h
 
-        src/Token.cpp
-        includes/Token.h
+        src/tokenizers/Token.cpp
+        includes/tokenizers/Token.h
 
         #       ========================
         includes/channels/IInputChannel.h
