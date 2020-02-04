@@ -6,7 +6,7 @@
 class PWDExecutor : public ICommandExecutor {
 public:
     Status execute(
-            const CommandArguments &commandArguments,
+            const Command &command,
             StringChannel &inputStream,
             StringChannel &outputStream
     ) const override;

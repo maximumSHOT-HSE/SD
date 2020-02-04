@@ -1,17 +1,16 @@
-#ifndef HW01_CLI_ECHOEXECUTOR_H
-#define HW01_CLI_ECHOEXECUTOR_H
+#ifndef HW01_CLI_EXTERNALEXECUTOR_H
+#define HW01_CLI_EXTERNALEXECUTOR_H
 
 #include <executors/ICommandExecutor.h>
 
-class EchoExecutor : public ICommandExecutor {
+class ExternalExecutor : public ICommandExecutor {
 public:
     Status execute(
             const Command &command,
             StringChannel &inputStream,
             StringChannel &outputStream
     ) const override;
-
 };
 
 
-#endif //HW01_CLI_ECHOEXECUTOR_H
+#endif //HW01_CLI_EXTERNALEXECUTOR_H

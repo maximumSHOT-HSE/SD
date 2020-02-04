@@ -16,10 +16,6 @@ Response LoopProcessor::process(
     Status lastCommandStatus;
     StringChannel inputChannel, outputChannel;
 
-    if (s.empty()) {
-        return Response(Status(), inputChannel);
-    }
-
     for (; lastCommandStatus.isSuccess() && tokenizer->hasNextToken();) {
 
         Token token = tokenizer->nextToken();
@@ -40,7 +36,7 @@ Response LoopProcessor::process(
             if (!Substitutor::tryAssign(command, environment)) {
                 status = environment
                         .getCommandExecutorByCommandName(command.getCommandName())
-                        .execute(command.getCommandArguments(), inputChannel, outputChannel);
+                        .execute(command, inputChannel, outputChannel);
             }
 
             // TODO: add variable $? (last commands execution exit code)

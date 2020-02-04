@@ -1,14 +1,14 @@
-#include "executors/ExitExecutor.h"
+#include <executors/ExitExecutor.h>
 
 #include <assert.h>
 
 Status ExitExecutor::execute(
-        const CommandArguments &commandArguments,
+        const Command &command,
         StringChannel &inputStream,
         StringChannel &outputStream
 ) const {
     int goodArgumentsCount = 0, exitCode = 0;
-    for (const auto &argument : commandArguments.asTokensVector()) {
+    for (const auto &argument : command.getCommandArguments().asTokensVector()) {
         const auto &type = argument.getTokenType();
         if (type != TokenType::END && type != TokenType::SPACE) {
             goodArgumentsCount++;

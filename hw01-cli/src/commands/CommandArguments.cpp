@@ -52,3 +52,11 @@ CommandArguments CommandArguments::rstripe() const {
     arguments.erase(arguments.begin() + r, arguments.end());
     return CommandArguments(arguments);
 }
+
+std::string CommandArguments::asString() const {
+    std::string argumentsString;
+    for (const auto &argument : argumentTokens) {
+        argumentsString += argument.asString();
+    }
+    return argumentsString;
+}

@@ -15,6 +15,8 @@ public:
 
     const CommandArguments &getCommandArguments() const;
 
+    std::string asString() const;
+
 private:
     CommandName commandName;
     CommandArguments commandArguments;

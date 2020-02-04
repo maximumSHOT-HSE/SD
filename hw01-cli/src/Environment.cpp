@@ -1,7 +1,12 @@
 #include <Environment.h>
 
 const ICommandExecutor &Environment::getCommandExecutorByCommandName(const CommandName &commandName) const {
-    return factory.getCommandExecutorByCommandName(commandName);
+    const auto &executor = factory.getCommandExecutorByCommandName(commandName);
+    if (executor.has_value()) {
+        return *executor.value();
+    } else {
+        return *externalExecutor;
+    }
 }
 
 Environment::Environment()
@@ -10,7 +15,8 @@ Environment::Environment()
           exitExecutor(new ExitExecutor()),
           catExecutor(new CatExecutor()),
           pwdExecutor(new PWDExecutor()),
-          wcExecutor(new WCExecutor()) {
+          wcExecutor(new WCExecutor()),
+          externalExecutor(new ExternalExecutor()) {
     factory.registerExecutor(CommandName("echo"), echoExecutor);
     factory.registerExecutor(CommandName("exit"), exitExecutor);
     factory.registerExecutor(CommandName("cat"), catExecutor);

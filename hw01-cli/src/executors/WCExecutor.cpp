@@ -2,10 +2,11 @@
 #include <fstream>
 
 Status WCExecutor::execute(
-        const CommandArguments &commandArguments,
+        const Command &command,
         StringChannel &inputStream,
         StringChannel &outputStream
 ) const {
+    const CommandArguments &commandArguments = command.getCommandArguments();
     if (commandArguments.countTokensWithType(TokenType::LITERAL) > 0) {
         for (const auto &token : commandArguments.asTokensVector()) {
             if (token.getTokenType() != TokenType::LITERAL) {

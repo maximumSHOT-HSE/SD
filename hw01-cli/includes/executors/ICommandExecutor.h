@@ -2,13 +2,13 @@
 #define HW01_CLI_UTILEXECUTOR_H
 
 #include <Status.h>
-#include <commands/CommandArguments.h>
+#include <commands/Command.h>
 #include <channels/StringChannel.h>
 
 class ICommandExecutor {
 public:
     virtual Status execute(
-            const CommandArguments &commandArguments,
+            const Command &command,
             StringChannel &inputStream,
             StringChannel &outputStream
     ) const = 0;

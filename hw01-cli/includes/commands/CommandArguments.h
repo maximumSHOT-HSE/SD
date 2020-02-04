@@ -25,6 +25,8 @@ public:
 
     CommandArguments rstripe() const;
 
+    std::string asString() const;
+
 private:
     std::vector<Token> argumentTokens;
 };

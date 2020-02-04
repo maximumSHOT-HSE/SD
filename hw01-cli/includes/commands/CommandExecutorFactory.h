@@ -7,15 +7,16 @@
 #include <unordered_map>
 #include <map>
 #include <vector>
+#include <optional>
 
 class CommandExecutorFactory {
 public:
     void registerExecutor(
             const CommandName &commandName,
-            ICommandExecutor *const commandExecutor
+            ICommandExecutor *commandExecutor
     );
 
-    const ICommandExecutor &getCommandExecutorByCommandName(
+    std::optional<ICommandExecutor *const> getCommandExecutorByCommandName(
             const CommandName &commandName
     ) const;
 

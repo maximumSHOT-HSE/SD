@@ -13,6 +13,7 @@
 #include <executors/CatExecutor.h>
 #include <executors/PWDExecutor.h>
 #include <executors/WCExecutor.h>
+#include <executors/ExternalExecutor.h>
 
 class Environment {
 public:
@@ -35,6 +36,7 @@ private:
     CatExecutor *catExecutor;
     PWDExecutor *pwdExecutor;
     WCExecutor *wcExecutor;
+    ExternalExecutor *externalExecutor;
 };
 
 #endif //HW01_CLI_ENVIRONMENT_H

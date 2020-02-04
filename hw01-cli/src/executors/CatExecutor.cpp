@@ -5,12 +5,12 @@
 #include <executors/CatExecutor.h>
 #include <cctype>
 
-
 Status CatExecutor::execute(
-        const CommandArguments &commandArguments,
+        const Command &command,
         StringChannel &inputStream,
         StringChannel &outputStream
 ) const {
+    const CommandArguments &commandArguments = command.getCommandArguments();
     if (commandArguments.countTokensWithType(TokenType::LITERAL) > 0) {
         return this->executeAtLeastOneArgumentMode(commandArguments, inputStream, outputStream);
     } else {

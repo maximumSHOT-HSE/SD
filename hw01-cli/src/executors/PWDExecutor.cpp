@@ -3,7 +3,7 @@
 #include <experimental/filesystem>
 
 Status PWDExecutor::execute(
-        const CommandArguments &commandArguments,
+        const Command &command,
         StringChannel &inputStream,
         StringChannel &outputStream
 ) const {

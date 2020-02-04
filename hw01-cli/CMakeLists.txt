@@ -14,7 +14,7 @@ add_executable(
         src/Environment.cpp
         includes/Environment.h
 
-#       ========================
+        #       ========================
         src/executors/ICommandExecutor.cpp
         includes/executors/ICommandExecutor.h
 
@@ -36,7 +36,10 @@ add_executable(
         src/executors/WCExecutor.cpp
         includes/executors/WCExecutor.h
 
-#       ========================
+        src/executors/ExternalExecutor.cpp
+        includes/executors/ExternalExecutor.h
+
+        #       ========================
         includes/processors/IProcessor.h
 
         src/processors/LoopProcessor.cpp
@@ -48,7 +51,7 @@ add_executable(
         src/Response.cpp
         includes/Response.h
 
-#       ========================
+        #       ========================
         src/commands/Command.cpp
         includes/commands/Command.h
 
@@ -61,7 +64,7 @@ add_executable(
         src/commands/CommandBuilder.cpp
         includes/commands/CommandBuilder.h
 
-#       ========================
+        #       ========================
         includes/tokenizers/ITokenizer.h
 
         src/tokenizers/LinearTokenizer.cpp
@@ -70,19 +73,30 @@ add_executable(
         src/Token.cpp
         includes/Token.h
 
-#       ========================
+        #       ========================
         includes/channels/IInputChannel.h
         includes/channels/IOutputChannel.h
 
         src/channels/StringChannel.cpp
         includes/channels/StringChannel.h
 
-#       ========================
+        #       ========================
         src/Substitutor.cpp
         includes/Substitutor.h
 )
 
-target_link_libraries(hw01_cli stdc++fs)
+target_link_libraries(
+        hw01_cli
+        stdc++fs
+
+)
+
+set(Boost_USE_STATIC_LIBS OFF)
+set(Boost_USE_MULTITHREADED ON)
+include_directories(${Boost_INCLUDE_DIRS})
+find_package(Boost COMPONENTS filesystem REQUIRED)
+
+target_link_libraries(hw01_cli ${Boost_LIBRARIES})
 
 include_directories(src)
 include_directories(includes)
