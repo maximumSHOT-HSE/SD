@@ -15,6 +15,8 @@
 // quotes, which are equal to the enclosing quotes.
 // At the very end tokenizer will return END token,
 // which shows that it is the very last token in the string.
+// Using tokenizer after returning END token may cause
+// undefined behaviour.
 class LinearTokenizer : public ITokenizer {
 public:
     Token nextToken() override;

@@ -20,7 +20,6 @@ public:
     // Checks whether the string representation
     // is empty or not
     bool empty() const;
-
 private:
     TokenType tokenType;
     std::string tokenContent;

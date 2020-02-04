@@ -15,3 +15,4 @@ const std::string &Token::asString() const {
 bool Token::empty() const {
     return tokenContent.empty();
 }
+

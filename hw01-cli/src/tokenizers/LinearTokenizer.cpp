@@ -49,4 +49,3 @@ void LinearTokenizer::clear() {
     s.clear();
     pointer = 0;
 }
-
