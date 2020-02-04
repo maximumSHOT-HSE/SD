@@ -21,6 +21,8 @@ add_executable(
         commands/CommandArgumentsTest.cpp
         commands/CommandNameTest.cpp
         commands/CommandTest.cpp
+        commands/CommandBuilderTest.cpp
+        commands/CommandExecutorFactoryTest.cpp
 )
 
 target_link_libraries(
