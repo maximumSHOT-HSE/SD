@@ -99,7 +99,12 @@ set(Boost_USE_MULTITHREADED ON)
 include_directories(${Boost_INCLUDE_DIRS})
 find_package(Boost COMPONENTS filesystem REQUIRED)
 
-target_link_libraries(hw01_cli ${Boost_LIBRARIES})
+target_link_libraries(
+        hw01_cli
+        ${Boost_LIBRARIES}
+        stdc++fs
+        boost_system
+)
 
 include_directories(src)
 include_directories(includes)

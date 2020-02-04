@@ -1,4 +1,4 @@
-#include "executors/ExternalExecutor.h"
+#include <executors/ExternalExecutor.h>
 #include <boost/process.hpp>
 
 #include <sstream>
