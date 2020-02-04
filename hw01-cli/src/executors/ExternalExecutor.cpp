@@ -2,7 +2,6 @@
 #include <boost/process.hpp>
 
 #include <sstream>
-#include <iostream>
 
 namespace bp = boost::process;
 
@@ -35,7 +34,7 @@ Status ExternalExecutor::execute(
     childProcess.wait();
 
     status.setExitCode(errorCode.value());
-    status.setMessage(errorCode.message());
+    status.setMessage(errorCode.message() + "\n");
 
     for (char c; out_ipstream.get(c);) {
         outputChannel.write(c);
