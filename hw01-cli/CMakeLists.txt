@@ -3,10 +3,10 @@ project(hw01_cli)
 
 set(CMAKE_CXX_STANDARD 17)
 
-add_executable(
-        hw01_cli
+add_library(
+        cli
 
-        src/main.cpp
+        STATIC
 
         src/Shell.cpp
         includes/Shell.h
@@ -88,10 +88,16 @@ add_executable(
         includes/Substitutor.h
 )
 
+add_executable(
+        hw01_cli
+
+        src/main.cpp
+)
+
 target_link_libraries(
         hw01_cli
         stdc++fs
-
+        cli
 )
 
 set(Boost_USE_STATIC_LIBS OFF)
