@@ -104,4 +104,4 @@ target_link_libraries(hw01_cli ${Boost_LIBRARIES})
 include_directories(src)
 include_directories(includes)
 
-#add_subdirectory(test)
+add_subdirectory(test)
