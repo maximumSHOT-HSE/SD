@@ -4,6 +4,9 @@
 #include <commands/CommandName.h>
 #include <commands/CommandArguments.h>
 
+// Entity for representing command.
+// It has a name and arguments.
+// It can be executed by command executors.
 class Command {
 public:
     Command() = default;
@@ -17,6 +20,8 @@ public:
 
     const CommandArguments &getCommandArguments() const;
 
+    // Concatenates command name and command arguments
+    // string representations and returns concatenation.
     std::string asString() const;
 
 private:

@@ -5,7 +5,7 @@
 
 void CommandBuilder::appendToken(const Token &token) {
     if (!token.empty()
-    && !(tokens.empty() && token.getTokenType() != TokenType::LITERAL)) {
+        && !(tokens.empty() && token.getTokenType() != TokenType::LITERAL)) {
         tokens.push_back(token);
     }
 }
@@ -22,10 +22,6 @@ Command CommandBuilder::buildCommand() const {
             CommandName(tokens.front().asString()),
             CommandArguments(std::vector<Token>(tokens.begin() + 1, tokens.end()))
     );
-}
-
-const std::vector<Token> &CommandBuilder::getTokens() const {
-    return tokens;
 }
 
 std::string CommandBuilder::buildCommandString() const {
