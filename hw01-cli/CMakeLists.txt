@@ -39,6 +39,9 @@ add_executable(
         src/executors/ExternalExecutor.cpp
         includes/executors/ExternalExecutor.h
 
+        src/executors/EmptyExecutor.cpp
+        includes/executors/EmptyExecutor.h
+
         #       ========================
         includes/processors/IProcessor.h
 

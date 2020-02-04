@@ -39,8 +39,8 @@ Response LoopProcessor::process(
                         .execute(command, inputChannel, outputChannel);
             }
 
-            // TODO: add variable $? (last commands execution exit code)
             lastCommandStatus = status;
+            environment.setLastCommandExitCode(lastCommandStatus.getExitCode());
 
             std::swap(inputChannel, outputChannel);
             outputChannel.clear();
@@ -51,6 +51,10 @@ Response LoopProcessor::process(
                     )
             );
         }
+    }
+
+    if (!lastCommandStatus.isSuccess()) {
+        inputChannel.write("Error: " + lastCommandStatus.getMessage());
     }
 
     return Response(lastCommandStatus, inputChannel);

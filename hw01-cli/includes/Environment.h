@@ -14,6 +14,7 @@
 #include <executors/PWDExecutor.h>
 #include <executors/WCExecutor.h>
 #include <executors/ExternalExecutor.h>
+#include <executors/EmptyExecutor.h>
 
 class Environment {
 public:
@@ -43,6 +44,7 @@ private:
     PWDExecutor *pwdExecutor;
     WCExecutor *wcExecutor;
     ExternalExecutor *externalExecutor;
+    EmptyExecutor *emptyExecutor;
 };
 
 #endif //HW01_CLI_ENVIRONMENT_H

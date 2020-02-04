@@ -1,6 +1,9 @@
 #include <Environment.h>
 
 const ICommandExecutor &Environment::getCommandExecutorByCommandName(const CommandName &commandName) const {
+    if (commandName.getName().empty()) {
+
+    }
     const auto &executor = factory.getCommandExecutorByCommandName(commandName);
     if (executor.has_value()) {
         return *executor.value();
@@ -16,12 +19,14 @@ Environment::Environment()
           catExecutor(new CatExecutor()),
           pwdExecutor(new PWDExecutor()),
           wcExecutor(new WCExecutor()),
-          externalExecutor(new ExternalExecutor()) {
+          externalExecutor(new ExternalExecutor()),
+          emptyExecutor(new EmptyExecutor()) {
     factory.registerExecutor(CommandName("echo"), echoExecutor);
     factory.registerExecutor(CommandName("exit"), exitExecutor);
     factory.registerExecutor(CommandName("cat"), catExecutor);
     factory.registerExecutor(CommandName("pwd"), pwdExecutor);
     factory.registerExecutor(CommandName("wc"), wcExecutor);
+    factory.registerExecutor(CommandName(""), emptyExecutor);
 }
 
 void Environment::setVariableValue(const std::string &variableName, const std::string &variableValue) {

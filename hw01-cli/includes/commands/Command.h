@@ -6,6 +6,8 @@
 
 class Command {
 public:
+    Command() = default;
+
     Command(
             const CommandName &commandName,
             const CommandArguments &commandArguments

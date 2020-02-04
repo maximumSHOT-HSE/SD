@@ -15,9 +15,9 @@ void CommandBuilder::clear() {
 }
 
 Command CommandBuilder::buildCommand() const {
-    assert(!tokens.empty());
-    // TODO: add exceptions
-
+    if (tokens.empty()) {
+        return Command();
+    }
     return Command(
             CommandName(tokens.front().asString()),
             CommandArguments(std::vector<Token>(tokens.begin() + 1, tokens.end()))
