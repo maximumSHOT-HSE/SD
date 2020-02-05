@@ -21,9 +21,15 @@ add_executable(
         commands/CommandNameTest.cpp
         commands/CommandTest.cpp
         commands/CommandBuilderTest.cpp
-        executors/CommandExecutorFactoryTest.cpp
 
         SubstitutorTest.cpp
+
+        executors/CommandExecutorFactoryTest.cpp
+        executors/CatExecutorTest.cpp
+        executors/EchoExecutorTest.cpp
+        executors/ExitExecutorTest.cpp
+        executors/PWDExecutorTest.cpp
+        executors/WCExecutorTest.cpp
 )
 
 target_link_libraries(

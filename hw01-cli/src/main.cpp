@@ -2,7 +2,5 @@
 
 int main() {
 
-    Shell().run();
-
-    return 0;
+    return Shell().run();
 }

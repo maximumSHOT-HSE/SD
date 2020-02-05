@@ -1,6 +1,7 @@
 #include <executors/ExitExecutor.h>
 
 #include <assert.h>
+#include <stdexcept>
 
 Status ExitExecutor::execute(
         const Command &command,
@@ -12,8 +13,9 @@ Status ExitExecutor::execute(
         const auto &type = argument.getTokenType();
         if (type != TokenType::END && type != TokenType::SPACE) {
             goodArgumentsCount++;
-            assert(goodArgumentsCount <= 1); // Too Many Arguments
-            // try
+            if (goodArgumentsCount > 1) {
+                throw std::invalid_argument("Too many arguments");
+            }
             exitCode = std::stoi(argument.asString());
         }
     }

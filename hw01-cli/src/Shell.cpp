@@ -3,7 +3,7 @@
 #include <processors/LoopProcessor.h>
 #include <iostream>
 
-void Shell::run() {
+int Shell::run() {
     std::string input;
     while (true) {
         std::getline(std::cin, input);
@@ -16,7 +16,7 @@ void Shell::run() {
         std::cout << output.read();
 
         if (response.getStatus().getExitStatus() == ExitStatus::EXIT) {
-            break;
+            return response.getStatus().getExitCode();
         }
     }
 }

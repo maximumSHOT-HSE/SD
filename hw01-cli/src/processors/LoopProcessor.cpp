@@ -33,9 +33,14 @@ Response LoopProcessor::process(
             Status status;
 
             if (!Substitutor::tryAssign(command, environment)) {
-                status = environment
-                        .getCommandExecutorByCommandName(command.getCommandName())
-                        .execute(command, inputChannel, outputChannel);
+                try {
+                    status = environment
+                            .getCommandExecutorByCommandName(command.getCommandName())
+                            .execute(command, inputChannel, outputChannel);
+                } catch (const std::exception &e) {
+                    status.setExitCode(-1);
+                    status.setMessage("Error: " + std::string(e.what()));
+                }
             }
 
             lastCommandStatus = status;
@@ -53,7 +58,7 @@ Response LoopProcessor::process(
     }
 
     if (!lastCommandStatus.isSuccess()) {
-        inputChannel.write("Error: " + lastCommandStatus.getMessage());
+        inputChannel.write(lastCommandStatus.getMessage());
     }
 
     return Response(lastCommandStatus, inputChannel);

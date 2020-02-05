@@ -56,7 +56,6 @@ BOOST_AUTO_TEST_SUITE(CommandExecutorFactorySuite)
                 false,
                 factory.getCommandExecutorByCommandName(CommandName("d")).has_value()
         );
-
     }
 
 BOOST_AUTO_TEST_SUITE_END()

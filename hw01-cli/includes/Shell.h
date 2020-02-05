@@ -7,7 +7,7 @@
 
 class Shell {
 public:
-    void run();
+    int run();
 
     Shell();
 
