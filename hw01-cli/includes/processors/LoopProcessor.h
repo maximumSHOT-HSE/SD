@@ -3,6 +3,7 @@
 
 #include <processors/IProcessor.h>
 
+//
 class LoopProcessor : public IProcessor {
 public:
     LoopProcessor();

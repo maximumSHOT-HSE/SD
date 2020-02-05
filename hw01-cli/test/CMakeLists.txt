@@ -29,6 +29,8 @@ add_executable(
         executors/EchoExecutorTest.cpp
         executors/ExitExecutorTest.cpp
         executors/WCExecutorTest.cpp
+
+        processors/LoopProcessorTest.cpp
 )
 
 target_link_libraries(
