@@ -32,7 +32,6 @@ Response LoopProcessor::process(
             commandBuilder.clear();
             Status status;
 
-            // TODO: exceptions!
             if (!Substitutor::tryAssign(command, environment)) {
                 status = environment
                         .getCommandExecutorByCommandName(command.getCommandName())
