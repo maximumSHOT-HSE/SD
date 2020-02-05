@@ -28,7 +28,6 @@ add_executable(
         executors/CatExecutorTest.cpp
         executors/EchoExecutorTest.cpp
         executors/ExitExecutorTest.cpp
-        executors/PWDExecutorTest.cpp
         executors/WCExecutorTest.cpp
 )
 
@@ -39,6 +38,9 @@ target_link_libraries(
         stdc++fs
         boost_system
 )
+
+FILE(COPY resources/wc_test_file.txt DESTINATION resources)
+FILE(COPY resources/wc_test_file2.txt DESTINATION resources)
 
 enable_testing()
 add_test(cli_unit_tests hw01_cli_tests)

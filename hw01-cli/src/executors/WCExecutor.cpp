@@ -8,6 +8,7 @@ Status WCExecutor::execute(
 ) const {
     const CommandArguments &commandArguments = command.getCommandArguments();
     if (commandArguments.countTokensWithType(TokenType::LITERAL) > 0) {
+        Counter totalCounter;
         for (const auto &token : commandArguments.asTokensVector()) {
             if (token.getTokenType() != TokenType::LITERAL) {
                 continue;
@@ -15,7 +16,9 @@ Status WCExecutor::execute(
             const std::string &fileName = token.asString();
             Counter counter = executeFileMode(fileName);
             writeCounterToChannel(counter, outputStream, fileName);
+            totalCounter.append(counter);
         }
+        writeCounterToChannel(totalCounter, outputStream, "total");
     } else {
         Counter counter = executeChannelMode(commandArguments, inputStream, outputStream);
         writeCounterToChannel(counter, outputStream);
@@ -86,8 +89,16 @@ bool WCExecutor::Counter::isWordSymbol(char c) {
     return !std::isspace(c);
 }
 
-void WCExecutor::Counter::append(const std::string s) {
+void WCExecutor::Counter::append(const std::string &s) {
     for (char c : s) {
         append(c);
     }
 }
+
+void WCExecutor::Counter::append(const WCExecutor::Counter &other) {
+    newlinesCount += other.newlinesCount;
+    wordsCount += other.wordsCount;
+    bytesCount += other.bytesCount;
+}
+
+
