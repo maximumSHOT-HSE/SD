@@ -33,11 +33,24 @@ CommandArguments CommandArguments::lstripe() const {
 
 CommandArguments CommandArguments::rstripe() const {
     std::vector<Token> arguments = argumentTokens;
+
+    bool isEndLast = !arguments.empty() && arguments.back().getTokenType() == TokenType::END;
+    Token lastToken = Token(TokenType::END);
+    if (isEndLast) {
+        lastToken = arguments.back();
+        arguments.pop_back();
+    }
+
     size_t r = arguments.size();
     while (r > 0u && arguments[r - 1].getTokenType() == TokenType::SPACE) {
         r--;
     }
     arguments.erase(arguments.begin() + r, arguments.end());
+
+    if (isEndLast) {
+        arguments.push_back(lastToken);
+    }
+
     return CommandArguments(arguments);
 }
 

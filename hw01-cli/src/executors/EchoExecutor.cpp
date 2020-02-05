@@ -2,8 +2,8 @@
 
 Status EchoExecutor::execute(
         const Command &command,
-        StringChannel &inputStream,
-        StringChannel &outputStream
+        StringChannel &inputChannel,
+        StringChannel &outputChannel
 ) const {
 
     const auto &arguments = command.getCommandArguments().stripe().asTokensVector();
@@ -13,11 +13,9 @@ Status EchoExecutor::execute(
             && (i == 0u || arguments[i - 1].getTokenType() == TokenType::SPACE)) {
             continue;
         }
-        outputStream.write(arguments[i].asString());
+        outputChannel.write(arguments[i].asString());
     }
-    outputStream.write("\n"); // TODO: add cross platform newline character
-
-    // TODO: add exceptions
+    outputChannel.write("\n");
 
     return Status();
 }
