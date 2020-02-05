@@ -36,7 +36,7 @@ BOOST_AUTO_TEST_SUITE(LoopProcessorSuite)
         LoopProcessor processor;
         Environment environment;
 
-        std::string command = "";
+        std::string command;
 
         Response response = processor.process(command, environment);
         StringChannel outputChannel = response.getStringChannel();
