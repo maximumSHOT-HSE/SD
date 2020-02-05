@@ -16,19 +16,22 @@ add_executable(
         channels/StringChannelTest.cpp
         tokenizers/TokenTest.cpp
         tokenizers/LinearTokenizerTest.cpp
-        EnvironmentTest.cpp
 
         commands/CommandArgumentsTest.cpp
         commands/CommandNameTest.cpp
         commands/CommandTest.cpp
         commands/CommandBuilderTest.cpp
         executors/CommandExecutorFactoryTest.cpp
+
+        SubstitutorTest.cpp
 )
 
 target_link_libraries(
         hw01_cli_tests
         cli
         ${Boost_LIBRARIES}
+        stdc++fs
+        boost_system
 )
 
 enable_testing()
