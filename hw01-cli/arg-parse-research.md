@@ -1,11 +1,23 @@
-# Выбор библиотеки для разбора аргументов командной строке
+# Выбор библиотеки для разбора аргументов командной строки
 
-Библиотека нужно для разбора аргумнетов для утилиты `grep`.
+Библиотека нужна для разбора аргумнетов утилиты `grep`.
 
 ## Кандидаты
 
-* [cxxopts](https://github.com/jarro2783/cxxopts)
+### [cxxopts](https://github.com/jarro2783/cxxopts)
 
-* [Boost.Program_options](https://www.boost.org/doc/libs/1_61_0/doc/html/program_options.html)
+#### Плюсы
 
-* [gflags](https://gflags.github.io/gflags/)
+1) Наличие лицензии `MIT` (имеет право использовать без нарушения прав)
+
+2) Библиотеку поддерживают (последний коммит в январе 2020)
+
+3) Легковестная (состоит из одного `.hpp` файла)
+
+4) Есть документация, тесты и примеры
+
+#### Минусы
+
+### [Boost.Program_options](https://www.boost.org/doc/libs/1_61_0/doc/html/program_options.html)
+
+### [gflags](https://gflags.github.io/gflags/)
