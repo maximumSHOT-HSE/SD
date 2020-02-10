@@ -61,3 +61,7 @@ std::string CommandArguments::asString() const {
     }
     return argumentsString;
 }
+
+size_t CommandArguments::size() const {
+    return argumentTokens.size();
+}

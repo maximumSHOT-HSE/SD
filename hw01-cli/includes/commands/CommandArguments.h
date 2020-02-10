@@ -33,6 +33,8 @@ public:
     // Concatenates all tokens' representations into one string and returns it
     std::string asString() const;
 
+    size_t size() const;
+
 private:
     std::vector<Token> argumentTokens;
 };
