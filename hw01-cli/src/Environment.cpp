@@ -20,13 +20,15 @@ Environment::Environment()
           pwdExecutor(new PWDExecutor()),
           wcExecutor(new WCExecutor()),
           externalExecutor(new ExternalExecutor()),
-          emptyExecutor(new EmptyExecutor()) {
+          emptyExecutor(new EmptyExecutor()),
+          grepExecutor(new GrepExecutor()) {
     factory.registerExecutor(CommandName("echo"), echoExecutor);
     factory.registerExecutor(CommandName("exit"), exitExecutor);
     factory.registerExecutor(CommandName("cat"), catExecutor);
     factory.registerExecutor(CommandName("pwd"), pwdExecutor);
     factory.registerExecutor(CommandName("wc"), wcExecutor);
     factory.registerExecutor(CommandName(""), emptyExecutor);
+    factory.registerExecutor(CommandName("grep"), grepExecutor);
 }
 
 void Environment::setVariableValue(const std::string &variableName, const std::string &variableValue) {

@@ -42,6 +42,9 @@ add_library(
         src/executors/EmptyExecutor.cpp
         includes/executors/EmptyExecutor.h
 
+        src/executors/GrepExecutor.cpp
+        includes/executors/GrepExecutor.h
+
         #       ========================
         includes/processors/IProcessor.h
 
@@ -86,6 +89,9 @@ add_library(
         #       ========================
         src/Substitutor.cpp
         includes/Substitutor.h
+
+        #       ========================
+        cxxopts/include/cxxopts.hpp
 )
 
 add_executable(
@@ -114,5 +120,6 @@ target_link_libraries(
 
 include_directories(src)
 include_directories(includes)
+include_directories(cxxopts/include)
 
 add_subdirectory(test)

@@ -15,6 +15,7 @@
 #include <executors/WCExecutor.h>
 #include <executors/ExternalExecutor.h>
 #include <executors/EmptyExecutor.h>
+#include <executors/GrepExecutor.h>
 
 class Environment {
 public:
@@ -45,6 +46,7 @@ private:
     WCExecutor *wcExecutor;
     ExternalExecutor *externalExecutor;
     EmptyExecutor *emptyExecutor;
+    GrepExecutor *grepExecutor;
 };
 
 #endif //HW01_CLI_ENVIRONMENT_H
