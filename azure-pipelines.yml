@@ -1,20 +1,28 @@
-pool:
-  vmImage: 'ubuntu-16.04'
+jobs:
 
-steps:
-# - task: Bash@3
-#   inputs:
-#     workingDirectory: 'hw01-cli'
-#     scriptPath: 'build.sh'
-#   displayName: 'Run build script'
+- job: buildLinuxCLI
+  displayName: Build CLI for Linux
+  condition: eq(variables.os, 'Linux')
+  pool:
+    vmImage: ubuntu-16.04
+  steps:
+    - bash: 'build.sh'
+      workingDirectory: 'hw01-cli'
+  
+# steps:
+# # - task: Bash@3
+# #   inputs:
+# #     workingDirectory: 'hw01-cli'
+# #     scriptPath: 'build.sh'
+# #   displayName: 'Run build script'
+
+# # - script: |
+# #     cd build/test/
+# #     ./hw01_cli_tests
+# #   displayName: 'Run tests'
+
 
 # - script: |
-#     cd build/test/
-#     ./hw01_cli_tests
-#   displayName: 'Run tests'
-
-
-- script: |
-    cd hw01-cli/
-    bash build.sh
-    ls -lh
+#     cd hw01-cli/
+#     bash build.sh
+#     ls -lh
