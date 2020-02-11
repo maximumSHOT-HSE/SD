@@ -3,6 +3,7 @@
 
 #include <executors/ICommandExecutor.h>
 #include <executors/grep/GrepArguments.h>
+#include <regex>
 
 class GrepExecutor : public ICommandExecutor {
 public:
@@ -14,7 +15,10 @@ public:
 
 private:
     Status executeFromChannelMode(StringChannel &inputChannel, StringChannel &outputChannel,
-                                      const GrepArguments &arguments) const;
+                                  const GrepArguments &arguments) const;
+
+private:
+    const std::regex wordRegex = std::regex("\\w+");
 };
 
 

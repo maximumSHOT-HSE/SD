@@ -35,10 +35,29 @@ Status GrepExecutor::executeFromChannelMode(
         );
     }
 
+    std::smatch smatch;
     size_t linesToPrint = 0u;
     while (!inputChannel.empty()) {
-        const std::string line = inputChannel.readLine();
-        if (std::regex_search(line, regex)) {
+        std::string line = inputChannel.readLine();
+
+        bool isMatched = false;
+
+        if (arguments.isSearchOnlyWords()) {
+            for (std::string walker = line;
+                 std::regex_search(walker, smatch, wordRegex);
+                 walker = smatch.suffix().str()) {
+                for (const auto &token : smatch) {
+                    if (std::regex_match(token.str(), regex)) {
+                        isMatched = true;
+                        break;
+                    }
+                }
+            }
+        } else {
+            isMatched = std::regex_search(line, regex);
+        }
+
+        if (isMatched) {
             outputChannel.write(line);
             linesToPrint = arguments.getLinesNumberToPrint();
         } else if (linesToPrint > 0u) {
