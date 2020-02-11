@@ -2,12 +2,14 @@ pool:
   vmImage: 'ubuntu-16.04'
 
 steps:
-- task: ShellScript@2
-  inputs:
-    scriptPath: 'build.sh'
-  displayName: 'Run build script'
-
 - script: |
-    cd build/test/
-    ./hw01_cli_tests
-  displayName: 'Run tests'
+    pwd
+# - task: ShellScript@2
+#   inputs:
+#     scriptPath: 'hw01-cli/build.sh'
+#   displayName: 'Run build script'
+
+# - script: |
+#     cd build/test/
+#     ./hw01_cli_tests
+#   displayName: 'Run tests'
