@@ -8,7 +8,7 @@ jobs:
     - script: |
         git submodule init
     - script: |
-        ls -lh
+        ls -lh cxxopts/
         # mkdir build
         # cd build
         # cmake ..
