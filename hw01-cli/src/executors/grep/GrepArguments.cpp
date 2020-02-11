@@ -1,5 +1,6 @@
 #include <executors/grep/GrepArguments.h>
 #include <cstring>
+#include <cxxopts.hpp>
 
 GrepArguments::GrepArguments(const Command &command) {
     argv = new char *[command.getCommandArguments().size() + 1];
@@ -21,6 +22,40 @@ GrepArguments::GrepArguments(const Command &command) {
         memcpy(arg, stringArg.c_str(), stringArg.size());
         argv[argc++] = arg;
     }
+
+    const std::string CASE_SENSITIVITY_KEY = "i";
+    const std::string SEARCH_ONLY_WORDS_KEY = "w";
+    const std::string PRINT_N_LINES_KEY = "A";
+    const std::string REGEXP_KEY = "regexp";
+    const std::string FILES_KEY = "files";
+
+    cxxopts::Options options("grep", "Prints lines matching a pattern");
+    options.add_options()
+            (CASE_SENSITIVITY_KEY, "Case sensitivity")
+            (SEARCH_ONLY_WORDS_KEY, "Search only whole words")
+            (
+                    PRINT_N_LINES_KEY,
+                    "Print n lines after matched line",
+                    cxxopts::value<unsigned int>()->default_value("0")
+            )
+            (
+                    REGEXP_KEY,
+                    "Regular expression to be used for search matchings",
+                    cxxopts::value<std::string>()->default_value("")
+            )
+            (
+                    FILES_KEY,
+                    "File to be processed by grep",
+                    cxxopts::value<std::vector<std::string>>()->default_value({})
+            );
+    options.parse_positional({REGEXP_KEY, FILES_KEY});
+    auto result = options.parse(getArgc(), getArgv());
+
+    caseSensitivity = result[CASE_SENSITIVITY_KEY].as<bool>();
+    searchOnlyWords = result[SEARCH_ONLY_WORDS_KEY].as<bool>();
+    nLinesToPrint = result[PRINT_N_LINES_KEY].as<unsigned int>();
+    regexp = result[REGEXP_KEY].as<std::string>();
+    files = result[FILES_KEY].as<std::vector<std::string>>();
 }
 
 GrepArguments::~GrepArguments() {
@@ -36,4 +71,24 @@ int &GrepArguments::getArgc() {
 
 char **&GrepArguments::getArgv() {
     return argv;
+}
+
+bool GrepArguments::isCaseSensitivity() const {
+    return caseSensitivity;
+}
+
+bool GrepArguments::isSearchOnlyWords() const {
+    return searchOnlyWords;
+}
+
+unsigned int GrepArguments::getNLinesToPrint() const {
+    return nLinesToPrint;
+}
+
+const std::string &GrepArguments::getRegexp() const {
+    return regexp;
+}
+
+const std::vector<std::string> &GrepArguments::getFiles() const {
+    return files;
 }

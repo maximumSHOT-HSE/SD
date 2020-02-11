@@ -25,6 +25,9 @@ public:
 
     // Makes the data buffer empty
     void clear();
+
+    // write data from file into this channel
+    void writeFile(const std::string &fileName);
 private:
     std::string buffer;
 };

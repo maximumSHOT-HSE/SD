@@ -13,9 +13,25 @@ public:
 
     ~GrepArguments();
 
+    bool isCaseSensitivity() const;
+
+    bool isSearchOnlyWords() const;
+
+    unsigned int getNLinesToPrint() const;
+
+    const std::string &getRegexp() const;
+
+    const std::vector<std::string> &getFiles() const;
+
 private:
     int argc;
     char **argv;
+
+    bool caseSensitivity;
+    bool searchOnlyWords;
+    unsigned int nLinesToPrint;
+    std::string regexp;
+    std::vector<std::string> files;
 };
 
 
