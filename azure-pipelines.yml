@@ -8,13 +8,14 @@ jobs:
     - script: |
         git submodule init
     - script: |
-        mkdir build
-        cd build
-        cmake ..
-        make
+        ls -lh
+        # mkdir build
+        # cd build
+        # cmake ..
+        # make
         
-        cd test
-        ./hw01-cli
+        # cd test
+        # ./hw01-cli
 
       workingDirectory: 'hw01-cli'
 
