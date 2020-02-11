@@ -9,7 +9,7 @@ Status GrepExecutor::execute(
 ) const {
     const std::string CASE_SENSITIVITY_KEY = "i";
     const std::string SEARCH_ONLY_WORDS_KEY = "w";
-    const std::string PRINT_N_LINES_KEY = "n";
+    const std::string PRINT_N_LINES_KEY = "A";
     const std::string REGEXP_KEY = "regexp";
     const std::string FILES_KEY = "files";
 
@@ -41,8 +41,6 @@ Status GrepExecutor::execute(
     unsigned int nLinesToPrint = result[PRINT_N_LINES_KEY].as<unsigned int>();
     std::string regexp = result[REGEXP_KEY].as<std::string>();
     std::vector<std::string> files = result[FILES_KEY].as<std::vector<std::string>>();
-
-
 
     return Status();
 }
