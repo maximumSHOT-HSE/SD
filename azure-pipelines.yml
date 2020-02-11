@@ -7,21 +7,7 @@ jobs:
   steps:
     - bash: './build.sh'
       workingDirectory: 'hw01-cli'
-
-# steps:
-# # - task: Bash@3
-# #   inputs:
-# #     workingDirectory: 'hw01-cli'
-# #     scriptPath: 'build.sh'
-# #   displayName: 'Run build script'
-
-# # - script: |
-# #     cd build/test/
-# #     ./hw01_cli_tests
-# #   displayName: 'Run tests'
-
-
-# - script: |
-#     cd hw01-cli/
-#     bash build.sh
-#     ls -lh
+      displayName: Build
+    - bash: './run_tests.sh'
+      workingDirectory: 'hw01-cli'
+      displayName: Run tests
