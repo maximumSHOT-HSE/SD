@@ -38,7 +38,6 @@ target_link_libraries(
         ${Boost_LIBRARIES}
         stdc++fs
         boost_system
-        Boost::unit_test_framework
 )
 
 FILE(COPY resources/wc_test_file.txt DESTINATION resources)
