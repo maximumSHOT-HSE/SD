@@ -15,7 +15,7 @@
 #include <executors/WCExecutor.h>
 #include <executors/ExternalExecutor.h>
 #include <executors/EmptyExecutor.h>
-#include <executors/GrepExecutor.h>
+#include <executors/grep/GrepExecutor.h>
 
 class Environment {
 public:

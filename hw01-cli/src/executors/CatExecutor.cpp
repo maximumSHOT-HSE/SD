@@ -43,7 +43,7 @@ Status CatExecutor::executeAtLeastOneArgumentMode(
         if (argument.getTokenType() != TokenType::LITERAL) {
             continue;
         }
-        std::ifstream fin(argument.asString()); // TODO: add exceptions
+        std::ifstream fin(argument.asString());
         for (char c; fin.get(c);) {
             outputChannel.write(c);
         }

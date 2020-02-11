@@ -39,7 +39,7 @@ Response LoopProcessor::process(
                             .execute(command, inputChannel, outputChannel);
                 } catch (const std::exception &e) {
                     status.setExitCode(-1);
-                    status.setMessage("Error: " + std::string(e.what()));
+                    status.setMessage("Error: " + std::string(e.what()) + "\n");
                 }
             }
 

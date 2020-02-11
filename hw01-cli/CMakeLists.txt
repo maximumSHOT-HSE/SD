@@ -42,8 +42,11 @@ add_library(
         src/executors/EmptyExecutor.cpp
         includes/executors/EmptyExecutor.h
 
-        src/executors/GrepExecutor.cpp
-        includes/executors/GrepExecutor.h
+        src/executors/grep/GrepExecutor.cpp
+        includes/executors/grep/GrepExecutor.h
+
+        src/executors/grep/GrepArguments.cpp
+        includes/executors/grep/GrepArguments.h
 
         #       ========================
         includes/processors/IProcessor.h
