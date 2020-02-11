@@ -29,3 +29,16 @@ void StringChannel::writeFile(const std::string &fileName) {
         write(c);
     }
 }
+
+std::string StringChannel::readLine() {
+    size_t i = 0;
+    while (i < buffer.size() && buffer[i] != '\n') {
+        i++;
+    }
+    if (i < buffer.size()) {
+        i++;
+    }
+    std::string result = buffer.substr(0, i);
+    buffer.erase(buffer.begin(), buffer.begin() + i);
+    return result;
+}

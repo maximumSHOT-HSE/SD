@@ -13,10 +13,8 @@ public:
     ) const override;
 
 private:
-    Status executeFromChannelMode(
-            StringChannel &inputChannel,
-            const GrepArguments &arguments
-    ) const;
+    Status executeFromChannelMode(StringChannel &inputChannel, StringChannel &outputChannel,
+                                      const GrepArguments &arguments) const;
 };
 
 

@@ -28,6 +28,11 @@ public:
 
     // write data from file into this channel
     void writeFile(const std::string &fileName);
+
+    // read data from the channel until meeting line separator character
+    // if there is line separator then it will be added to the end of
+    // line
+    std::string readLine();
 private:
     std::string buffer;
 };
