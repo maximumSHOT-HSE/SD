@@ -15,4 +15,6 @@ steps:
 
 
 - script: |
+    cd hw01-cli/
+    bash build.sh
     ls -lh
