@@ -6,7 +6,7 @@ Status EchoExecutor::execute(
         StringChannel &outputChannel
 ) const {
 
-    const auto &arguments = command.getCommandArguments().stripe().asTokensVector();
+    const auto &arguments = command.getCommandArguments().strip().asTokensVector();
 
     for (size_t i = 0; i < arguments.size(); i++) {
         if (arguments[i].getTokenType() == TokenType::SPACE

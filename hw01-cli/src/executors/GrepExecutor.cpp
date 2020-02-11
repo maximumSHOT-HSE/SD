@@ -12,15 +12,18 @@ Status GrepExecutor::execute(
             ("i", "Case sensitivity")
             ("w", "Search only whole words")
             (
-                    "A", "Print n lines after matched line",
+                    "n",
+                    "Print n lines after matched line",
                     cxxopts::value<unsigned int>()
             )
             (
-                    "regexp", "Regular expression to be used for search matchings",
+                    "regexp",
+                    "Regular expression to be used for search matchings",
                     cxxopts::value<std::string>()
             )
             (
-                    "files", "File to be processed by grep",
+                    "files",
+                    "File to be processed by grep",
                     cxxopts::value<std::vector<std::string>>()
             );
 
@@ -48,13 +51,20 @@ Status GrepExecutor::execute(
 
     auto result = options.parse(argc, args);
 
-    for (auto x : result.arguments()) {
-        std::cout << x.value() << "|" << x.key() << "\n";
-    }
-
     std::cout << "\n----------\n";
 
-    std::cout << result.count("i") << " !!!\n";
+    std::cout << "i = " << result.count("i") << " !!!\n";
+    if (result.count("n"))
+        std::cout << "n = " << result["n"].as<unsigned int>() << "\n";
+    if (result.count("regexp"))
+        std::cout << "regexp = " << result["regexp"].as<std::string>() << "\n";
+    if (result.count("files")) {
+        std::cout << "files = { ";
+        auto files = result["files"].as<std::vector<std::string>>();
+        for (auto x : files)
+            std::cout << x << " ";
+        std::cout << "}\n";
+    }
 
     for (int i = 0; i < argc; i++) {
         delete[] args[i];

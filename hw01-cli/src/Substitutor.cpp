@@ -66,7 +66,7 @@ Token Substitutor::substitute(const Token &token, Environment &environment) {
 }
 
 bool Substitutor::tryAssign(const Command &command, Environment &environment) {
-    std::vector<Token> tokens = command.getCommandArguments().rstripe().asTokensVector();
+    std::vector<Token> tokens = command.getCommandArguments().rstrip().asTokensVector();
     if (tokens.size() != 2u) {
         return false;
     }

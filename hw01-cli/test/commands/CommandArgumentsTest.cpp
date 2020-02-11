@@ -85,7 +85,7 @@ BOOST_AUTO_TEST_SUITE(CommandArgumentsSuite)
                 for (size_t i = 0u; i < rightSpaces; i++) {
                     tokens.emplace_back(TokenType::SPACE, " ");
                 }
-                std::vector<Token> foundTokens = CommandArguments(tokens).lstripe().asTokensVector();
+                std::vector<Token> foundTokens = CommandArguments(tokens).lstrip().asTokensVector();
                 BOOST_CHECK_EQUAL(3u + rightSpaces, foundTokens.size());
 
                 BOOST_CHECK_EQUAL(TokenType::LITERAL, foundTokens[0u].getTokenType());
@@ -123,7 +123,7 @@ BOOST_AUTO_TEST_SUITE(CommandArgumentsSuite)
                 for (size_t i = 0u; i < rightSpaces; i++) {
                     tokens.emplace_back(TokenType::SPACE, " ");
                 }
-                std::vector<Token> foundTokens = CommandArguments(tokens).rstripe().asTokensVector();
+                std::vector<Token> foundTokens = CommandArguments(tokens).rstrip().asTokensVector();
                 BOOST_CHECK_EQUAL(3u + leftSpaces, foundTokens.size());
 
                 for (size_t i = 0; i < leftSpaces; i++) {
@@ -161,7 +161,7 @@ BOOST_AUTO_TEST_SUITE(CommandArgumentsSuite)
                 for (size_t i = 0u; i < rightSpaces; i++) {
                     tokens.emplace_back(TokenType::SPACE, " ");
                 }
-                std::vector<Token> foundTokens = CommandArguments(tokens).stripe().asTokensVector();
+                std::vector<Token> foundTokens = CommandArguments(tokens).strip().asTokensVector();
                 BOOST_CHECK_EQUAL(3u, foundTokens.size());
 
                 BOOST_CHECK_EQUAL(TokenType::LITERAL, foundTokens[0u].getTokenType());

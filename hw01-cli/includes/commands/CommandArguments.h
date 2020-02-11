@@ -22,13 +22,13 @@ public:
     size_t countTokensWithType(const TokenType &tokenType) const;
 
     // Removes SPACE argument-tokens from the beginning and from the end
-    CommandArguments stripe() const;
+    CommandArguments strip() const;
 
     // Removes SPACE argument-tokens from the beginning
-    CommandArguments lstripe() const;
+    CommandArguments lstrip() const;
 
     // Removes SPACE argument-tokens from the end
-    CommandArguments rstripe() const;
+    CommandArguments rstrip() const;
 
     // Concatenates all tokens' representations into one string and returns it
     std::string asString() const;

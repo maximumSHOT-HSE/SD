@@ -17,11 +17,11 @@ size_t CommandArguments::countTokensWithType(const TokenType &tokenType) const {
     return count;
 }
 
-CommandArguments CommandArguments::stripe() const {
-    return this->lstripe().rstripe();
+CommandArguments CommandArguments::strip() const {
+    return this->lstrip().lstrip();
 }
 
-CommandArguments CommandArguments::lstripe() const {
+CommandArguments CommandArguments::lstrip() const {
     std::vector<Token> arguments = argumentTokens;
     size_t l = 0;
     while (l < arguments.size() && arguments[l].getTokenType() == TokenType::SPACE) {
@@ -31,7 +31,7 @@ CommandArguments CommandArguments::lstripe() const {
     return CommandArguments(arguments);
 }
 
-CommandArguments CommandArguments::rstripe() const {
+CommandArguments CommandArguments::rstrip() const {
     std::vector<Token> arguments = argumentTokens;
 
     bool isEndLast = !arguments.empty() && arguments.back().getTokenType() == TokenType::END;
