@@ -5,9 +5,20 @@ jobs:
   pool:
     vmImage: ubuntu-16.04
   steps:
-    - bash: './build.sh'
+    - script: |
+        unset BOOST_ROOT
+        sudo apt update
+        sudo apt install -y libboost-dev libboost-thread-dev libboost-system-dev libboost-date-time-dev libboost-regex-dev libboost-filesystem-dev libboost-random-dev libboost-chrono-dev libboost-serialization-dev
+
+        export CC=gcc-8
+        export CXX=g++-8
+
+        mkdir build
+        cd build
+        cmake ..
+        make
+        
+        cd test
+        ./hw01_cli_tests
+
       workingDirectory: 'hw01-cli'
-      displayName: Build
-    - bash: './run_tests.sh'
-      workingDirectory: 'hw01-cli'
-      displayName: Run tests
