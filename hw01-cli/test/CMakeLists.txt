@@ -7,6 +7,8 @@ include_directories(${BOOST_ROOT})
 
 add_definitions(-DBOOST_TEST_DYN_LINK)
 
+set(CMAKE_CXX_FLAGS "-pthread")
+
 add_executable(
         hw01_cli_tests
 

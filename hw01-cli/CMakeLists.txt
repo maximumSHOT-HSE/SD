@@ -3,6 +3,8 @@ project(hw01_cli)
 
 set(CMAKE_CXX_STANDARD 17)
 
+set(CMAKE_CXX_FLAGS "-pthread")
+
 add_library(
         cli
 
