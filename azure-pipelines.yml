@@ -6,6 +6,8 @@ jobs:
     vmImage: ubuntu-18.04
   steps:
     - script: |
+        git submodule init
+    - script: |
         mkdir build
         cd build
         cmake ..
@@ -23,7 +25,7 @@ jobs:
   steps:
     - script: |
         git submodule init
-
+    - script: |
         mkdir build
         cd build
         cmake ..
