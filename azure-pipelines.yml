@@ -22,6 +22,8 @@ jobs:
     vmImage: windows-2019
   steps:
     - script: |
+        git submodule init
+
         mkdir build
         cd build
         cmake ..
