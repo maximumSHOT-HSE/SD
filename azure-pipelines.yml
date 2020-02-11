@@ -4,6 +4,7 @@ pool:
 steps:
 - script: |
     pwd
+    ls -l
 # - task: ShellScript@2
 #   inputs:
 #     scriptPath: 'hw01-cli/build.sh'
