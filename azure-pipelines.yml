@@ -5,8 +5,8 @@ jobs:
   pool:
     vmImage: ubuntu-18.04
   steps:
-    - script: |
-        git submodule init
+    - checkout: self
+      submodules: recursive
     - script: |
         ls -lh cxxopts/
         # mkdir build
@@ -24,8 +24,8 @@ jobs:
   pool:
     vmImage: windows-2019
   steps:
-    - script: |
-        git submodule init
+    - checkout: self
+      submodules: recursive
     - script: |
         mkdir build
         cd build
