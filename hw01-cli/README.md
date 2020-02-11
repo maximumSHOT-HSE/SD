@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/surkovmax007/SD/_apis/build/status/maximumSHOT-HSE.SD?branchName=hw02-grep)](https://dev.azure.com/surkovmax007/SD/_build/latest?definitionId=1&branchName=hw02-grep)
+
 # CLI
 
 ## Инструкция по сборке
