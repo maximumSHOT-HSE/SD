@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15)
+cmake_minimum_required(VERSION 3.10)
 project(hw01_cli)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -112,7 +112,7 @@ target_link_libraries(
 set(Boost_USE_STATIC_LIBS OFF)
 set(Boost_USE_MULTITHREADED ON)
 include_directories(${Boost_INCLUDE_DIRS})
-#find_package(Boost COMPONENTS filesystem REQUIRED)
+find_package(Boost COMPONENTS filesystem REQUIRED)
 
 target_link_libraries(
         hw01_cli
