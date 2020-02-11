@@ -116,7 +116,10 @@ find_package(Boost COMPONENTS system filesystem REQUIRED)
 
 target_link_libraries(
         hw01_cli
-        ${Boost_LIBRARIES}
+
+        Boost::system
+        Boost::filesystem
+
         stdc++fs
 )
 

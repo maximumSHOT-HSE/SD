@@ -8,13 +8,21 @@ jobs:
     - checkout: self
       submodules: recursive
     - script: |
+
+        sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+        sudo apt -y update
+        sudo apt install g++-9 ninja-build -y
+        ./vcpkg/bootstrap-vcpkg.sh
+        ./vcpkg/vcpkg install zlib openssl boost-system boost-date-time boost-regex websocketpp boost-thread boost-filesystem boost-random boost-chrono boost-interprocess brotli --vcpkg-root ./vcpkg
+
+
         mkdir build
         cd build
         cmake ..
         make
         
         cd test
-        ./hw01-cli
+        ./hw01_li_test
 
       workingDirectory: 'hw01-cli'
 
@@ -28,10 +36,10 @@ jobs:
     - script: |
         mkdir build
         cd build
-        cmake ..
+        ccmake ..
         make
         
         cd test
-        ./hw01-cli
+        hw01_cli_test
 
       workingDirectory: 'hw01-cli'

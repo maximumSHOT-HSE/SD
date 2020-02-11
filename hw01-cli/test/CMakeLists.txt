@@ -35,7 +35,9 @@ add_executable(
 target_link_libraries(
         hw01_cli_tests
         cli
-        ${Boost_LIBRARIES}
+
+        Boost::unit_test_framework
+
         stdc++fs
         boost_system
 )
