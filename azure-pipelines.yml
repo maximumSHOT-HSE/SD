@@ -7,13 +7,14 @@ jobs:
   steps:
     - script: |
         unset BOOST_ROOT
+
+        export CC=gcc-7
+        export CXX=g++-7
+
+        export CMAKE_C_COMPILER=gcc-7
+        export CMAKE_CXX_COMPILER=g++-7
+
         sudo apt install -y libboost-dev libboost-thread-dev libboost-system-dev libboost-date-time-dev libboost-regex-dev libboost-filesystem-dev libboost-random-dev libboost-chrono-dev libboost-serialization-dev
-
-        export CC=gcc-8
-        export CXX=g++-8
-
-        export CMAKE_C_COMPILER=gcc-8
-        export CMAKE_CXX_COMPILER=g++-8
 
         mkdir build
         cd build
