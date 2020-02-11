@@ -35,15 +35,17 @@ Status GrepExecutor::executeFromChannelMode(
         );
     }
 
+    size_t linesToPrint = 0u;
     while (!inputChannel.empty()) {
         const std::string line = inputChannel.readLine();
         if (std::regex_search(line, regex)) {
             outputChannel.write(line);
+            linesToPrint = arguments.getLinesNumberToPrint();
+        } else if (linesToPrint > 0u) {
+            outputChannel.write(line);
+            linesToPrint--;
         }
     }
 
-    std::cout << std::endl;
-
     return Status();
 }
-

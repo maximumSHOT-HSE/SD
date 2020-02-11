@@ -81,7 +81,7 @@ bool GrepArguments::isSearchOnlyWords() const {
     return searchOnlyWords;
 }
 
-unsigned int GrepArguments::getNLinesToPrint() const {
+unsigned int GrepArguments::getLinesNumberToPrint() const {
     return nLinesToPrint;
 }
 

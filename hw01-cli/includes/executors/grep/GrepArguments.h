@@ -17,7 +17,7 @@ public:
 
     bool isSearchOnlyWords() const;
 
-    unsigned int getNLinesToPrint() const;
+    unsigned int getLinesNumberToPrint() const;
 
     const std::string &getRegexp() const;
 
