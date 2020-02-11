@@ -1,8 +1,8 @@
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.15)
 
 set(Boost_USE_STATIC_LIBS OFF) #enable dynamic linking
 
-find_package(Boost 1.65 REQUIRED COMPONENTS unit_test_framework)
+find_package(Boost 1.65.1 REQUIRED COMPONENTS unit_test_framework)
 
 include_directories(${Boost_INCLUDE_DIR})
 
