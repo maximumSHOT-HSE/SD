@@ -1,0 +1,40 @@
+language: cpp
+
+compiler:
+  - gcc
+
+notifications:
+  email: false
+
+before_install:
+  - sudo apt-get install libboost-dev
+
+before_script: 
+  - cd hw01-cli
+  - mkdir build
+  - cd build
+
+script:
+  - cmake ..
+  - make
+  - cd test
+  - ./hw01_cli_tests
+  - cd ..
+
+after_script: 
+  - cd .. 
+  - rm -rf build
+
+matrix:
+  includes:
+    - os: linux
+      addons:
+        apt:
+          update: true
+          sources:
+              - ubuntu-toolchain-r-test
+              - sourceline: 'ppa:mhier/libboost-latest'
+          packages:
+              - g++-8
+              - libstdc++-8-dev
+              - boost1.70
