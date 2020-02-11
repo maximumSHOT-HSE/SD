@@ -3,12 +3,10 @@ jobs:
 - job: buildLinuxCLI
   displayName: Build CLI for Linux
   pool:
-    vmImage: ubuntu-16.04
+    vmImage: ubuntu-18.04
   steps:
     - script: |
-        unset BOOST_ROOT
-        sudo apt update
-        sudo apt install -y libboost-dev libboost-thread-dev libboost-system-dev libboost-date-time-dev libboost-regex-dev libboost-filesystem-dev libboost-random-dev libboost-chrono-dev libboost-serialization-dev
+        sudo apt-get install libboost-dev
 
         export CC=gcc-7
         export CXX=g++-7
