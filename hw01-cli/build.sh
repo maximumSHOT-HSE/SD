@@ -1,3 +1,4 @@
+#!/bin/bash
 # Build a project in 'build' directory
 
 mkdir build
