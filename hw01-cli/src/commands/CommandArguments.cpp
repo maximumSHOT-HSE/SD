@@ -18,7 +18,7 @@ size_t CommandArguments::countTokensWithType(const TokenType &tokenType) const {
 }
 
 CommandArguments CommandArguments::strip() const {
-    return this->lstrip().lstrip();
+    return this->lstrip().rstrip();
 }
 
 CommandArguments CommandArguments::lstrip() const {
