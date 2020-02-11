@@ -1,10 +1,11 @@
 #!/bin/bash
 # Build a project in 'build' directory
 
-sudo apt-get install libboost-dev
+unset BOOST_ROOT
+sudo apt install -y libboost-atomic-dev libboost-thread-dev libboost-system-dev libboost-date-time-dev libboost-regex-dev libboost-filesystem-dev libboost-random-dev libboost-chrono-dev libboost-serialization-dev
 
-export CC=gcc-7
-export CXX=g++-7
+export CC=gcc-8
+export CXX=g++-8
 
 mkdir build
 cd build
