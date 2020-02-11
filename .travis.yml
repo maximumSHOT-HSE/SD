@@ -1,42 +1,32 @@
-language: cpp
-
-compiler:
-  - gcc
+matrix:
+    include:
+        language: cpp
+        os: linux
+        dist: bionic
+        addons:
+            apt:
+                update: true
+                sources:
+                    - ubuntu-toolchain-r-test
+                    - sourceline: 'ppa:mhier/libboost-latest'
+                packages:
+                    - g++-8
+                    - libstdc++-8-dev
+                    - boost1.70
+        compiler:
+            - gcc
+        before_script: 
+          - cd hw01-cli
+          - mkdir build
+          - cd build
+        script:
+          - export CC=gcc-8
+          - export CXX=g++-8
+          - cmake ..
+          - make
+          - cd test
+          - ./hw01_cli_tests
+          - cd ..
 
 notifications:
-  email: false
-
-before_install:
-  - sudo apt-get install libboost-dev
-
-before_script: 
-  - cd hw01-cli
-  - mkdir build
-  - cd build
-
-script:
-  - export CC=gcc-8
-  - export CXX=g++-8
-  - cmake ..
-  - make
-  - cd test
-  - ./hw01_cli_tests
-  - cd ..
-
-after_script: 
-  - cd .. 
-  - rm -rf build
-
-matrix:
-  includes:
-    - os: linux
-      addons:
-        apt:
-          update: true
-          sources:
-              - ubuntu-toolchain-r-test
-              - sourceline: 'ppa:mhier/libboost-latest'
-          packages:
-              - g++-8
-              - libstdc++-8-dev
-              - boost1.70
+    email: false
