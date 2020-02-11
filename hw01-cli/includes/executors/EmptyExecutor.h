@@ -3,8 +3,10 @@
 
 #include <executors/ICommandExecutor.h>
 
+// Executor for empty line of line only with space characters
 class EmptyExecutor : public ICommandExecutor {
 public:
+    // Do nothing
     Status execute(
             const Command &command,
             StringChannel &inputChannel,

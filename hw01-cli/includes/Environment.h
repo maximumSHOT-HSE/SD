@@ -17,10 +17,13 @@
 #include <executors/EmptyExecutor.h>
 #include <executors/grep/GrepExecutor.h>
 
+// Entity for storing inner shell variables and
+// command which are implemented in shell
 class Environment {
 public:
     Environment();
 
+    // Determines the executor for command by its name
     const ICommandExecutor &getCommandExecutorByCommandName(
             const CommandName &commandName
     ) const;

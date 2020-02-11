@@ -38,8 +38,10 @@ WCExecutor::Counter WCExecutor::executeChannelMode(
     return counter;
 }
 
-WCExecutor::Counter WCExecutor::executeFileMode(const std::string &fileName) const {
-    std::ifstream fin(fileName); // TODO: add exceptions
+WCExecutor::Counter WCExecutor::executeFileMode(
+        const std::string &fileName
+) const {
+    std::ifstream fin(fileName);
     Counter counter;
     for (char c; fin.get(c);) {
         counter.append(c);

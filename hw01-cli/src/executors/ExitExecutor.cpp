@@ -1,5 +1,4 @@
 #include <executors/ExitExecutor.h>
-
 #include <assert.h>
 #include <stdexcept>
 

@@ -1,7 +1,6 @@
 #include <Substitutor.h>
 #include <tokenizers/LinearTokenizer.h>
 
-
 bool Substitutor::isValidVariableName(const std::string &name) {
     if (name.empty()) {
         return false;

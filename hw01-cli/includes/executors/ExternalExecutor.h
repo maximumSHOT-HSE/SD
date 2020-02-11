@@ -3,8 +3,10 @@
 
 #include <executors/ICommandExecutor.h>
 
+// Executor for outer commands
 class ExternalExecutor : public ICommandExecutor {
 public:
+    // Takes the name and arguments of outer utility and runs it
     Status execute(
             const Command &command,
             StringChannel &inputChannel,

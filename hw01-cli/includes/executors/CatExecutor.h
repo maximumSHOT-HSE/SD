@@ -4,8 +4,11 @@
 #include <executors/ICommandExecutor.h>
 #include <optional>
 
+// cat utility executor
 class CatExecutor : public ICommandExecutor {
 public:
+    // Reads files and writes the data from the files
+    // to the output channel
     Status execute(
             const Command &command,
             StringChannel &inputStream,

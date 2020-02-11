@@ -5,6 +5,8 @@
 #include <Status.h>
 #include <channels/StringChannel.h>
 
+// Entity for processor returned result
+// which contains status and final output channel
 class Response {
 public:
     Response(const Status &status, const StringChannel &stringChannel);

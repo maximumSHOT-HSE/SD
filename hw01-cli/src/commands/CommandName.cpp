@@ -1,4 +1,3 @@
-
 #include <commands/CommandName.h>
 
 const std::string &CommandName::getName() const {

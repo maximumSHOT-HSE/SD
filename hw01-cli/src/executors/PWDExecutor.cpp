@@ -1,5 +1,4 @@
-#include "executors/PWDExecutor.h"
-#include <iostream>
+#include <executors/PWDExecutor.h>
 #include <experimental/filesystem>
 
 Status PWDExecutor::execute(
@@ -12,8 +11,6 @@ Status PWDExecutor::execute(
 
     outputStream.write(absolute(current_path()));
     outputStream.write("\n");
-
-    // TODO: add newline character (multi platform)
 
     return Status();
 }

@@ -1,4 +1,3 @@
-
 #include <Status.h>
 
 bool Status::isSuccess() const {

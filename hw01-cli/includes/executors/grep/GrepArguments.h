@@ -3,6 +3,7 @@
 
 #include <commands/Command.h>
 
+// Wrapper for command line arguments parser
 class GrepArguments {
 public:
     explicit GrepArguments(const Command &command);

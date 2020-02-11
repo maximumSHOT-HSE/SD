@@ -3,11 +3,19 @@
 
 #include <processors/IProcessor.h>
 
-//
+// Implementation of command line processor
 class LoopProcessor : public IProcessor {
 public:
     LoopProcessor();
 
+    // Takes command, splits by pipe symbol
+    // runs command one by one from left to right.
+    // Uses output channel from the previous command
+    // as input channel for the nex command.
+    // If some command returns non-success result
+    // then processing will be terminated.
+    // Exit code of last command will be stored
+    // in environmental variable '?'
     Response process(
             const std::string &s,
             Environment &environment

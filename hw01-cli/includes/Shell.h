@@ -5,8 +5,11 @@
 #include <processors/IProcessor.h>
 #include <Environment.h>
 
+// Main entity for shell which can be runned
+// from anywhere
 class Shell {
 public:
+    // Runs the shell
     int run();
 
     Shell();

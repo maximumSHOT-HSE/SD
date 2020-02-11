@@ -5,6 +5,9 @@
 
 enum ExitStatus {EXIT, STAY};
 
+// Entity for execution result
+// which contains information
+// about successfulness of command execution
 class Status {
 public:
     Status() = default;

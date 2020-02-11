@@ -1,8 +1,5 @@
 #include <tokenizers/LinearTokenizer.h>
 
-#include <cctype>
-#include <optional>
-
 Token LinearTokenizer::nextToken() {
     if (pointer == (int) s.size()) {
         pointer++;
