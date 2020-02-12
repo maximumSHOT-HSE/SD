@@ -38,7 +38,7 @@
 
 ## Архитектура
 
-![alt text](https://github.com/maximumSHOT-HSE/SD/blob/hw01-cli/hw01-cli/hw01%20cli%20architecture.jpg)
+Лежит в корне в виде файла с расширением `.drawio`.
 
 ## Описание сущностей
 
