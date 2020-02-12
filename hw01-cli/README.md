@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/maximumSHOT-HSE/SD.svg?branch=master)](https://travis-ci.com/maximumSHOT-HSE/SD)
+
 # CLI
 
 ## Инструкция по сборке
