@@ -9,6 +9,7 @@ Status GrepExecutor::execute(
         StringChannel &inputChannel,
         StringChannel &outputChannel
 ) const {
+
     GrepArguments arguments = GrepArguments(command);
 
     if (!arguments.getFiles().empty()) {
