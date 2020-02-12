@@ -8,13 +8,9 @@ class GrepArguments {
 public:
     explicit GrepArguments(const Command &command);
 
-    int &getArgc();
-
-    char **&getArgv();
-
     ~GrepArguments();
 
-    bool isCaseSensitivity() const;
+    bool isCaseInsensitivity() const;
 
     bool isSearchOnlyWords() const;
 
@@ -28,7 +24,7 @@ private:
     int argc;
     char **argv;
 
-    bool caseSensitivity;
+    bool caseInsensitivity;
     bool searchOnlyWords;
     unsigned int nLinesToPrint;
     std::string regexp;

@@ -29,7 +29,7 @@ Status GrepExecutor::executeFromChannelMode(
 ) const {
 
     std::regex regex(arguments.getRegexp(), std::regex_constants::grep);
-    if (arguments.isCaseSensitivity()) {
+    if (arguments.isCaseInsensitivity()) {
         regex.assign(
                 arguments.getRegexp(),
                 std::regex_constants::grep | std::regex_constants::icase
