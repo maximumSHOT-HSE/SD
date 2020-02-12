@@ -30,6 +30,8 @@ add_executable(
         executors/EchoExecutorTest.cpp
         executors/ExitExecutorTest.cpp
         executors/WCExecutorTest.cpp
+        executors/grep/GrepExecutorTest.cpp
+        executors/grep/GrepArgumentsTest.cpp
 
         processors/LoopProcessorTest.cpp
 )
