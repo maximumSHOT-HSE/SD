@@ -61,7 +61,7 @@ BOOST_AUTO_TEST_SUITE(LoopProcessorSuite)
                 CommandName(""),
                 std::make_shared<EmptyExecutor>()
         );
-        
+
         std::string command;
 
         Response response = processor.process(command, environment, factory);
