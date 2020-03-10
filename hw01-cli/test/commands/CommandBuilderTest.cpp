@@ -44,7 +44,8 @@ BOOST_AUTO_TEST_SUITE(CommandBuilderSuite)
         std::string buffer;
 
         std::vector<TokenType> types = {
-                PIPE, DOLLAR, ASSIGN, END, SPACE, LITERAL
+                TokenType::PIPE, TokenType::SPACE, TokenType::END, TokenType::ASSIGN, TokenType::LITERAL,
+                TokenType::DOLLAR
         };
 
         for (int i = 0; i < 20; i++) {

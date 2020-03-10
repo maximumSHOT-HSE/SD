@@ -3,8 +3,8 @@
 
 #include <string>
 
-enum TokenType {
-    PIPE, SPACE, END, ASSIGN, LITERAL, DOLLAR
+enum class TokenType {
+    PIPE = 0, SPACE = 1, END = 2, ASSIGN = 3, LITERAL = 4, DOLLAR = 5
 };
 
 /// The unit of tokenization process.

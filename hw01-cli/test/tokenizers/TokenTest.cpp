@@ -64,22 +64,22 @@ BOOST_AUTO_TEST_SUITE(TokenSuite)
 
         for (const std::string &content : contents) {
             Token token(TokenType::SPACE, content);
-            BOOST_CHECK_EQUAL(TokenType::SPACE, token.getTokenType());
+            BOOST_CHECK_EQUAL(int(TokenType::SPACE), int(token.getTokenType()));
 
             token = Token(TokenType::PIPE, content);
-            BOOST_CHECK_EQUAL(TokenType::PIPE, token.getTokenType());
+            BOOST_CHECK_EQUAL(int(TokenType::PIPE), int(token.getTokenType()));
 
             token = Token(TokenType::END, content);
-            BOOST_CHECK_EQUAL(TokenType::END, token.getTokenType());
+            BOOST_CHECK_EQUAL(int(TokenType::END), int(token.getTokenType()));
 
             token = Token(TokenType::ASSIGN, content);
-            BOOST_CHECK_EQUAL(TokenType::ASSIGN, token.getTokenType());
+            BOOST_CHECK_EQUAL(int(TokenType::ASSIGN), int(token.getTokenType()));
 
             token = Token(TokenType::LITERAL, content);
-            BOOST_CHECK_EQUAL(TokenType::LITERAL, token.getTokenType());
+            BOOST_CHECK_EQUAL(int(TokenType::LITERAL), int(token.getTokenType()));
 
             token = Token(TokenType::DOLLAR, content);
-            BOOST_CHECK_EQUAL(TokenType::DOLLAR, token.getTokenType());
+            BOOST_CHECK_EQUAL(int(TokenType::DOLLAR), int(token.getTokenType()));
         }
     }
 
