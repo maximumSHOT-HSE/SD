@@ -11,7 +11,7 @@ BOOST_AUTO_TEST_SUITE(ExitExecutorSuite)
         Status status = ExitExecutor().execute(command, inputChannel, outputChannel);
         BOOST_CHECK_EQUAL(true, outputChannel.empty());
         BOOST_CHECK_EQUAL(0, status.getExitCode());
-        BOOST_CHECK_EQUAL(ExitStatus::EXIT, status.getExitStatus());
+        BOOST_CHECK_EQUAL(int(ExitStatus::EXIT), int(status.getExitStatus()));
     }
 
     BOOST_AUTO_TEST_CASE(testExecuteOneArgument) {
@@ -28,7 +28,7 @@ BOOST_AUTO_TEST_SUITE(ExitExecutorSuite)
         Status status = ExitExecutor().execute(command, inputChannel, outputChannel);
         BOOST_CHECK_EQUAL(true, outputChannel.empty());
         BOOST_CHECK_EQUAL(123, status.getExitCode());
-        BOOST_CHECK_EQUAL(ExitStatus::EXIT, status.getExitStatus());
+        BOOST_CHECK_EQUAL(int(ExitStatus::EXIT), int(status.getExitStatus()));
     }
 
     BOOST_AUTO_TEST_CASE(testExecuteTooManyArguments) {

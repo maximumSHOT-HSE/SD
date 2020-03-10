@@ -3,7 +3,7 @@
 
 #include <string>
 
-enum ExitStatus {EXIT, STAY};
+enum class ExitStatus {EXIT = 0, STAY = 1};
 
 class Status {
 public:
@@ -26,7 +26,7 @@ public:
 private:
     int exitCode = 0;
     std::string message = "";
-    ExitStatus exitStatus = STAY;
+    ExitStatus exitStatus = ExitStatus::STAY;
 };
 
 
