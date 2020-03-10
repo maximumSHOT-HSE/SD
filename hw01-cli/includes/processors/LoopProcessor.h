@@ -2,6 +2,7 @@
 #define HW01_CLI_LOOPPROCESSOR_H
 
 #include "processors/IProcessor.h"
+#include "commands/CommandExecutorFactory.h"
 
 class LoopProcessor : public IProcessor {
 public:
@@ -9,7 +10,8 @@ public:
 
     Response process(
             const std::string &s,
-            Environment &environment
+            Environment &environment,
+            const CommandExecutorFactory &factory
     ) override;
 
     ~LoopProcessor() override;

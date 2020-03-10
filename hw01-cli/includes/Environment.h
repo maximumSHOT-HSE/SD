@@ -21,11 +21,7 @@
 class Environment {
 public:
     Environment();
-
-    const ICommandExecutor &getCommandExecutorByCommandName(
-            const CommandName &commandName
-    ) const;
-
+    
     const std::string &getVariableValue(const std::string &variableName);
 
     void setVariableValue(const std::string &variableName, const std::string &variableValue);
@@ -35,18 +31,9 @@ public:
     void setLastCommandExitCode(int lastCommandExitCode);
 
 private:
-    CommandExecutorFactory factory;
     std::unordered_map<std::string, std::string> variableNameToValue;
 
     int lastCommandExitCode = 0;
-
-    std::shared_ptr<EchoExecutor> echoExecutor;
-    std::shared_ptr<ExitExecutor> exitExecutor;
-    std::shared_ptr<CatExecutor> catExecutor;
-    std::shared_ptr<PWDExecutor> pwdExecutor;
-    std::shared_ptr<WCExecutor> wcExecutor;
-    std::shared_ptr<ExternalExecutor> externalExecutor;
-    std::shared_ptr<EmptyExecutor> emptyExecutor;
 };
 
 #endif //HW01_CLI_ENVIRONMENT_H

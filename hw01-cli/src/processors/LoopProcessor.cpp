@@ -7,7 +7,8 @@
 
 Response LoopProcessor::process(
         const std::string &s,
-        Environment &environment
+        Environment &environment,
+        const CommandExecutorFactory &factory
 ) {
     tokenizer->clear();
     tokenizer->append(s);
@@ -34,9 +35,8 @@ Response LoopProcessor::process(
 
             if (!Substitutor::tryAssign(command, environment)) {
                 try {
-                    status = environment
-                            .getCommandExecutorByCommandName(command.getCommandName())
-                            .execute(command, inputChannel, outputChannel);
+                    const auto &executor = factory.getCommandExecutorByCommandName(command.getCommandName());
+                    status = executor.value().get()->execute(command, inputChannel, outputChannel);
                 } catch (const std::exception &e) {
                     status.setExitCode(-1);
                     status.setMessage("Error: " + std::string(e.what()));

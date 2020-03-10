@@ -27,7 +27,6 @@ public:
     std::optional<std::shared_ptr<ICommandExecutor>> getCommandExecutorByCommandName(
             const CommandName &commandName
     ) const;
-
 private:
     std::vector<std::pair<CommandName, std::shared_ptr<ICommandExecutor>>> nameToExecutorMap;
 };

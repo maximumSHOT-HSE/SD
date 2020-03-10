@@ -9,7 +9,8 @@ int Shell::run() {
         std::getline(std::cin, input);
         Response response = processor->process(
                 input,
-                *environment
+                *environment,
+                *factory
         );
 
         StringChannel output = response.getStringChannel();
@@ -23,6 +24,21 @@ int Shell::run() {
 
 Shell::Shell() :
         processor(new LoopProcessor()),
-        environment(new Environment()) {
-}
+        environment(new Environment()),
+        factory(new CommandExecutorFactory()),
 
+        echoExecutor(new EchoExecutor()),
+        exitExecutor(new ExitExecutor()),
+        catExecutor(new CatExecutor()),
+        pwdExecutor(new PWDExecutor()),
+        wcExecutor(new WCExecutor()),
+        externalExecutor(new ExternalExecutor()),
+        emptyExecutor(new EmptyExecutor()) {
+
+    factory->registerExecutor(CommandName("echo"), echoExecutor);
+    factory->registerExecutor(CommandName("exit"), exitExecutor);
+    factory->registerExecutor(CommandName("cat"), catExecutor);
+    factory->registerExecutor(CommandName("pwd"), pwdExecutor);
+    factory->registerExecutor(CommandName("wc"), wcExecutor);
+    factory->registerExecutor(CommandName(""), emptyExecutor);
+}

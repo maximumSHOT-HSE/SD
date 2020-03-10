@@ -11,7 +11,8 @@ class IProcessor {
 public:
     virtual Response process(
             const std::string &s,
-            Environment &environment
+            Environment &environment,
+            const CommandExecutorFactory &factory
     ) = 0;
 
     virtual ~IProcessor() = default;
