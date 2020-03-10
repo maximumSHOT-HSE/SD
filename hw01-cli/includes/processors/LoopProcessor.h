@@ -4,6 +4,8 @@
 #include "processors/IProcessor.h"
 #include "commands/CommandExecutorFactory.h"
 
+#include <memory>
+
 class LoopProcessor : public IProcessor {
 public:
     LoopProcessor();
@@ -19,8 +21,8 @@ public:
 private:
     static Token removeOuterQuotes(const Token& token);
 private:
-    ITokenizer *tokenizer;
-    ITokenizer *shortTermTokenizer;
+    std::unique_ptr<ITokenizer> tokenizer;
+    std::unique_ptr<ITokenizer> shortTermTokenizer;
 };
 
 

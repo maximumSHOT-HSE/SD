@@ -65,7 +65,6 @@ Response LoopProcessor::process(
 }
 
 LoopProcessor::~LoopProcessor() {
-    delete tokenizer;
 }
 
 LoopProcessor::LoopProcessor()
