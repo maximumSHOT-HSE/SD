@@ -16,8 +16,6 @@ public:
             const CommandExecutorFactory &factory
     ) override;
 
-    ~LoopProcessor() override;
-
 private:
     static Token removeOuterQuotes(const Token& token);
 private:

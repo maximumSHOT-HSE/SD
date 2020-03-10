@@ -64,9 +64,6 @@ Response LoopProcessor::process(
     return Response(lastCommandStatus, inputChannel);
 }
 
-LoopProcessor::~LoopProcessor() {
-}
-
 LoopProcessor::LoopProcessor()
         : tokenizer(new LinearTokenizer()),
           shortTermTokenizer(new LinearTokenizer()) {}

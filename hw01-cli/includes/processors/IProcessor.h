@@ -15,7 +15,6 @@ public:
             const CommandExecutorFactory &factory
     ) = 0;
 
-    virtual ~IProcessor() = default;
 };
 
 
