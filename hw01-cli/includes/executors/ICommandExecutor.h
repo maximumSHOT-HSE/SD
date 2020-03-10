@@ -6,15 +6,11 @@
 
 #include <Status.h>
 
-// Interface for command executors.
+/// Interface for command executors.
 class ICommandExecutor {
 public:
-    // Reads data from inputs channel,
-    // Write data into output channel,
-    // Executes, returns status with
-    // all important information
-    // such as exit code, message,
-    // exit status, etc.
+    /// Reads data from inputs channel, Write data into output channel, Executes, returns status with all important
+    /// information such as exit code, message, exit status, etc.
     virtual Status execute(
             const Command &command,
             StringChannel &inputChannel,

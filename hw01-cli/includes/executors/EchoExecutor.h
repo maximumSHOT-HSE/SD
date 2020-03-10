@@ -3,13 +3,11 @@
 
 #include "executors/ICommandExecutor.h"
 
-// Implementation of echo command
+/// Implementation of echo command
 class EchoExecutor : public ICommandExecutor {
 public:
-    // Removes all space tokens from the ends of arguments list
-    // and wrties all remaining arguments into the output channel
-    // in the same order. Serial of spaces will be compressed into one
-    // space character.
+    /// Removes all space tokens from the ends of arguments list and wrties all remaining arguments into the output
+    /// channel in the same order. Serial of spaces will be compressed into one space character.
     Status execute(
             const Command &command,
             StringChannel &inputChannel,

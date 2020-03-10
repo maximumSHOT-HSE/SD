@@ -3,8 +3,10 @@
 
 #include "executors/ICommandExecutor.h"
 
+/// Implementation of running external commands
 class ExternalExecutor : public ICommandExecutor {
 public:
+    /// Runs commands which is not implemented inside the CLI
     Status execute(
             const Command &command,
             StringChannel &inputChannel,

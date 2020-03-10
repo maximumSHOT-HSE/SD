@@ -3,7 +3,7 @@
 
 #include <string>
 
-// Wrapper for command name
+/// Wrapper for command name
 class CommandName {
 public:
     CommandName() = default;

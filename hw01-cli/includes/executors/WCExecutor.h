@@ -5,26 +5,15 @@
 
 #include <optional>
 
-// Implementation of wc command
+/// Implementation of wc command
 class WCExecutor : public ICommandExecutor {
 public:
-    // There are two modes.
-    // If arguments list is empty then
-    // wc will read data from input channel.
-    // Otherwise it will read data from files
-    // which names are arguments of wc.
-    // Then wc will output the number of
-    // newlines, words and bytes in data.
-    // A word is a non-zero-length sequence
-    // of characters delimited by white space.
-    // Newline calculates as the number of
-    // newline characters in data.
-    // In mode when wc reads data from files
-    // it will write info about each file in
-    // arguments list, also it will writes the name
-    // of file near the info, and at the very end
-    // total info about all files will be written
-    // into output channel.
+    /// There are two modes. If arguments list is empty then wc will read data from input channel. Otherwise it will
+    /// read data from files which names are arguments of wc. Then wc will output the number of newlines, words and
+    /// bytes in data. A word is a non-zero-length sequence of characters delimited by white space. Newline calculates
+    /// as the number of newline characters in data. In mode when wc reads data from files it will write info about
+    /// each file in arguments list, also it will writes the name of file near the info, and at the very end total
+    /// info about all files will be written into output channel.
     Status execute(
             const Command &command,
             StringChannel &inputStream,

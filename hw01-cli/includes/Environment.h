@@ -16,6 +16,7 @@
 #include <unordered_map>
 #include <string>
 
+/// Entity for environment which stores env variables and builtin commands inside and can work with it
 class Environment {
 public:
     Environment();

@@ -5,8 +5,11 @@
 
 #include <optional>
 
+/// Implementation of cat command
 class CatExecutor : public ICommandExecutor {
 public:
+    /// Takes bytes from output of previous pipe or from files which are arguments of the command, writes this bytes
+    /// into output channel
     Status execute(
             const Command &command,
             StringChannel &inputStream,

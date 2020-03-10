@@ -3,11 +3,10 @@
 
 #include "executors/ICommandExecutor.h"
 
-// Implementation of pwd command
+/// Implementation of pwd command
 class PWDExecutor : public ICommandExecutor {
 public:
-    // Writes current working directory intou
-    // output channel
+    /// Writes current working directory into output channel
     Status execute(
             const Command &command,
             StringChannel &inputStream,

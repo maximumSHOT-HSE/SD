@@ -3,8 +3,10 @@
 
 #include "executors/ICommandExecutor.h"
 
+/// Implementation of empty string command
 class EmptyExecutor : public ICommandExecutor {
 public:
+    /// Do nothing
     Status execute(
             const Command &command,
             StringChannel &inputChannel,

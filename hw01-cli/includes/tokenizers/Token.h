@@ -7,18 +7,17 @@ enum TokenType {
     PIPE, SPACE, END, ASSIGN, LITERAL, DOLLAR
 };
 
-// The unit of tokenization process.
+/// The unit of tokenization process.
 class Token {
 public:
     explicit Token(const TokenType &tokenType, const std::string &tokenContent = "");
 
     TokenType getTokenType() const;
 
-    // Creates the string representation of token.
+    /// Creates the string representation of token.
     const std::string &asString() const;
 
-    // Checks whether the string representation
-    // is empty or not
+    /// Checks whether the string representation is empty or not
     bool empty() const;
 
 private:
