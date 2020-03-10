@@ -1,4 +1,4 @@
-#include <channels/StringChannel.h>
+#include "channels/StringChannel.h"
 
 bool StringChannel::empty() const {
     return buffer.empty();

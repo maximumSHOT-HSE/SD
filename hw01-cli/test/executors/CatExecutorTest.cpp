@@ -1,5 +1,6 @@
+#include "executors/CatExecutor.h"
+
 #include <boost/test/unit_test.hpp>
-#include <executors/CatExecutor.h>
 
 BOOST_AUTO_TEST_SUITE(CatExecutorSuite)
 

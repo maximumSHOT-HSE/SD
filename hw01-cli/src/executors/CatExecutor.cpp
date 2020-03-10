@@ -1,8 +1,8 @@
 #include "executors/CatExecutor.h"
+
 #include <assert.h>
 #include <algorithm>
 #include <fstream>
-#include <executors/CatExecutor.h>
 #include <cctype>
 
 Status CatExecutor::execute(

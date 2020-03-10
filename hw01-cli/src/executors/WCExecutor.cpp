@@ -1,4 +1,5 @@
-#include <executors/WCExecutor.h>
+#include "executors/WCExecutor.h"
+
 #include <fstream>
 
 Status WCExecutor::execute(

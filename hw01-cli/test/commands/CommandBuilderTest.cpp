@@ -1,5 +1,6 @@
+#include "commands/CommandBuilder.h"
+
 #include <boost/test/unit_test.hpp>
-#include <commands/CommandBuilder.h>
 
 BOOST_AUTO_TEST_SUITE(CommandBuilderSuite)
 

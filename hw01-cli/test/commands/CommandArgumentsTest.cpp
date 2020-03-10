@@ -1,6 +1,6 @@
-#include <boost/test/unit_test.hpp>
-#include <commands/CommandArguments.h>
+#include "commands/CommandArguments.h"
 
+#include <boost/test/unit_test.hpp>
 #include <vector>
 
 BOOST_AUTO_TEST_SUITE(CommandArgumentsSuite)

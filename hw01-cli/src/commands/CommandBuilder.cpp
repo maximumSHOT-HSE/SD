@@ -1,5 +1,6 @@
+#include "commands/CommandBuilder.h"
+
 #include <iostream>
-#include <commands/CommandBuilder.h>
 #include <assert.h>
 #include <algorithm>
 

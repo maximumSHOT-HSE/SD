@@ -1,9 +1,10 @@
 #ifndef HW01_CLI_RESPONSE_H
 #define HW01_CLI_RESPONSE_H
 
+#include "Status.h"
+#include "channels/StringChannel.h"
+
 #include <sstream>
-#include <Status.h>
-#include <channels/StringChannel.h>
 
 class Response {
 public:

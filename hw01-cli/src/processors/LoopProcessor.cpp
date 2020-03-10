@@ -1,7 +1,7 @@
-#include <processors/LoopProcessor.h>
-#include <commands/CommandBuilder.h>
-#include <tokenizers/LinearTokenizer.h>
-#include <Substitutor.h>
+#include "processors/LoopProcessor.h"
+#include "commands/CommandBuilder.h"
+#include "tokenizers/LinearTokenizer.h"
+#include "Substitutor.h"
 
 #include <iostream>
 

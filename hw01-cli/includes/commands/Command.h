@@ -1,8 +1,8 @@
 #ifndef HW01_CLI_COMMAND_H
 #define HW01_CLI_COMMAND_H
 
-#include <commands/CommandName.h>
-#include <commands/CommandArguments.h>
+#include "commands/CommandName.h"
+#include "commands/CommandArguments.h"
 
 // Entity for representing command.
 // It has a name and arguments.

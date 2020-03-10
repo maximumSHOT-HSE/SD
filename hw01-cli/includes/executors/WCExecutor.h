@@ -1,7 +1,8 @@
 #ifndef HW01_CLI_WCEXECUTOR_H
 #define HW01_CLI_WCEXECUTOR_H
 
-#include <executors/ICommandExecutor.h>
+#include "executors/ICommandExecutor.h"
+
 #include <optional>
 
 // Implementation of wc command

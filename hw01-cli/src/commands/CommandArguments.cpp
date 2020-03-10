@@ -1,4 +1,4 @@
-#include <commands/CommandArguments.h>
+#include "commands/CommandArguments.h"
 
 CommandArguments::CommandArguments(const std::vector<Token> &argumentTokens)
         : argumentTokens(argumentTokens) {}

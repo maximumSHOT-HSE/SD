@@ -1,9 +1,10 @@
 #ifndef HW01_CLI_UTILEXECUTOR_H
 #define HW01_CLI_UTILEXECUTOR_H
 
+#include "commands/Command.h"
+#include "channels/StringChannel.h"
+
 #include <Status.h>
-#include <commands/Command.h>
-#include <channels/StringChannel.h>
 
 // Interface for command executors.
 class ICommandExecutor {

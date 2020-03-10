@@ -1,8 +1,9 @@
 #ifndef HW01_CLI_STRINGCHANNEL_H
 #define HW01_CLI_STRINGCHANNEL_H
 
-#include <channels/IInputChannel.h>
-#include <channels/IOutputChannel.h>
+#include "channels/IInputChannel.h"
+#include "channels/IOutputChannel.h"
+
 #include <string>
 
 

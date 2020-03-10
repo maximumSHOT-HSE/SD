@@ -1,8 +1,8 @@
-#include <boost/test/unit_test.hpp>
-#include <commands/CommandExecutorFactory.h>
-#include <executors/ICommandExecutor.h>
-#include <channels/StringChannel.h>
+#include "commands/CommandExecutorFactory.h"
+#include "executors/ICommandExecutor.h"
+#include "channels/StringChannel.h"
 
+#include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_SUITE(CommandExecutorFactorySuite)
 

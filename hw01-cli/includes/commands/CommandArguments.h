@@ -1,9 +1,10 @@
 #ifndef HW01_CLI_COMMANDARGUMENTS_H
 #define HW01_CLI_COMMANDARGUMENTS_H
 
+#include "tokenizers/Token.h"
+
 #include <string>
 #include <vector>
-#include <tokenizers/Token.h>
 
 // Entity for representing arguments for
 // command including all space tokens and end token.

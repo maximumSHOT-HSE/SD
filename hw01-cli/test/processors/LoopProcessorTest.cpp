@@ -1,7 +1,7 @@
-#include <boost/test/unit_test.hpp>
-#include <processors/LoopProcessor.h>
-#include <channels/StringChannel.h>
+#include "processors/LoopProcessor.h"
+#include "channels/StringChannel.h"
 
+#include <boost/test/unit_test.hpp>
 #include <iostream>
 
 BOOST_AUTO_TEST_SUITE(LoopProcessorSuite)

@@ -1,5 +1,6 @@
+#include "Substitutor.h"
+
 #include <boost/test/unit_test.hpp>
-#include <Substitutor.h>
 
 BOOST_AUTO_TEST_SUITE(SubstitutorSuite)
 

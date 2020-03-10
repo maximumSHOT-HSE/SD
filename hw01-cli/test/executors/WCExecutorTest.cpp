@@ -1,9 +1,9 @@
-#include <boost/test/unit_test.hpp>
-#include <executors/WCExecutor.h>
-#include <channels/StringChannel.h>
+#include "executors/WCExecutor.h"
+#include "executors/ExternalExecutor.h"
+#include "channels/StringChannel.h"
 
 #include <iostream>
-#include <executors/ExternalExecutor.h>
+#include <boost/test/unit_test.hpp>
 
 BOOST_AUTO_TEST_SUITE(WCExecutorSuite)
 

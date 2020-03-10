@@ -1,10 +1,11 @@
 #ifndef HW01_CLI_COMMANDBUILDER_H
 #define HW01_CLI_COMMANDBUILDER_H
 
-#include <tokenizers/Token.h>
-#include <commands/Command.h>
-#include <vector>
+#include "tokenizers/Token.h"
+#include "commands/Command.h"
 #include "Environment.h"
+
+#include <vector>
 
 // Entity for building command
 // by appending new tokens.

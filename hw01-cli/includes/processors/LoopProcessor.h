@@ -1,9 +1,8 @@
 #ifndef HW01_CLI_LOOPPROCESSOR_H
 #define HW01_CLI_LOOPPROCESSOR_H
 
-#include <processors/IProcessor.h>
+#include "processors/IProcessor.h"
 
-//
 class LoopProcessor : public IProcessor {
 public:
     LoopProcessor();

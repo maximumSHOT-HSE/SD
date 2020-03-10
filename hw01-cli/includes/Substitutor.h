@@ -1,11 +1,12 @@
 #ifndef HW01_CLI_SUBSTITUTOR_H
 #define HW01_CLI_SUBSTITUTOR_H
 
+#include "tokenizers/Token.h"
+#include "tokenizers/ITokenizer.h"
+#include "Environment.h"
+
 #include <string>
-#include <tokenizers/Token.h>
-#include <Environment.h>
 #include <vector>
-#include <tokenizers/ITokenizer.h>
 
 // Entity without state, the main task of which
 // is substitution and assign operations.

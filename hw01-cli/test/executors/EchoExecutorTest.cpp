@@ -1,6 +1,7 @@
+#include "executors/EchoExecutor.h"
+#include "channels/StringChannel.h"
+
 #include <boost/test/unit_test.hpp>
-#include <executors/EchoExecutor.h>
-#include <channels/StringChannel.h>
 
 BOOST_AUTO_TEST_SUITE(EchoExecutorSuite)
 
