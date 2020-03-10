@@ -26,7 +26,3 @@ Shell::Shell() :
         environment(new Environment()) {
 }
 
-Shell::~Shell() {
-    delete processor;
-    delete environment;
-}

@@ -28,13 +28,13 @@ BOOST_AUTO_TEST_SUITE(CommandExecutorFactorySuite)
         StringChannel inputChannel, outputChannel;
 
         CommandExecutorFactory factory;
-        std::unique_ptr<ICommandExecutor> aExecutor(new ForTestExecutor('a'));
-        std::unique_ptr<ICommandExecutor> bExecutor(new ForTestExecutor('b'));
-        std::unique_ptr<ICommandExecutor> cExecutor(new ForTestExecutor('c'));
+        std::shared_ptr<ICommandExecutor> aExecutor(new ForTestExecutor('a'));
+        std::shared_ptr<ICommandExecutor> bExecutor(new ForTestExecutor('b'));
+        std::shared_ptr<ICommandExecutor> cExecutor(new ForTestExecutor('c'));
 
-        factory.registerExecutor(CommandName("a"), aExecutor.get());
-        factory.registerExecutor(CommandName("b"), bExecutor.get());
-        factory.registerExecutor(CommandName("c"), cExecutor.get());
+        factory.registerExecutor(CommandName("a"), aExecutor);
+        factory.registerExecutor(CommandName("b"), bExecutor);
+        factory.registerExecutor(CommandName("c"), cExecutor);
 
         outputChannel.clear();
         factory.getCommandExecutorByCommandName(CommandName("a"))

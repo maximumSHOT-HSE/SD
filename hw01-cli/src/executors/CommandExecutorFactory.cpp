@@ -2,17 +2,17 @@
 
 void CommandExecutorFactory::registerExecutor(
         const CommandName &commandName,
-        ICommandExecutor *const commandExecutor) {
+        std::shared_ptr<ICommandExecutor> commandExecutor) {
     nameToExecutorMap.emplace_back(commandName, commandExecutor);
 }
 
-std::optional<ICommandExecutor * const> CommandExecutorFactory::getCommandExecutorByCommandName(
+std::optional<std::shared_ptr<ICommandExecutor>> CommandExecutorFactory::getCommandExecutorByCommandName(
         const CommandName &commandName
 ) const {
     for (const auto &item : nameToExecutorMap) {
         if (item.first == commandName) {
-            return std::optional<ICommandExecutor *const>(item.second);
+            return std::optional(item.second);
         }
     }
-    return std::optional<ICommandExecutor *const>();
+    return std::optional<std::unique_ptr<ICommandExecutor>>();
 }

@@ -15,6 +15,7 @@
 
 #include <unordered_map>
 #include <string>
+#include <memory>
 
 /// Entity for environment which stores env variables and builtin commands inside and can work with it
 class Environment {
@@ -39,13 +40,13 @@ private:
 
     int lastCommandExitCode = 0;
 
-    EchoExecutor *echoExecutor;
-    ExitExecutor *exitExecutor;
-    CatExecutor *catExecutor;
-    PWDExecutor *pwdExecutor;
-    WCExecutor *wcExecutor;
-    ExternalExecutor *externalExecutor;
-    EmptyExecutor *emptyExecutor;
+    std::shared_ptr<EchoExecutor> echoExecutor;
+    std::shared_ptr<ExitExecutor> exitExecutor;
+    std::shared_ptr<CatExecutor> catExecutor;
+    std::shared_ptr<PWDExecutor> pwdExecutor;
+    std::shared_ptr<WCExecutor> wcExecutor;
+    std::shared_ptr<ExternalExecutor> externalExecutor;
+    std::shared_ptr<EmptyExecutor> emptyExecutor;
 };
 
 #endif //HW01_CLI_ENVIRONMENT_H

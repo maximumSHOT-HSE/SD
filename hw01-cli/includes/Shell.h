@@ -5,17 +5,17 @@
 #include "processors/IProcessor.h"
 #include "Environment.h"
 
+#include <memory>
+
 class Shell {
 public:
     int run();
 
     Shell();
 
-    ~Shell();
-
 private:
-    IProcessor *processor;
-    Environment *environment;
+    std::unique_ptr<IProcessor> processor;
+    std::unique_ptr<Environment> environment;
 };
 
 
