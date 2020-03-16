@@ -11,6 +11,12 @@
 
 Нужно:
 
+0. Подключить репозитории со сторонними библиотеками
+
+`git submodule init`
+
+`git submodule update`
+
 1. Создать папку `build`
 
 `mkdir build`
