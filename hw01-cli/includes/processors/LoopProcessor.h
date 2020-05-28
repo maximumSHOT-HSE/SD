@@ -17,8 +17,6 @@ public:
     ) override;
 
 private:
-    static Token removeOuterQuotes(const Token& token);
-private:
     std::unique_ptr<ITokenizer> tokenizer;
     std::unique_ptr<ITokenizer> shortTermTokenizer;
 };

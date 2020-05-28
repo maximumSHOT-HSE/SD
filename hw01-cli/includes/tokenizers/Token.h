@@ -4,7 +4,7 @@
 #include <string>
 
 enum class TokenType {
-    PIPE = 0, SPACE = 1, END = 2, ASSIGN = 3, LITERAL = 4, DOLLAR = 5
+    PIPE = 0, SPACE = 1, END = 2, ASSIGN = 3, LITERAL = 4, DOLLAR = 5, QUOTE = 6
 };
 
 /// The unit of tokenization process.

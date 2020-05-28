@@ -12,27 +12,19 @@ Token LinearTokenizer::nextToken() {
         pointer++;
         return Token(TokenType::SPACE, " ");
     }
-    if (auto foundToken = specialSymbols.find(s[pointer]);
-            foundToken != specialSymbols.end()) {
+    if (auto foundToken = specialSymbols.find(s[pointer]); foundToken != specialSymbols.end()) { // special symbols
         pointer++;
         return foundToken->second;
     }
-    std::optional<char> lastQuote;
+    if (s[pointer] == '\"' || s[pointer] == '\'') {
+        return Token(TokenType::QUOTE, std::string(1, s[pointer++]));
+    }
     std::string tokenContent;
     for (int &i = pointer; i < (int) s.size(); i++) {
-        if (!lastQuote.has_value() && (std::isspace(s[i]) || specialSymbols.count(s[i]))) {
+        if (std::isspace(s[i]) || specialSymbols.count(s[i]) || s[i] == '\"' || s[i] == '\'') {
             break;
         }
         tokenContent.push_back(s[i]);
-        if (s[i] == '"' || s[i] == '\'') { // is quote?
-            if (lastQuote.has_value()) {
-                if (lastQuote.value() == s[i]) {
-                    lastQuote.reset();
-                }
-            } else {
-                lastQuote = s[i];
-            }
-        }
     }
     return Token(TokenType::LITERAL, tokenContent);
 }

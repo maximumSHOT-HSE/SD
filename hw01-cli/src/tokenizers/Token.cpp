@@ -5,7 +5,8 @@ TokenType Token::getTokenType() const {
 }
 
 Token::Token(const TokenType &tokenType, const std::string &tokenContent)
-        : tokenType(tokenType), tokenContent(tokenContent) {}
+        : tokenType(tokenType), tokenContent(tokenContent) {
+}
 
 const std::string &Token::asString() const {
     return tokenContent;

@@ -20,13 +20,13 @@ public:
     /// If yes then assignment will be made and new variable value will be stored in the given environment.
     static bool tryAssign(const Command &command, Environment &environment);
 
-private:
-    static std::string substitute(const std::vector<Token> &tokens, Environment &environment);
-
+    /// Checkes, whether first token is dollar and second token is the literal token with correct variable name
     static bool isSibstitution(
             const Token &dollarToken,
             const Token &variableNameToken
     );
+private:
+    static std::string substitute(const std::vector<Token> &tokens, Environment &environment);
 
     static bool isValidVariableName(const std::string &name);
 

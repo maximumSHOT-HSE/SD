@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_SUITE(LinearTokenizerSuite)
 
         tokenizer.append("a b \"c = d\"$x=56b");
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 16; i++) {
             BOOST_CHECK_EQUAL(true, tokenizer.hasNextToken());
             tokenizer.nextToken();
         }
@@ -113,8 +113,24 @@ BOOST_AUTO_TEST_SUITE(LinearTokenizerSuite)
 
         BOOST_CHECK_EQUAL(true, tokenizer.hasNextToken());
         token = tokenizer.nextToken();
+        BOOST_CHECK_EQUAL(int(TokenType::QUOTE), int(token.getTokenType()));
+        BOOST_CHECK_EQUAL("\"", token.asString());
+
+        BOOST_CHECK_EQUAL(true, tokenizer.hasNextToken());
+        token = tokenizer.nextToken();
+        BOOST_CHECK_EQUAL(int(TokenType::DOLLAR), int(token.getTokenType()));
+        BOOST_CHECK_EQUAL("$", token.asString());
+
+        BOOST_CHECK_EQUAL(true, tokenizer.hasNextToken());
+        token = tokenizer.nextToken();
         BOOST_CHECK_EQUAL(int(TokenType::LITERAL), int(token.getTokenType()));
-        BOOST_CHECK_EQUAL("\"$x\"", token.asString());
+        BOOST_CHECK_EQUAL("x", token.asString());
+
+        BOOST_CHECK_EQUAL(true, tokenizer.hasNextToken());
+        token = tokenizer.nextToken();
+        BOOST_CHECK_EQUAL(int(TokenType::QUOTE), int(token.getTokenType()));
+        BOOST_CHECK_EQUAL("\"", token.asString());
+
 
         BOOST_CHECK_EQUAL(true, tokenizer.hasNextToken());
         token = tokenizer.nextToken();

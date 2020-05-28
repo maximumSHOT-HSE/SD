@@ -39,34 +39,12 @@ BOOST_AUTO_TEST_SUITE(CommandBuilderSuite)
         BOOST_CHECK_EQUAL(buffer, builder.buildCommandString());
     }
 
-    BOOST_AUTO_TEST_CASE(testBuildCommandStringAppendNonLiteralAndEmptyTokens) {
-        CommandBuilder builder;
-        std::string buffer;
-
-        std::vector<TokenType> types = {
-                TokenType::PIPE, TokenType::SPACE, TokenType::END, TokenType::ASSIGN, TokenType::LITERAL,
-                TokenType::DOLLAR
-        };
-
-        for (int i = 0; i < 20; i++) {
-            TokenType type = types[i % (int) types.size()];
-            std::string content = std::to_string(i);
-            if (type == TokenType::LITERAL) {
-                content.clear();
-            }
-            Token token = Token(type, content);
-            builder.appendToken(token);
-        }
-
-        BOOST_CHECK_EQUAL("", builder.buildCommandString());
-    }
-
     BOOST_AUTO_TEST_CASE(testBuildCommandStringWithAppendNonLiteralTokenAtStart) {
         CommandBuilder builder;
         std::string buffer;
 
         builder.appendToken(Token(TokenType::SPACE, " "));
-        builder.appendToken(Token(TokenType::DOLLAR, "$"));
+        builder.appendToken(Token(TokenType::SPACE, " "));
         builder.appendToken(Token(TokenType::LITERAL, "echo"));
         builder.appendToken(Token(TokenType::SPACE, " "));
         builder.appendToken(Token(TokenType::LITERAL, "x"));
@@ -76,14 +54,14 @@ BOOST_AUTO_TEST_SUITE(CommandBuilderSuite)
         builder.appendToken(Token(TokenType::SPACE, " "));
         builder.appendToken(Token(TokenType::LITERAL, "z"));
 
-        BOOST_CHECK_EQUAL("echo x y  z", builder.buildCommandString());
+        BOOST_CHECK_EQUAL("  echo x y  z", builder.buildCommandString());
     }
 
     BOOST_AUTO_TEST_CASE(testAppend) {
         CommandBuilder builder;
 
         builder.appendToken(Token(TokenType::SPACE, " "));
-        BOOST_CHECK_EQUAL("", builder.buildCommandString());
+        BOOST_CHECK_EQUAL(" ", builder.buildCommandString());
         builder.clear();
 
         builder.appendToken(Token(TokenType::LITERAL, "echo"));
@@ -96,9 +74,10 @@ BOOST_AUTO_TEST_SUITE(CommandBuilderSuite)
     BOOST_AUTO_TEST_CASE(testBuildCommand) {
         CommandBuilder builder;
         std::string buffer;
+        Environment environment;
 
         builder.appendToken(Token(TokenType::SPACE, " "));
-        builder.appendToken(Token(TokenType::DOLLAR, "$"));
+        builder.appendToken(Token(TokenType::SPACE, " "));
         builder.appendToken(Token(TokenType::LITERAL, "cat"));
         builder.appendToken(Token(TokenType::SPACE, " "));
         builder.appendToken(Token(TokenType::LITERAL, "x"));
@@ -110,7 +89,7 @@ BOOST_AUTO_TEST_SUITE(CommandBuilderSuite)
         builder.appendToken(Token(TokenType::SPACE, " "));
         builder.appendToken(Token(TokenType::LITERAL, "sort"));
 
-        Command command = builder.buildCommand();
+        Command command = builder.buildCommand(environment);
 
         BOOST_CHECK_EQUAL("cat", command.getCommandName().getName());
         BOOST_CHECK_EQUAL(" x| wc | sort", command.getCommandArguments().asString());
@@ -119,6 +98,7 @@ BOOST_AUTO_TEST_SUITE(CommandBuilderSuite)
     BOOST_AUTO_TEST_CASE(testBuildCommandEmptyCommand) {
         CommandBuilder builder;
         std::string buffer;
+        Environment environment;
 
         builder.appendToken(Token(TokenType::SPACE, " "));
         builder.appendToken(Token(TokenType::DOLLAR, "$"));
@@ -126,10 +106,10 @@ BOOST_AUTO_TEST_SUITE(CommandBuilderSuite)
         builder.appendToken(Token(TokenType::ASSIGN, "="));
         builder.appendToken(Token(TokenType::END, ""));
 
-        Command command = builder.buildCommand();
+        Command command = builder.buildCommand(environment);
 
-        BOOST_CHECK_EQUAL("", command.getCommandName().getName());
-        BOOST_CHECK_EQUAL("", command.getCommandArguments().asString());
+        BOOST_CHECK_EQUAL("$", command.getCommandName().getName());
+        BOOST_CHECK_EQUAL("|=", command.getCommandArguments().asString());
     }
 
 BOOST_AUTO_TEST_SUITE_END()

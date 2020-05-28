@@ -20,11 +20,13 @@ public:
     void clear();
 
     /// Takes the first token as command name. Others token will be used for command arguments. If there is no tokens
-    Command buildCommand() const;
+    Command buildCommand(Environment &environment);
 
     /// Builds string representation of command as concatenation of all tokens string representation and returns it.
     std::string buildCommandString() const;
 
+private:
+    void substitute(Environment &environment);
 private:
     std::vector<Token> tokens;
 };

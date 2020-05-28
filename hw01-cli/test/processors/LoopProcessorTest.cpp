@@ -49,7 +49,7 @@ BOOST_AUTO_TEST_SUITE(LoopProcessorSuite)
         StringChannel outputChannel = response.getStringChannel();
 
         BOOST_CHECK_EQUAL(true, response.getStatus().isSuccess());
-        BOOST_CHECK_EQUAL("1 xxy 2\n", outputChannel.read());
+        BOOST_CHECK_EQUAL("1  xxy  2        \n", outputChannel.read());
     }
 
     BOOST_AUTO_TEST_CASE(testCase3) {
@@ -69,6 +69,91 @@ BOOST_AUTO_TEST_SUITE(LoopProcessorSuite)
 
         BOOST_CHECK_EQUAL(true, response.getStatus().isSuccess());
         BOOST_CHECK_EQUAL("", outputChannel.read());
+    }
+
+    BOOST_AUTO_TEST_CASE(testCase4) {
+        LoopProcessor processor;
+        Environment environment;
+        CommandExecutorFactory factory;
+
+        factory.registerExecutor(
+                CommandName(""),
+                std::make_shared<EmptyExecutor>()
+        );
+
+        factory.registerExecutor(
+                CommandName("wc"),
+                std::make_shared<WCExecutor>()
+        );
+
+        factory.registerExecutor(
+                CommandName("echo"),
+                std::make_shared<EchoExecutor>()
+        );
+
+        std::string command = "echo 123 | wc";
+
+        Response response = processor.process(command, environment, factory);
+        StringChannel outputChannel = response.getStringChannel();
+
+        BOOST_CHECK_EQUAL(true, response.getStatus().isSuccess());
+        BOOST_CHECK_EQUAL("1 1 4\n", outputChannel.read());
+    }
+
+    BOOST_AUTO_TEST_CASE(testCase5) {
+        LoopProcessor processor;
+        Environment environment;
+        CommandExecutorFactory factory;
+
+        factory.registerExecutor(
+                CommandName(""),
+                std::make_shared<EmptyExecutor>()
+        );
+
+        factory.registerExecutor(
+                CommandName("wc"),
+                std::make_shared<WCExecutor>()
+        );
+
+        factory.registerExecutor(
+                CommandName("echo"),
+                std::make_shared<EchoExecutor>()
+        );
+
+        std::string command = "'echo 123 | wc'";
+
+        Response response = processor.process(command, environment, factory);
+        StringChannel outputChannel = response.getStringChannel();
+
+        BOOST_CHECK_EQUAL(false, response.getStatus().isSuccess());
+    }
+
+    BOOST_AUTO_TEST_CASE(testCase6) {
+        LoopProcessor processor;
+        Environment environment;
+        CommandExecutorFactory factory;
+
+        factory.registerExecutor(
+                CommandName(""),
+                std::make_shared<EmptyExecutor>()
+        );
+
+        factory.registerExecutor(
+                CommandName("wc"),
+                std::make_shared<WCExecutor>()
+        );
+
+        factory.registerExecutor(
+                CommandName("echo"),
+                std::make_shared<EchoExecutor>()
+        );
+
+        std::string command = "\"echo 123 | wc\"";
+
+        Response response = processor.process(command, environment, factory);
+        StringChannel outputChannel = response.getStringChannel();
+
+        BOOST_CHECK_EQUAL(false, response.getStatus().isSuccess());
     }
 
 BOOST_AUTO_TEST_SUITE_END()

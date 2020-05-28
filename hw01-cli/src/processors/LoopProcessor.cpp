@@ -17,19 +17,21 @@ Response LoopProcessor::process(
     Status lastCommandStatus;
     StringChannel inputChannel, outputChannel;
 
+    std::vector<char> quotesStack;
+
     for (; lastCommandStatus.isSuccess() && tokenizer->hasNextToken();) {
 
         Token token = tokenizer->nextToken();
         TokenType tokenType = token.getTokenType();
 
-        if (tokenType == TokenType::PIPE || tokenType == TokenType::END) {
+        if (quotesStack.empty() && (tokenType == TokenType::PIPE || tokenType == TokenType::END)) {
             std::string commandString = commandBuilder.buildCommandString();
             commandBuilder.clear();
             for (shortTermTokenizer->clear(), shortTermTokenizer->append(commandString);
                  shortTermTokenizer->hasNextToken();) {
                 commandBuilder.appendToken(shortTermTokenizer->nextToken());
             }
-            Command command = commandBuilder.buildCommand();
+            Command command = commandBuilder.buildCommand(environment);
             commandBuilder.clear();
             Status status;
 
@@ -49,11 +51,15 @@ Response LoopProcessor::process(
             std::swap(inputChannel, outputChannel);
             outputChannel.clear();
         } else {
-            commandBuilder.appendToken(
-                    LoopProcessor::removeOuterQuotes(
-                            Substitutor::substitute(token, environment)
-                    )
-            );
+            commandBuilder.appendToken(token);
+
+            if (tokenType == TokenType::QUOTE) {
+                if (!quotesStack.empty() && quotesStack.front() == token.asString().front()) {
+                    quotesStack.clear();
+                } else {
+                    quotesStack.push_back(token.asString().front());
+                }
+            }
         }
     }
 
@@ -67,24 +73,3 @@ Response LoopProcessor::process(
 LoopProcessor::LoopProcessor()
         : tokenizer(new LinearTokenizer()),
           shortTermTokenizer(new LinearTokenizer()) {}
-
-Token LoopProcessor::removeOuterQuotes(const Token &token) {
-    std::optional<char> lastQuote;
-    std::string content;
-    for (char c : token.asString()) {
-        if (c == '\'' || c == '"') {
-            if (lastQuote.has_value()) {
-                if (lastQuote.value() == c) {
-                    lastQuote.reset();
-                } else {
-                    content.push_back(c);
-                }
-            } else {
-                lastQuote = c;
-            }
-        } else {
-            content.push_back(c);
-        }
-    }
-    return Token(token.getTokenType(), content);
-}
